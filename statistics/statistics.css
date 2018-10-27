@@ -1,0 +1,18 @@
+@import "../shared/global_style.css";
+
+body {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0;
+}
+
+.statistics {
+    background: var(--background-color);
+    flex: 2;
+}
+
+section {
+    flex-basis: 15%;
+}

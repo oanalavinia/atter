@@ -1,0 +1,75 @@
+﻿@import "../shared/global_style.css";
+
+body {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0;
+}
+
+.image {
+    flex: 2;
+    height: 723px;
+}
+
+section {
+    flex: 1;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+    padding: 70px;
+}
+
+.title {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    font-size: 45px;
+}
+
+.welcome-message {
+    padding-right: 10px;
+    color: var(--title-grey);
+}
+
+.name {
+    color: var(--blue);
+    font-weight: 600;
+}
+
+.text {
+    margin: 0 0 50px 0;
+    font-weight: 100;
+}
+
+input {
+    margin-bottom: 30px;
+    height: 30px;
+    border: none;
+    outline: none;
+    border-bottom: 1.5px solid var(--text);
+}
+
+::placeholder {
+    color: var(--text);
+    opacity: 1;
+    font-size: 20px;
+    font-family: Helvetica;
+}
+
+.chestie {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.blue-text {
+    color: var(--blue);
+    font-weight: 300;
+}
