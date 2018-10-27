@@ -5,7 +5,7 @@ body {
     font-family: Helvetica;
 }
 
-// containerele pentru rapoarte and stuff
+ /* containerele pentru rapoarte and stuff */
 .tile {
     width: 100%;
     display: flex;
@@ -32,3 +32,56 @@ body {
     display: inline-block;
     font-size: 20px;
 }
+
+.menu {
+    background-color: var(--blue);
+    display: flex;
+    flex-direction: column;
+    height: 750px;
+    padding: 7%;
+}
+.menuOptions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 10%;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    color: var(--menu-text);
+    padding-top: 7%;
+}
+
+.item .labelItem {
+    display: flex;
+    flex-direction: row;
+}
+
+.item .listItem {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    padding-left: 20%;
+}
+
+.item .listItem ul{
+    padding: 1%;
+    margin:0;
+    /* list-style-image: url(example.png); */
+}
+
+.menuUser {
+    font-size: 22px;
+    color: var(--menu-text);
+    text-align: center;
+    justify-content: center;
+    padding-top: 5%;
+}
+
+.menuUser .statute {
+    font-size: 16px;
+}
+
