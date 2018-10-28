@@ -37,8 +37,9 @@ body {
     background-color: var(--blue);
     display: flex;
     flex-direction: column;
-    height: 750px;
+    height: 743px;
     padding: 7%;
+    font-family: Helvetica;
 }
 .menuOptions {
     display: flex;
@@ -60,21 +61,31 @@ body {
     flex-direction: row;
 }
 
+.imageItem{
+    flex: 1;
+}
+
+.item .titleItem{
+    flex: 3;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 22px;
+}
+
 .item .listItem {
     display: flex;
     flex-direction: column;
-    font-size: 12px;
-    padding-left: 20%;
+    font-size: 14px; 
 }
 
 .item .listItem ul{
-    padding: 1%;
-    margin:0;
-    /* list-style-image: url(example.png); */
+    padding-top: 5%;
+    padding-left: 35%;
+    margin: 0;
 }
 
 .menuUser {
-    font-size: 22px;
+    font-size: 24px;
     color: var(--menu-text);
     text-align: center;
     justify-content: center;
