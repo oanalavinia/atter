@@ -7,19 +7,20 @@
     <title>Atter</title>
 </head>
 
-<body>
+<body onresize="myFunction()">
     <img class="image" src="image.jpg" border="0" />
 
-    <section>
-        <div class="login-form">
-            <div class="title">
+    <div class="login-form">
+        <div class="title">
+            <div class="alt">
                 <p class="welcome-message"> Welcome to </p>
                 <p class="name">Atter</p>
             </div>
+        </div>
 
-            <p class="text"> We make it easier for professors to make you fail your course</p>
-            <input type="text" placeholder="tuxy.pinguinescu@info.uaic.ro" />
-            <input type="password" placeholder="password" />
+        <p class="text"> The phrase "sign me too" is a matter of the past.</p>
+        <input type="text" placeholder="tuxy.pinguinescu@info.uaic.ro" />
+        <input type="password" placeholder="password" />
 
             <div class="submit">
                 <button id="login"> Login</button>
@@ -30,9 +31,18 @@
     </section>
     <script type="text/javascript">
         document.getElementById("login").onclick = function () {
-            //location.href = "../professor-dashboard/professor-dashboard.html";
-            location.href = "../student-dashboard/student-dashboard.html";
+            location.href = "../professor-dashboard/professor-dashboard.html";
+            //location.href = "../student-dashboard/student-dashboard.html";
         };
+        function myFunction() {
+            var w = window.outerWidth;
+            var h = window.outerHeight;
+            if(w<800){
+                document.getElementsByClassName("image")[0].style.display="none";
+            } else {
+                document.getElementsByClassName("image")[0].style.display="block";
+            }
+        }
     </script>
 </body>
 </html>
