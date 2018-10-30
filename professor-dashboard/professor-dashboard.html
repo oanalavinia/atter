@@ -5,39 +5,43 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="professor-dashboard.css">
 </head>
-<body>
+<body onresize="resizing()">
 
     <section>
         <div class="left-menu">
-            <div class="user-info">
-                <p class="user">Tuxy Pinguinescu</p>
-                <p class="user">PROFESSOR</p>
+            <div>
+                <div class="user-info">
+                    <p class="user">Tuxy Pinguinescu</p>
+                    <p class="user">PROFESSOR</p>
+                </div>
             </div>
 
-            <div class="options">
-                <div class="item">
-                    <img class="icon" src="../shared/icons/check.svg" />
-                    <a href="#" id="register-class-link" class="title-item" onclick="toggleMainMenu('register-class-view')"> Register class </a>
-                </div>
-
-                <div class="item-with-childs">
+            <div>
+                <div class="options">
                     <div class="item">
-                        <img class="icon" src="../shared/icons/list.svg" />
-                        <a href="#" id="reports-link" class="title-item" onclick="toggleMainMenu('reports-view')"> Check courses </a>
+                        <img class="icon" src="../shared/icons/check.svg" />
+                        <a href="#" id="register-class-link" class="title-item" onclick="toggleMainMenu('register-class-view')"> Register class </a>
+                    </div>
 
+                    <div class="item-with-childs">
+                        <div class="item">
+                            <img class="icon" src="../shared/icons/list.svg" />
+                            <a href="#" id="reports-link" class="title-item" onclick="toggleMainMenu('reports-view')"> Check courses </a>
+
+                        </div>
+                        <div class="list-items">
+                            <ul>
+                                <li><a href="#" id="course-link" onclick="toggleMainMenu('statistics-view')">DAWNC/ Lab</a></li>
+                                <li>DAWNC/ Course</li>
+                                <li>DSFUM/ Lab</li>
+                                <li>DSFUM/ Course</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="list-items">
-                        <ul>
-                            <li><a href="#" id="course-link" onclick="toggleMainMenu('statistics-view')">DAWNC/ Lab</a></li>
-                            <li>DAWNC/ Course</li>
-                            <li>DSFUM/ Lab</li>
-                            <li>DSFUM/ Course</li>
-                        </ul>
+                    <div class="item">
+                        <img class="icon" src="../shared/icons/logout.svg" />
+                        <p class="title-item"> Logout </p>
                     </div>
-                </div>
-                <div class="item">
-                    <img class="icon" src="../shared/icons/logout.svg" />
-                    <p class="title-item"> Logout </p>
                 </div>
             </div>
         </div>

@@ -33,6 +33,7 @@
 
 section {
     flex-basis: 16%;
+    height: 100vf;
 }
 
 .hide-view {
@@ -55,39 +56,39 @@ a {
     grid-column-gap: 60px;
 }
 
-    .week button {
-        height: 30px;
-        margin: 0;
-    }
+.week button {
+    height: 30px;
+    margin: 0;
+}
 
-    .week p {
-        margin: 0;
-    }
+.week p {
+    margin: 0;
+}
 
-    .week .title-item {
-        color: var(--blue);
-        font-size: 18px;
-    }
+.week .title-item {
+    color: var(--blue);
+    font-size: 18px;
+}
 
 #course-view, #attend {
     width: 80%;
     padding: 30px;
 }
 
-    #attend .tile {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items:center;
-    }
+#attend .tile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+}
 
   
 .title{
-     font-size:40px;
-     text-align: center;
-     color:var(--title-grey);
-     padding-bottom: 60px;
- }
+    font-size:40px;
+    text-align: center;
+    color:var(--title-grey);
+    padding-bottom: 60px;
+}
 
 ::placeholder {
     color: var(--text);
@@ -102,7 +103,7 @@ a {
     background-color: var(--blue);
     display: flex;
     flex-direction: column;
-    height: -webkit-fill-available;
+    height: 100%;
     padding: 5%;
 }
 

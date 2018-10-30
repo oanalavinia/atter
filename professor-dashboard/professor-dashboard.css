@@ -1,13 +1,6 @@
 ﻿@import "../shared/global_style.css";
 @import "../student-dashboard/student-dashboard.css";
 
-
-.register > div {
-    background-color: #ffff;
-    padding: 10px 10px 10px 10px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
 .detailes {
     padding: 30px;
     grid-column: 1/1;
@@ -23,24 +16,24 @@
     width: 100%;
 }
 
-    .input > input[type="text"] {
-        font-size: 20px;
-        font-weight: lighter;
-        margin: 0.5% 20% 0%;
-        padding: 2.5%;
-    }
+.input > input[type="text"] {
+    font-size: 20px;
+    font-weight: lighter;
+    margin: 0.5% 20% 0%;
+    padding: 2.5%;
+}
 
-    .input > input[type=submit] {
-        background-color: var(--blue);
-        border: none;
-        color: white;
-        margin-left: 38%;
-        height: 40px;
-        width: 25%;
-        text-align: center;
-        border-radius: 20px;
-        font-size: 24px;
-    }
+.input > input[type=submit] {
+    background-color: var(--blue);
+    border: none;
+    color: white;
+    margin-left: 38%;
+    height: 40px;
+    width: 25%;
+    text-align: center;
+    border-radius: 20px;
+    font-size: 24px;
+}
 
 .generated {
     display: flex;
