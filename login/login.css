@@ -9,24 +9,20 @@ body {
 }
 
 .image {
-    flex: 2;
-    height: 723px;
-}
-
-section {
-    flex: 1;
+    flex: 3;
+    height: 100%;
 }
 
 .login-form {
+    flex:1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     background-color: white;
-    padding: 70px;
-    height: -webkit-fill-available;
+    padding: 4%;
 }
 
-.title {
+.alt {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
