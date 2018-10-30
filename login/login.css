@@ -23,6 +23,7 @@ section {
     justify-content: center;
     background-color: white;
     padding: 70px;
+    height: -webkit-fill-available;
 }
 
 .title {
@@ -72,4 +73,8 @@ input {
 .blue-text {
     color: var(--blue);
     font-weight: 300;
+}
+
+.tile {
+    display: flex;;
 }

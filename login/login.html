@@ -10,7 +10,7 @@
 <body>
     <img class="image" src="image.jpg" border="0" />
 
-    <section >
+    <section>
         <div class="login-form">
             <div class="title">
                 <p class="welcome-message"> Welcome to </p>
@@ -20,13 +20,19 @@
             <p class="text"> We make it easier for professors to make you fail your course</p>
             <input type="text" placeholder="tuxy.pinguinescu@info.uaic.ro" />
             <input type="password" placeholder="password" />
-            
+
             <div class="chestie">
-                <button class="button"> Login</button>
+                <button id="login"> Login</button>
                 <p class="blue-text"> Forgot password?</p>
             </div>
         </div>
 
     </section>
+    <script type="text/javascript">
+        document.getElementById("login").onclick = function () {
+            //location.href = "../professor-dashboard/professor-dashboard.html";
+            location.href = "../student-dashboard/student-dashboard.html";
+        };
+    </script>
 </body>
 </html>

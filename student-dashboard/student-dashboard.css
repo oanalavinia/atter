@@ -1,0 +1,85 @@
+﻿@import "../shared/global_style.css";
+
+.item .icon {
+    width: 30px;
+    height: 30px;
+}
+
+
+.reports {
+    display: grid;
+    margin: 30px;
+    grid-gap: 10px;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: auto auto;
+}
+
+
+.tile {
+   
+    justify-content: center;
+    padding: 30px;
+}
+
+#tile2 {
+    height: 430px;
+    grid-column: 2/3;
+    grid-row: 1/3;
+}
+
+#tile4 {
+    grid-column: 1/3;
+}
+
+#menu {
+    flex: 1;
+}
+
+section {
+    flex-basis: 16%;
+}
+
+.hide-view {
+    display: none;
+}
+
+.show-view {
+    display: grid;
+}
+
+a {
+    color: white;
+    text-decoration: none; /* no underline */
+}
+
+.week {
+    padding-top: 10px;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-column-gap: 60px;
+}
+
+    .week button {
+        height: 30px;
+        margin: 0;
+    }
+
+    .week p {
+        margin: 0;
+    }
+
+    .week .title-item {
+        color: var(--blue);
+        font-size: 18px;
+    }
+
+#course-view, #attend {
+    width: 80%;
+    padding: 30px;
+}
+
+    #attend .tile {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }

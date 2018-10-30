@@ -1,14 +1,21 @@
 ﻿
 @import "variables.css";
+
 body {
     box-sizing: border-box;
     font-family: Helvetica;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
 }
 
- /* containerele pentru rapoarte and stuff */
+/* containerele pentru rapoarte and stuff */
 .tile {
     width: 100%;
-    display: flex;
+   
     box-sizing: border-box;
     background-color: white;
     box-shadow: 0px 5px 12px rgba(0,0,0,0.10);
@@ -19,8 +26,8 @@ body {
     color: var(--title-grey);
 }
 
-.button {
-    background-color: var(--blue); 
+button {
+    background-color: var(--blue);
     border: none;
     color: white;
     height: 40px;
@@ -31,17 +38,18 @@ body {
     text-decoration: none;
     display: inline-block;
     font-size: 20px;
+    cursor: pointer;
 }
 
-.menu {
+.left-menu {
     background-color: var(--blue);
     display: flex;
     flex-direction: column;
-    height: 743px;
-    padding: 7%;
-    font-family: Helvetica;
+    height: -webkit-fill-available;
+    padding: 5%;
 }
-.menuOptions {
+
+.options {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -50,41 +58,47 @@ body {
 
 .item {
     display: flex;
-    flex-direction: column;
-    font-size: 14px;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
     color: var(--menu-text);
     padding-top: 7%;
 }
 
-.item .labelItem {
-    display: flex;
-    flex-direction: row;
-}
-
-.imageItem{
-    flex: 1;
-}
-
-.item .titleItem{
-    flex: 3;
+.title-item {
     margin-top: auto;
     margin-bottom: auto;
+    padding-left: 10px;
     font-size: 22px;
 }
 
-.item .listItem {
+
+.item-with-childs {
     display: flex;
     flex-direction: column;
-    font-size: 14px; 
 }
 
-.item .listItem ul{
-    padding-top: 5%;
-    padding-left: 35%;
-    margin: 0;
+.list-items {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
 }
 
-.menuUser {
+    .list-items ul {
+        padding-left: 30%;
+        margin: 0;
+        color: white;
+    }
+
+        .list-items ul li {
+            padding-top: 3%;
+        }
+
+
+
+
+
+.user-info {
     font-size: 24px;
     color: var(--menu-text);
     text-align: center;
@@ -92,7 +106,19 @@ body {
     padding-top: 5%;
 }
 
-.menuUser .statute {
-    font-size: 16px;
+.hide-view {
+    display: none;
 }
 
+.show-view {
+    display: block;
+    flex: 2;
+}
+
+input {
+    margin-bottom: 30px;
+    height: 30px;
+    border: none;
+    outline: none;
+    border-bottom: 1.5px solid var(--text);
+}
