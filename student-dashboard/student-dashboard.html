@@ -56,7 +56,7 @@
                 <p class="title-item"> Week 1 </p>
                 <p class="text"> Course presence: </p>
                 <p class="text"> Lab presence: </p>
-                <button>Details</button>
+                <button onclick="popup()">Details</button>
             </div>
 
             <div class="week">
@@ -77,9 +77,13 @@
 
     </div>
 
-    <div class="popup" >
-        
-        <span class="popuptext" id="myPopup">Popup text...</span>
+    <div id="popup" class="hide-view">
+        <div class="tile">
+            <p class="text"> Points:</p>
+            <p class="text"> Usefull links:</p>
+           
+        </div>
+       
     </div>
 
     <script src="../js/scripts.js"></script>

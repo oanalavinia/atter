@@ -8,7 +8,7 @@
     display: grid;
     margin: 30px;
     grid-gap: 10px;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows:auto auto auto;
     grid-template-columns: auto auto;
 }
 
@@ -130,4 +130,33 @@ a {
 .item-with-childs {
     display: flex;
     flex-direction: column;
+}
+
+#popup .tile {
+    z-index: 1000 !important;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }

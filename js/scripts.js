@@ -20,3 +20,8 @@ function toggleMainMenu(id) {
         view.classList.add("show-view");
 }
 
+
+function popup() {
+    var popup = document.getElementById("popup");
+    popup.classList.toggle("hide-view");
+}
