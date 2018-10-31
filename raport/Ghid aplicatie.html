@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html  lang="ro-RO" vocab="http://schema.org/" typeof="schema:ScholarlyArticle" property="https://github.com/oanalavinia/atter">
+   <head>
+      <meta charset="utf-8">
+      <title>Ghidul de utilizare a aplicatiei</title>
+      <style>ol{ list-style-type: none; } body{margin-right:7%; margin-left: 7%; font-size:120%;}</style>
+   </head>
+   <body>
+      <header>
+         <h1 property="http://purl.org/dc/terms/title">Ghidul de utilizare a aplicației Atter</h1>
+      </header>
+      <div role="contentinfo">
+         <hr>
+         <link property="itemListOrder" href="http://schema.org/ItemListOrderAscending"/>
+         <ol role="directory">
+            <li property="itemListElement" typeof="ListItem"><a href="#abstract">
+               <span>1.</span> Abstract</a>
+            </li>
+            <li property="itemListElement" typeof="ListItem"><a href="#introducere">
+               <span>2.</span> Introducere</a>
+            </li>
+            <li property="itemListElement" typeof="ListItem"><a href="#ansamblu">
+               <span>3.</span> Privire de ansamblu </a>
+            </li>
+            <li property="itemListElement" typeof="ListItem"><a href="#home">
+               <span>4.</span> Ghidul paginii principale </a>
+            </li>
+            <li property="itemListElement" typeof="ListItem"><a href="#librarie">
+               <span>5.</span> Ghidul paginii dashboard </a>
+            </li>
+            <li property="itemListElement" typeof="ListItem"><a href="#cautare">
+               <span>6.</span> Ghidul paginii de înregistrare  </a>
+            </li>
+            <li property="itemListElement" typeof="ListItem"><a href="#grupuri">
+               <span>7.</span> Ghidul paginii de gestionare a cursurilor </a>
+            </li>
+         </ol>
+         <dl>
+            <dt>Autori</dt>
+            <dd property="http://purl.org/dc/terms/creator">
+               <a property="url" href="https://github.com/madalinastefana"><span property="familyName">Olariu</span><span property="givenName"> Mădălina-Ștefana</span></a> 
+               <a property="url" href="https://github.com/oanalavinia"><span property="familyName">Florean</span> <span property="givenName"> Oana-Lavinia</span></a> 
+            </dd>
+            <dt>Pagină proiect</dt>
+            <dd>
+               <a property="url" href="https://github.com/oanalavinia/atter">Atter</a>
+            </dd>
+            <dt>Tags</dt>
+            <dd>
+               <span>info, infoiasi, dawnc, fii </span>
+            </dd>
+         </dl>
+      </div>
+      <hr>
+      <section id="abstract" role="doc-introduction" property="about">
+         <h3><span>1.</span> Abstract </h3>
+         <p>
+            Ghidul de față prezintă modul în care un utilizator interacționează cu aplicația Atter, 
+            oferind detalii în legătură designul general al aplicației, care expune utilizatorului un set de acțiuni pe care le poate efectua.
+         </p>
+      </section>
+      <section id="introducere" role="doc-introduction" property="about">
+         <h3><span>2.</span> Introducere </h3>
+         <p>
+             Atter este o aplicație web destinată studenților și profesorilor Facultății de Informatică Iași, ce implementează un sistem de gestionare a prezențelor la curs/seminar.
+             Utilizatorii se împart în două categorii, profesorii, care înregistrează un seminar/curs, adaugă punctaje/notițe și studentii, care își înregistrează prezența la seminar/curs și visualizează date despre situația lor la acea materie.
+             <br> Modul de utilizare a aplicației este unul intuitiv, "user friendly", fiind conceput după un design minimalist.
+         </p>
+      </section>
+      <section id="ansamblu">
+         <h3><span>3.</span> Privire de ansamblu </h3>
+         <p>
+            La accesarea aplicației, utilizatorului îi este afișată pagina principală autentificare , aceasta făcându-se excusiv cu adresa de email-ul și parola oferite de facultate.  <br> Odată autentificat, 
+            utilizatorul are la dispoziție serviciile propriu-zise ale aplicației: înregistrarea unui seminar, înregistrarea prezenței, adaugarea și vizualizarea datelor despre seminare, vizualizarea de rapoarte întocmite pe baza datelor înregistrate.
+         </p>
+      </section>
+      <section id="home">
+         <h3><span>4.</span> Ghidul paginii principale </h3>
+         <p>
+            Când utilizatorul accesează pagina principală, acesta este întâmpinat de un formular care necesită a fi completat a putea avea acces la serviciile oferite de aplicație: </p>
+             <img src="login.png" />
+      </section>
+      <section id="librarie">
+         <h3><span>5.</span> Ghidul paginii dashboard </h3>
+         <p>
+            Fiind o aplicație ce respectă conceptul de Single Page Application, Atter este compusă dintr-o singura pagină ce afișează în partea stângă drept conținut static, 
+             meniul cu acțiunile principale pe care utilizatorul le poate face în aplicație, iar în partea dreaptă vor fi încărcate dinamic componente, 
+
+            <br> <br> Meniul din partea dreaptă pune la dispoziție acțiuni personalizate în funcție de tipul contului de utilizator. Așadar, un profesor poate să înregistreze un seminar/curs, poate vizualiza rapoarte întocmite cu datele preluate de la grupele sale, poate adăuga punctaje studenților sau link-uri utile.
+            <br> <br> Un student are la dispoziție opțiunea de înregistrare a prezenței la un seminar, poate vizualiza rapoarte și date despre materiile de interes, cât si evoluția în ansamblu.
+           
+         </p>
+         <section>
+             <img src="stuednt-dash.png" />
+             <img src="prof-dash.png" />
+         </section>
+          
+      </section>
+      <section id="cautare">
+         <h3><span>6.</span> Ghidul componentei de înregistrare </h3>
+         <p>
+             Înregistrarea se realizează în două sensuri, atât înregistrarea seminarului de către profesor, cât și înregistrarea studentului la un anumit seminar. Mecanismul este acesta:
+             <br> <br> Un profesor completează un mic formular unde specifică titlul cursului, săptămâna, grupa și numărul de studenți, după care va fi generat automat un cod de înregistrare, valabil până la terminarea seminarului.
+             <br> <br> Studenții au obligația de a întroduce codul oferit de profesor  până la încheierea seminarului, pentru a fis înregistrați, totdată, doar un număr limitat de studenți se pot înregistra, numărul specificat de profesor la completarea formularului.
+             <img src="stud.png" />
+             <img src="prof.png" />
+         </p>
+      </section>
+      <section id="grupuri">
+         <h3><span>7.</span> Ghidul paginii de gestionare a cursurilor </h3>
+         <p>
+           
+            <br> <br> 
+         </p>
+      </section>
+      
+     
+     
+      
+   </body>
+</html>
+
