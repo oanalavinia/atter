@@ -76,6 +76,10 @@
     justify-content: center; */
 }
 
+td a{
+    color:var(--title-grey);
+}
+
 table {
     border-spacing: 10px;
     font-size: 18px;
