@@ -21,8 +21,8 @@ function toggleMainMenu(id) {
 }
 
 function login(){
-    location.href = "../professor-dashboard/professor-dashboard.html";
-    //location.href = "../student-dashboard/student-dashboard.html";
+    // location.href = "../professor-dashboard/professor-dashboard.html";
+    location.href = "../student-dashboard/student-dashboard.html";
 }
 
 function resizing() {
