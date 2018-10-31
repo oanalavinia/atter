@@ -7,7 +7,7 @@
     <title>Atter</title>
 </head>
 
-<body onresize="myFunction()">
+<body onresize="resizing()">
     <img class="image" src="image.jpg" border="0" />
 
     <div class="login-form">
@@ -23,27 +23,11 @@
         <input type="password" placeholder="password" />
 
             <div class="submit">
-                <button id="login"> Login</button>
+                <button id="login" onclick="login()"> Login</button>
                 <p class="blue-text"> Forgot password?</p>
             </div>
         </div>
 
-    
-    <script type="text/javascript">
-        document.getElementById("login").onclick = function () {
-            //location.href = "../professor-dashboard/professor-dashboard.html";
-            location.href = "../student-dashboard/student-dashboard.html";
-        };
-
-        function myFunction() {
-            var w = window.outerWidth;
-            var h = window.outerHeight;
-            if(w<800){
-                document.getElementsByClassName("image")[0].style.display="none";
-            } else {
-                document.getElementsByClassName("image")[0].style.display="block";
-            }
-        }
-    </script>
+    <script src="../js/scripts.js"></script>
 </body>
 </html>
