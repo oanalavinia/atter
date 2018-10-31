@@ -44,10 +44,10 @@
     font-weight: bold;
 }
 
-    .generated > p {
-        color: var(--blue);
-        margin: 10px;
-    }
+.generated > p {
+    color: var(--blue);
+    margin: 10px;
+}
 
 
 .presenceReport {
@@ -107,3 +107,41 @@ table {
     justify-content: center;
     color: var(--blue);
 }
+
+#class-view table{
+    border-spacing: 25px;
+    border-bottom: 1px ridge lightgrey;
+    font-size: 18px;
+    width: 100%;
+    color: var(--title-grey);
+    font-weight: normal;
+}
+
+#class-view table th{
+    font-size: 150%;
+    font-weight: normal;
+}
+
+#class-view table th:nth-child(1){
+    color: var(--blue);
+}
+
+#class-view ol{
+    color: var(--title-grey);
+    height: 100%;
+    padding-left: 30%;
+    padding-right: 25%;
+}
+
+#class-view ol >li{
+    font-size: 20px;
+    padding-top:3%;
+    padding-left:20%;
+}
+
+#class-view .todo{
+    grid-column: 2/3;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+
