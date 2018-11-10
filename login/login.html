@@ -3,30 +3,34 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
     <link rel="stylesheet" href="login.css">
     <title>Atter</title>
 </head>
 
 <body onresize="resizing()">
-    <img class="image" src="image.jpg" alt="login image" />
+    <img class="image" src="image.jpg" border="0" />
 
     <div class="login-form">
         <div class="title">
             <div class="alt">
-                <p class="welcome-message"> Welcome to </p>
+                <p class="welcome-message"> Welcome</p>
+                <p class="welcome-message"> to</p>
                 <p class="name">Atter</p>
             </div>
         </div>
 
-        <p class="text"> The phrase "sign me too" is a matter of the past.</p>
-        <input type="text" placeholder="tuxy.pinguinescu@info.uaic.ro" />
-        <input type="password" placeholder="password" />
-
-            <div class="submit">
-                <button id="login" onclick="login()"> Login</button>
-                <p class="blue-text"> Forgot password?</p>
-            </div>
+        <div class="input-fields">
+            <p class="text"> The phrase "sign me too" is a matter of the past.</p>
+            <input type="text" placeholder="tuxy.pinguinescu@info.uaic.ro" />
+            <input type="password" placeholder="password" />
         </div>
+
+        <div class="submit">
+            <button id="login" onclick="login()"> Login</button>
+            <p class="blue-text"> Forgot password?</p>
+        </div>
+    </div>
 
     <script src="../js/scripts.js"></script>
 </body>
