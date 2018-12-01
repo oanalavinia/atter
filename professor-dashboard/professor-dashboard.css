@@ -148,4 +148,57 @@ table {
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+/* only for phones and tablets */
+@media only screen and (max-device-width: 1500px)  {
+    .detailes {
+        font-size: 100px;
+    } 
+    .detailes >div {
+        margin-top: 20%;
+    }
+    ::placeholder {
+        font-size: 50px;
+    }
+    .input > input[type=submit] {
+        height: 60px;
+        width: 30%;
+        font-size: 34px;
+    }
+    .generated {
+        padding: 10px;
+    }
+    .weeks  tr > td{
+        padding: 0px 30px;
+        font-size: 25px;
+    }
+    #class-view .tile ol>li{
+        font-size: 22px;
+    }
+    #class-view .tile ol{
+        padding-left: 10%;
+        padding-right: 0%;
+    }
+}
 
+@media only screen and (max-device-width: 500px)  {
+    .detailes {
+        text-align: center;
+        font-size: 120px;
+    }
+    .detailes >div {
+        margin-top: 50%;
+    }
+    .input >input {
+        height: 80px;
+    }
+    #class-view .tile ol>li{
+        font-size: 30px;
+        /* padding-left: 10%;
+        padding-right: 0%; */
+        margin-left: 0;
+    }
+    #class-view .tile ol{
+        padding-left: 10%;
+        padding-right: 0%;
+    }
+}

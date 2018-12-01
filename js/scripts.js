@@ -21,31 +21,8 @@ function toggleMainMenu(id) {
 }
 
 function login(){
-    location.href = "../professor-dashboard/professor-dashboard.html";
-    //location.href = "../student-dashboard/student-dashboard.html";
-}
-
-function resizing() {
-    var w = window.outerWidth;
-    var h = window.outerHeight;
-    if(document.getElementsByClassName("user-info")[0]){
-        if(w<1050){
-            document.getElementsByClassName("user-info")[0].style.fontSize="20px";
-            document.getElementsByClassName("title-item")[0].style.fontSize="16px";
-            document.getElementsByClassName("title-item")[1].style.fontSize="16px";
-            document.getElementsByClassName("title-item")[2].style.fontSize="16px";
-            document.getElementsByClassName("list-items")[0].style.fontSize="10px";
-        } else {
-            document.getElementsByClassName("user-info")[0].style.fontSize="24px";
-            document.getElementsByClassName("title-item")[0].style.fontSize="22px";
-            document.getElementsByClassName("title-item")[1].style.fontSize="22px";
-            document.getElementsByClassName("title-item")[2].style.fontSize="22px";
-            document.getElementsByClassName("list-items")[0].style.fontSize="16px";
-        }
-    } else if(document.getElementsByClassName("image")[0]){
-        // console.log("width"+w);
-        // console.log("hight"+h);
-    }
+    // location.href = "../professor-dashboard/professor-dashboard.html";
+    location.href = "../student-dashboard/student-dashboard.html";
 }
 
 

@@ -39,22 +39,6 @@ button {
     cursor: pointer;
 }
 
-.list-items {
-    display: flex;
-    flex-direction: column;
-    font-size: 16px;
-}
-
-.list-items ul {
-    padding-left: 30%;
-    margin: 0;
-    color: white;
-}
-
-.list-items ul li {
-    padding-top: 3%;
-}
-
 .user-info {
     font-size: 24px;
     color: var(--menu-text);

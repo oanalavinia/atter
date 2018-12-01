@@ -6,7 +6,7 @@
     <title>Atter</title>
     <link rel="stylesheet" href="professor-dashboard.css">
 </head>
-<body onresize="resizing()">
+<body>
 
     <section>
         <div class="left-menu">
@@ -57,20 +57,22 @@
 
     <div id="register-class-view" class="reports hide-view">
         <div class="detailes">
-            <form>
-                <div class="input">
-                    <input type="text" name="Course" placeholder="Course"><br>
-                    <input type="text" name="Week" placeholder="Week"><br>
-                    <input type="text" name="Group" placeholder="Group"><br>
-                    <input type="text" name="Nr. of students" placeholder="Nr. of students"><br>
-                    <input type="submit" name="Generate" value="Generate" title="Generate"><br>
-                </div>
-                <div class="generated">
-                    <p>_ _ _</p>
-                    <p>_ _ _</p>
-                    <p>_ _ _</p>
-                </div>
-            </form>
+            <div>
+                <form>
+                    <div class="input">
+                        <input type="text" name="Course" placeholder="Course"><br>
+                        <input type="text" name="Week" placeholder="Week"><br>
+                        <input type="text" name="Group" placeholder="Group"><br>
+                        <input type="text" name="Nr. of students" placeholder="Nr. students"><br>
+                        <input type="submit" name="Generate" value="Generate" title="Generate"><br>
+                    </div>
+                    <div class="generated">
+                        <p>_ _ _</p>
+                        <p>_ _ _</p>
+                        <p>_ _ _</p>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 

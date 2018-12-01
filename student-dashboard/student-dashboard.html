@@ -6,7 +6,7 @@
     <title>Atter</title>
     <link rel="stylesheet" href="student-dashboard.css">
 </head>
-<body onresize="resizing()">
+<body>
 
     <section>
         <div class="left-menu">
@@ -24,18 +24,25 @@
                 <div class="item-with-childs">
                     <div class="item">
                         <img class="icon" alt="List icon" src="../shared/icons/list.svg" />
-                        <a href="#" id="reports-link2" class="title-item" onclick="toggleMainMenu('reports-view')"> Check courses </a>
+                        <a href="#" id="reports-link2" class="title-item" onclick="toggleMainMenu('reports-view')"> 
+                            Check courses 
+                        </a>
 
                     </div>
                     <div class="list-items">
                         <ul>
-                            <li><a href="#" id="course-link" onclick="toggleMainMenu('course-view')">DAWNC/ Lab</a></li>
+                            <li>
+                                <a href="#" id="course-link" onclick="toggleMainMenu('course-view')">
+                                    DAWNC/ Lab
+                                </a>
+                            </li>
                             <li>DAWNC/ Course</li>
                             <li>DSFUM/ Lab</li>
                             <li>DSFUM/ Course</li>
                         </ul>
                     </div>
                 </div>
+
                 <div class="item">
                     <img class="icon" alt="Logout icon" src="../shared/icons/logout.svg" />
                     <p class="title-item"> Logout </p>
