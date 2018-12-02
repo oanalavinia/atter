@@ -4,12 +4,12 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="./login/login.css">
     <title>Atter</title>
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage">
-    <img class="image" src="image.jpg" border="0" itemprop="image" alt="login image" />
+    <img class="image" src="./login/image.jpg" border="0" itemprop="image" alt="login image" />
 
     <div class="login-form">
         <div class="title" itemprop="name">
@@ -68,12 +68,12 @@
                         console.log(email);
                         if (data[i].Email === email && data[i].IsStudent === true) {
 
-                            location.href = "../student-dashboard/student-dashboard.html";
+                            location.href = "./student-dashboard/student-dashboard.html";
                             break;
                         }
                         else
                             if (data[i].Email === email && data[i].IsStudent === false) {
-                                location.href = "../professor-dashboard/professor-dashboard.html";
+                                location.href = "./professor-dashboard/professor-dashboard.html";
                                 break;
 
                             }
