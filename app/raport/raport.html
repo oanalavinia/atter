@@ -1,11 +1,259 @@
 <!DOCTYPE html>
-<html property="http://scholarly-html.org/schtml">
-    <head>
-        <meta charset="utf-8">
-        <title> Prototip al interfetei Web - raport</title>
-        <link rel="stylesheet" type="text/css" href="scholarly.css">
-    </head>
-    <body>
-        
-    </body>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Atter - report</title>
+    <link rel="stylesheet" href="css/scholarly.min.css">
+    <script src="js/scholarly.min.js"></script>
+  </head>
+  <body itemscope itemtype="http://schema.org/WebPage">
+    <header>
+      <h1>Atter - report</h1>
+    </header>
+    <div role="contentinfo">
+      <dl>
+        <dt>Authors</dt>
+        <dd>
+          <a href="https://www.facebook.com/olariu.madalina.5?jazoest=265100120869580110498576108839989451058669731129010949105118781098669815048119847710111651661197551106107658158651001225711210472791169911711975457667112112991124585871146610654115100821045799111707677537911773737810572119">Olariu Madalina-Stefana</a>,
+          <a href="https://www.facebook.com/florean.oanalavinia">Florean Oana-Lavinia</a>
+        </dd>
+        <dt>Stages of project development</dt>
+        <dd>
+          The stages and the tasks done by each member can be seen on <a href="https://trello.ro">trello</a>.
+        </dd>
+      </dl>
+    </div>
+    <section typeof="sa:Abstract" id="abstract" role="doc-abstract">
+      <h2>Abstract</h2>
+      <p>
+            Atter is an application designed for students of Computer Science Faculty of Iasi that has as a purpose the implementation of a 
+            system that manages the courses and seminars. Users are of two types, teachers that can register a seminar/course, add marks,
+             notes for students and visualise different reports, and the students that can attend a seminar/course and also see some 
+             informations provided by the teacher.
+      </p>
+    </section>
+    <section id="functional">
+      <h2>Functional part</h2>
+      <p>
+          The functionalities of the application are structured so each step of the interaction will be in fact a module:
+      </p>
+      <section id="login">
+        <!-- review? -->
+        <h3>Login</h3>
+        <p>
+            The login is made based on the fenrir account provided by the faculty, so each user can be directed to the specific interface that matches his account.
+        </p>
+      </section>
+      <section id="attendRegister">
+        <!-- review? -->
+        <h3>Attend/Register class</h3>
+        <p>
+            To avoid the cases where a student could sign another one as being present we added in this module the functionality where the teacher will provide some information about a class when it is registered and will receive in return a code that will be used by students to attend a class. Another information worth mentioning is the fact that the teacher also provides the number of students that are present.
+        </p>
+      </section>
+      <section id="check">
+        <!-- review? -->
+        <h3>Check courses</h3>
+        <p>
+            Both type of users can see 4 general reports that are representations for: attendance of groups, points received.
+        </p>
+        <section id="studentsCheck">
+            <h4>Students</h4>
+            <p>
+                As a student, the user can see for each subject informations structured on weeks about his attendance and details given by his teacher
+            </p>
+        </section>
+        <section id="professorsCheck">
+            <h4>Professors</h4>
+            <p>
+                As a professor, the user has for each course/ seminar registered informations structured using visual reports (for attendance and points) and also he can see specific lists of students.
+            </p>
+        </section>
+      </section>
+      <section id="logout">
+        <!-- review? -->
+        <h3>Logout</h3>
+        <p>
+            Gets the user back to login page.
+        </p>
+      </section>
+    </section>
+    <section id="technical">
+        <h2>Technical part</h2>
+        <p>
+            The functionalities of the application are structured so each step of the interaction will be in fact a module:
+        </p>
+        <section id="diagrams">
+            <!-- review? -->
+            <h3>Diagrams</h3>
+            <p>
+            </p>
+            <section id="architectural">
+                <h4>Architectural</h4>
+                <p>
+                    todo
+                </p>
+            </section>
+            <section id="usecase">
+                <h4>Use-case</h4>
+                <figure>
+                    <img src="images/useCase_diagram.png" alt="Prototype">
+                </figure>
+            </section>
+            <section id="designPatterns">
+                <h4>Design Patterns</h4>
+                <p>
+                </p>
+                <section id="prototype">
+                    <h5>Prototype</h5>
+                    <p>
+                        Prototype allows us to hide the complexity of making new instances from the client. The concept is to copy an existing object rather than creating a new instance from scratch, something that may include 
+                        costly operations. The existing object acts as a prototype and contains the state of the object. The newly copied object may change same properties only if required. This approach saves costly resources and time, especially when the object creation is a heavy process.                            
+                    </p>
+                    <figure typeof="sa:image">
+                        <img src="images/prototype.png" alt="Prototype">
+                    </figure>
+                </section>
+                <section id="modules">
+                    <h5>Modules</h5>
+                    <p>
+                        JavaScript modules are the most prevalently used design patterns for keeping particular pieces of code independent of other components. This provides loose coupling to support well-structured code.
+                    </p>
+                    <p>
+                        In this application context the modules pattern will be implemented by having a specific module for login, attendClass, registerClass, checkCourses, logout
+                    </p>
+                    <p>
+                        Modules are following the next structure:                       
+                    </p>
+                    <figure typeof="sa:image">
+                        <img src="images/module.png" alt="Module exemple" width="507" height="350">
+                    </figure>
+                </section>
+                <section id="MVC">
+                    <h5>MVC</h5>
+                    <p>                            
+                    </p>
+                </section>
+            </section>
+        </section>
+        <section id="techDetails">
+            <!-- review? -->
+            <h3>Technical Details</h3>
+            <p>
+            </p>
+            <section id="apis">
+                <h4>External API's</h4>
+                <p>
+                </p>
+                <section id="firebase">
+                    <h5>Firebase Database REST API</h5>
+                    <p>
+                        <ul>
+                            <li>
+                                Firebase Realtime Database is a NoSQL database and as such has different optimizations and functionalities, such as the possibility to use it as a REST endpoint. All we need to do is append .json to the end of the URL and send a request from our HTTPS client. 
+                            </li>
+                            <li>
+                                We used this API to replace the Backend part in our application, our client-side manages the data stored in the database through the HTTP methods supported by Firebase Database REST API  : GET, PUT, PATCH, DELETE and POST.
+                            </li>
+                        </ul>
+                    </p>
+                    <p>
+                        Initializing the database in our project:
+                    </p>
+                    <figure typeof="sa:image">
+                        <img src="images/initialize.png" alt="Initialize code" width="507" height="350">
+                    </figure>
+                    <p>
+                        A fetch though the data 
+                    </p>
+                    <figure typeof="sa:image">
+                        <img src="images/fetch.png" alt="Fetch code" width="507" height="350">
+                    </figure>
+                    </p>
+                </section>
+                <section id="geolocation">
+                    <h5>HTML5 Geolocation API</h5>
+                    <p>
+                        The HTML Geolocation API is used to get the geographical position of a user, this being available only if the user provides it.
+                        This type of functionality would provide even a better way to eliminate the falsified attendance.
+                    </p>
+                    <p>
+                        The geographical position that would be verified is the position of Computer Science Faculty.
+                    </p>
+                    <figure typeof="sa:image">
+                        <img src="images/geolocation_code.PNG" alt="Geolocation code" width="557" height="350">
+                    </figure>
+                    <!-- <figure typeof="schema:SoftwareSourceCode" resource="#mathblock-example"
+                    id="mathblock-example" role="doc-example">
+                        <pre><code>
+                                var x = document.getElementById("demo");
+                                
+                                function getLocation() {
+                                    if (navigator.geolocation) {
+                                        navigator.geolocation.getCurrentPosition(showPosition);
+                                    } else { 
+                                        x.innerHTML = "Geolocation is not supported by this browser.";
+                                    }
+                                }
+                                
+                                function showPosition(position) {
+                                    x.innerHTML = "Latitude: " + position.coords.latitude + 
+                                    "Longitude: " + position.coords.longitude;
+                                }
+                        </code></pre>
+                    <figcaption></figcaption>
+                    </figure> -->
+                    <p>
+                        Still, this feature is not a pinned one and would be implemented depending on the other ones.
+                    </p>
+                </section>
+            </section>
+            <section id="database">
+                <h4>Database storage</h4>
+                <p>
+                    For storing the data we use the Firebase Realtime Database which is a cloud-hosted NoSql database. Data is stored as a JSON tree and synchronized in realtime to every connected client.
+                </p>
+                <p>
+                    The Firebase Realtime Database allows secure access to the database directly from client-side code. Data is persisted locally, and even while offline, realtime events continue to fire, giving the end user a responsive experience. When the device regains connection, the Realtime Database synchronizes the local data changes with the remote updates that occurred while the client was offline, merging any conflicts automatically. 
+                </p>
+                <p>
+                    Database structure:
+                </p>
+                <figure typeof="sa:image">
+                    <img src="images/database.PNG" alt="Database scheme"  width="557" height="370">
+                </figure>
+            </section>
+            <section id="scheme">
+                <h4>HTML5 microdata scheme</h4>
+                <p>
+                    Scheme.org provides a collection of shared vocabularies that can mark the content of a page in a way that can be understood by major search engines. In general, the more content is marked up, the better, but as a general rule there should be marked up only the content that is visible to people that visit the webpage and not content that is hidden.                         
+                </p>
+                <p>
+                    Following this idea, the login page of this application has been marked up:
+                </p>
+                <figure typeof="sa:image">
+                    <img src="images/metadata_login.PNG" alt="microdata scheme" width="707" height="250">
+                </figure>
+            </section>
+            <section id="hosting">
+                <h4>Hosting</h4>
+                <p>
+                    For hosting our site we use Firebase Hosting, is a fully-managed hosting service.                     
+                </p>
+                <p>
+                    We have chosen this domain for hosting our application because:
+                    <ul>
+                        <li>It’s free</li>
+                        <li>Zero-configuration SSL is built into Firebase Hosting, so content is always delivered securely.</li>
+                        <li>The deployment process is quick and simple because of the Firebase CLI which provides command line tools to  make it easy to add deployment targets into the build process.</li>
+                    </ul>
+                </p>
+                <p class="issue"> 
+                    Our site is live at the <a href="https://atter-8d2e1.firebaseapp.com/">url</a>
+                </p>
+            </section>
+        </section>
+    </section>
+  </body>
 </html>
