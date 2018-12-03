@@ -7,30 +7,35 @@
     <link rel="stylesheet" href="css/scholarly.min.css">
     <script src="js/scholarly.min.js"></script>
   </head>
-  <body itemscope itemtype="http://schema.org/WebPage">
+  <body vocab="http://schema.org/" typeof="schema:ScholarlyArticle" resource="#article">
     <header>
-      <h1>Atter - report</h1>
+      <h1 property="headline">Atter - report</h1>
+      <img href="images/login_image" property="image">
     </header>
     <div role="contentinfo">
       <dl>
         <dt>Authors</dt>
-        <dd>
-          <a href="https://www.facebook.com/olariu.madalina.5?jazoest=265100120869580110498576108839989451058669731129010949105118781098669815048119847710111651661197551106107658158651001225711210472791169911711975457667112112991124585871146610654115100821045799111707677537911773737810572119">Olariu Madalina-Stefana</a>,
-          <a href="https://www.facebook.com/florean.oanalavinia">Florean Oana-Lavinia</a>
-        </dd>
+        <dd vocab="http://schema.org/" typeof="Person" property="author">
+            <span property="name">Olariu Madalina-Stefana</span>
+            (<a href="mailto:madalinaolariu67@gmail.com" property="email" typeof="URL">madalinaolariu67@gmail.com</a>)
+        </dd>,
+        <dd vocab="http://schema.org/" typeof="Person" property="author">
+            <span property="name">Florean Oana-Lavinia</span>
+            (<a href="mailto:florean.lavinia@gmail.com" property="email" typeof="URL">florean.lavinia@gmail.com</a>)
+        </dd> 
         <dt>Stages of project development</dt>
         <dd>
-          The stages and the tasks done by each member can be seen on <a href="https://trello.ro">trello</a>.
+          The stages and the tasks done by each member can be seen on <a href="https://trello.com/b/uFtSCrup/atter-tasks-management">trello</a>.
         </dd>
       </dl>
     </div>
-    <section typeof="sa:Abstract" id="abstract" role="doc-abstract">
+    <section property="backstory" id="abstract" role="doc-abstract">
       <h2>Abstract</h2>
       <p>
             Atter is an application designed for students of Computer Science Faculty of Iasi that has as a purpose the implementation of a 
             system that manages the courses and seminars. Users are of two types, teachers that can register a seminar/course, add marks,
-             notes for students and visualise different reports, and the students that can attend a seminar/course and also see some 
-             informations provided by the teacher.
+            notes for students and visualise different reports, and the students that can attend a seminar/course and also see some 
+            informations provided by the teacher.
       </p>
     </section>
     <section id="functional">
@@ -97,8 +102,8 @@
             </section>
             <section id="usecase">
                 <h4>Use-case</h4>
-                <figure>
-                    <img src="images/useCase_diagram.png" alt="Prototype">
+                <figure vocab="http://schema.org/" typeof="ImageObject">
+                    <img src="images/useCase_diagram.png" alt="Use Case" property="contentUrl">
                 </figure>
             </section>
             <section id="designPatterns">
@@ -107,27 +112,23 @@
                 </p>
                 <section id="prototype">
                     <h5>Prototype</h5>
-                    <p>
-                        Prototype allows us to hide the complexity of making new instances from the client. The concept is to copy an existing object rather than creating a new instance from scratch, something that may include 
-                        costly operations. The existing object acts as a prototype and contains the state of the object. The newly copied object may change same properties only if required. This approach saves costly resources and time, especially when the object creation is a heavy process.                            
-                    </p>
-                    <figure typeof="sa:image">
-                        <img src="images/prototype.png" alt="Prototype">
+                    <figure vocab="http://schema.org/" typeof="ImageObject">
+                        <p property="description">
+                            Prototype allows us to hide the complexity of making new instances from the client. The concept is to copy an existing object rather than creating a new instance from scratch, something that may include 
+                            costly operations. The existing object acts as a prototype and contains the state of the object. The newly copied object may change same properties only if required. This approach saves costly resources and time, especially when the object creation is a heavy process.                            
+                        </p>
+                        <img src="images/prototype.png" alt="Prototype" property="contentUrl">
                     </figure>
                 </section>
                 <section id="modules">
                     <h5>Modules</h5>
-                    <p>
-                        JavaScript modules are the most prevalently used design patterns for keeping particular pieces of code independent of other components. This provides loose coupling to support well-structured code.
-                    </p>
-                    <p>
-                        In this application context the modules pattern will be implemented by having a specific module for login, attendClass, registerClass, checkCourses, logout
-                    </p>
-                    <p>
-                        Modules are following the next structure:                       
-                    </p>
-                    <figure typeof="sa:image">
-                        <img src="images/module.png" alt="Module exemple" width="507" height="350">
+                    <figure vocab="http://schema.org/" typeof="ImageObject">
+                        <p property="description">
+                            JavaScript modules are the most prevalently used design patterns for keeping particular pieces of code independent of other components. This provides loose coupling to support well-structured code.
+                            In this application context the modules pattern will be implemented by having a specific module for login, attendClass, registerClass, checkCourses, logout.
+                            Modules are following the next structure:                       
+                        </p>
+                        <img src="images/module.png" alt="Module exemple" width="507" height="350" property="contentUrl">
                     </figure>
                 </section>
                 <section id="MVC">
@@ -148,44 +149,41 @@
                 </p>
                 <section id="firebase">
                     <h5>Firebase Database REST API</h5>
-                    <p>
-                        <ul>
-                            <li>
-                                Firebase Realtime Database is a NoSQL database and as such has different optimizations and functionalities, such as the possibility to use it as a REST endpoint. All we need to do is append .json to the end of the URL and send a request from our HTTPS client. 
-                            </li>
-                            <li>
-                                We used this API to replace the Backend part in our application, our client-side manages the data stored in the database through the HTTP methods supported by Firebase Database REST API  : GET, PUT, PATCH, DELETE and POST.
-                            </li>
-                        </ul>
-                    </p>
-                    <p>
-                        Initializing the database in our project:
-                    </p>
-                    <figure typeof="sa:image">
-                        <img src="images/initialize.png" alt="Initialize code" width="507" height="350">
+                    <figure vocab="http://schema.org/" typeof="ImageObject">
+                        <p property="description">
+                            <ul>
+                                <li>
+                                    Firebase Realtime Database is a NoSQL database and as such has different optimizations and functionalities, such as the possibility to use it as a REST endpoint. All we need to do is append .json to the end of the URL and send a request from our HTTPS client. 
+                                </li>
+                                <li>
+                                    We used this API to replace the Backend part in our application, our client-side manages the data stored in the database through the HTTP methods supported by Firebase Database REST API  : GET, PUT, PATCH, DELETE and POST.
+                                </li>
+                            </ul>
+                            Initializing the database in our project:
+                        </p>
                     </figure>
-                    <p>
-                        A fetch though the data 
-                    </p>
-                    <figure typeof="sa:image">
-                        <img src="images/fetch.png" alt="Fetch code" width="507" height="350">
+                    <figure vocab="http://schema.org/" typeof="ImageObject">
+                        <img src="images/initialize.png" alt="Initialize code" width="507" height="350" property="contentUrl">
+                        <p property="description">
+                            A fetch though the data 
+                        </p>
+                        <img src="images/fetch.png" alt="Fetch code" width="507" height="350" property="contentUrl">
                     </figure>
-                    </p>
                 </section>
                 <section id="geolocation">
                     <h5>HTML5 Geolocation API</h5>
-                    <p>
-                        The HTML Geolocation API is used to get the geographical position of a user, this being available only if the user provides it.
-                        This type of functionality would provide even a better way to eliminate the falsified attendance.
-                    </p>
-                    <p>
-                        The geographical position that would be verified is the position of Computer Science Faculty.
-                    </p>
-                    <figure typeof="sa:image">
-                        <img src="images/geolocation_code.PNG" alt="Geolocation code" width="557" height="350">
-                    </figure>
-                    <!-- <figure typeof="schema:SoftwareSourceCode" resource="#mathblock-example"
-                    id="mathblock-example" role="doc-example">
+                    <!-- <figure vocab="http://schema.org/" typeof="ImageObject">
+                        <p property="description">
+                            The HTML Geolocation API is used to get the geographical position of a user, this being available only if the user provides it.
+                            This type of functionality would provide even a better way to eliminate the falsified attendance.</br>
+                            The geographical position that would be verified is the position of Computer Science Faculty.
+                        </p>
+                        <img src="images/geolocation_code.PNG" alt="Geolocation code" width="557" height="350" property="contentUrl">
+                        <p property="description">
+                            Still, this feature is not a pinned one and would be implemented depending on the other ones.
+                        </p>
+                    </figure> -->
+                    <figure vocab="http://schema.org/" typeof="schema:SoftwareSourceCode"  role="doc-example">
                         <pre><code>
                                 var x = document.getElementById("demo");
                                 
@@ -202,11 +200,10 @@
                                     "Longitude: " + position.coords.longitude;
                                 }
                         </code></pre>
-                    <figcaption></figcaption>
-                    </figure> -->
-                    <p>
-                        Still, this feature is not a pinned one and would be implemented depending on the other ones.
-                    </p>
+                        <a href="https://www.w3schools.com/html/html5_geolocation.asp" property="codeRepository">Link for source</a> 
+                        of <span property="programmingLanguage">JavaScript</span> code
+                    <!-- <figcaption></figcaption> -->
+                    </figure>
                 </section>
             </section>
             <section id="database">
@@ -220,8 +217,8 @@
                 <p>
                     Database structure:
                 </p>
-                <figure typeof="sa:image">
-                    <img src="images/database.PNG" alt="Database scheme"  width="557" height="370">
+                <figure vocab="http://schema.org/" typeof="ImageObject">
+                    <img src="images/database.PNG" alt="Database scheme"  width="557" height="370" property="contentUrl">
                 </figure>
             </section>
             <section id="scheme">
@@ -232,8 +229,8 @@
                 <p>
                     Following this idea, the login page of this application has been marked up:
                 </p>
-                <figure typeof="sa:image">
-                    <img src="images/metadata_login.PNG" alt="microdata scheme" width="707" height="250">
+                <figure vocab="http://schema.org/" typeof="ImageObject">
+                    <img src="images/metadata_login.PNG" alt="microdata scheme" width="707" height="250" property="contentUrl">
                 </figure>
             </section>
             <section id="hosting">
