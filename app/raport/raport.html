@@ -41,7 +41,17 @@
     <section id="functional">
       <h2>Functional part</h2>
       <p>
-          The functionalities of the application are structured so each step of the interaction will be in fact a module:
+        Atter is a Single Page Application, dynamically loading content into the current page without loading an entire page from the server. In this way Atter diminish the necessity of the browser to perform requests to the server which impact in the velocity of the application and the user experience. 
+        The concepts used to achieve a Single Page Application are: </br>
+        <ul>
+            <li>
+                Models: </br> contains and manages the data through REST requests. </br>
+                A model emits change events when data is altered.Also it can be stored persistently, identified uniquely and loaded from storage.
+            </li>
+            <li>
+                View: </br> reflect the content of a model, when a model changes its data, the view is updated.It displays a representation of the model and receives the user's interaction with the view. The view renders a html template that will be placed in dom at the right moment.
+            </li>
+        </ul>
       </p>
       <section id="login">
         <!-- review? -->
@@ -96,9 +106,9 @@
             </p>
             <section id="architectural">
                 <h4>Architectural</h4>
-                <p>
-                    todo
-                </p>
+                <figure vocab="http://schema.org/" typeof="ImageObject">
+                    <img src="images/architectural_diagram.jpg" alt="Architectural diagram" property="contentUrl" width="507" height="350">
+                </figure>
             </section>
             <section id="usecase">
                 <h4>Use-case</h4>
@@ -130,11 +140,6 @@
                         </p>
                         <img src="images/module.png" alt="Module exemple" width="507" height="350" property="contentUrl">
                     </figure>
-                </section>
-                <section id="MVC">
-                    <h5>MVC</h5>
-                    <p>                            
-                    </p>
                 </section>
             </section>
         </section>
@@ -224,13 +229,22 @@
             <section id="scheme">
                 <h4>HTML5 microdata scheme</h4>
                 <p>
-                    Scheme.org provides a collection of shared vocabularies that can mark the content of a page in a way that can be understood by major search engines. In general, the more content is marked up, the better, but as a general rule there should be marked up only the content that is visible to people that visit the webpage and not content that is hidden.                         
+                    Scheme.org provides a collection of shared vocabularies that can mark the content of a page in a way that can be understood
+                     by major search engines. In general, the more content is marked up, the better, but as a general rule there should be marked
+                     up only the content that is visible to people that visit the webpage and not content that is hidden.                         
                 </p>
                 <p>
                     Following this idea, the login page of this application has been marked up:
                 </p>
                 <figure vocab="http://schema.org/" typeof="ImageObject">
                     <img src="images/metadata_login.PNG" alt="microdata scheme" width="707" height="250" property="contentUrl">
+                </figure>
+                <p>
+                    Using the vocabulary of RDFa provided by <a typeof="URL" href="www.schema.org">Schema</a> we marked down also the Scholarly HTML report
+                    available for our page.
+                </p>
+                <figure vocab="http://schema.org/" typeof="ImageObject">
+                    <img src="images/rdf_report.PNG" alt="RDF Report" width="707" height="250" property="contentUrl">
                 </figure>
             </section>
             <section id="hosting">
