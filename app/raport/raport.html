@@ -56,32 +56,32 @@
       <section id="login" role="contentinfo">
         <!-- review? -->
         <h3 property="description">Login</h3>
-        <p>
+        <p  property="text">
             The login is made based on the fenrir account provided by the faculty, so each user can be directed to the specific interface that matches his account.
         </p>
       </section>
       <section id="attendRegister" role="contentinfo" >
         <!-- review? -->
         <h3 property="description">Attend/Register class</h3>
-        <p>
+        <p  property="text">
             To avoid the cases where a student could sign another one as being present we added in this module the functionality where the teacher will provide some information about a class when it is registered and will receive in return a code that will be used by students to attend a class. Another information worth mentioning is the fact that the teacher also provides the number of students that are present.
         </p>
       </section>
       <section id="check" role="contentinfo">
         <!-- review? -->
         <h3 property="description">Check courses</h3>
-        <p>
+        <p  property="text">
             Both type of users can see 4 general reports that are representations for: attendance of groups, points received.
         </p>
         <section id="studentsCheck" role="contentinfo">
             <h4 property="description">Students</h4>
-            <p>
+            <p  property="text">
                 As a student, the user can see for each subject informations structured on weeks about his attendance and details given by his teacher
             </p>
         </section>
         <section id="professorsCheck" role="contentinfo">
             <h4 property="description">Professors</h4>
-            <p>
+            <p  property="text">
                 As a professor, the user has for each course/ seminar registered informations structured using visual reports (for attendance and points) and also he can see specific lists of students.
             </p>
         </section>
@@ -89,21 +89,19 @@
       <section id="logout" role="contentinfo">
         <!-- review? -->
         <h3 property="description">Logout</h3>
-        <p>
+        <p  property="text">
             Gets the user back to login page.
         </p>
       </section>
     </section>
     <section id="technical" role="contentinfo">
         <h2 property="description">Technical part</h2>
-        <p>
+        <p property="text">
             The functionalities of the application are structured so each step of the interaction will be in fact a module:
         </p>
         <section id="diagrams" role="contentinfo">
             <!-- review? -->
             <h3 property="description">Diagrams</h3>
-            <p>
-            </p>
             <section id="architectural" role="contentinfo">
                 <h4 property="description">Architectural</h4>
                 <figure vocab="http://schema.org/" typeof="ImageObject">
@@ -118,8 +116,6 @@
             </section>
             <section id="designPatterns" role="contentinfo">
                 <h4 property="description">Design Patterns</h4>
-                <p>
-                </p>
                 <section id="prototype" role="contentinfo">
                     <h5 property="description">Prototype</h5>
                     <figure vocab="http://schema.org/" typeof="ImageObject">
@@ -146,8 +142,6 @@
         <section id="techDetails" role="contentinfo">
             <!-- review? -->
             <h3 property="description">Technical Details</h3>
-            <p>
-            </p>
             <section id="apis" role="contentinfo">
                 <h4 property="description">External API's</h4>
                 <p>
@@ -217,18 +211,18 @@
             </section>
             <section id="scheme" role="contentinfo">
                 <h4 property="description">HTML5 microdata scheme</h4>
-                <p>
+                <p  property="text">
                     Scheme.org provides a collection of shared vocabularies that can mark the content of a page in a way that can be understood
                      by major search engines. In general, the more content is marked up, the better, but as a general rule there should be marked
                      up only the content that is visible to people that visit the webpage and not content that is hidden.                         
                 </p>
-                <p>
+                <p property="text">
                     Following this idea, the login page of this application has been marked up:
                 </p>
                 <figure vocab="http://schema.org/" typeof="ImageObject">
                     <img src="images/metadata_login.PNG" alt="microdata scheme" width="707" height="250" property="contentUrl">
                 </figure>
-                <p>
+                <p property="text">
                     Using the vocabulary of RDFa provided by <a typeof="URL" href="www.schema.org">Schema</a> we marked down also the Scholarly HTML report
                     available for our page.
                 </p>
@@ -238,10 +232,10 @@
             </section>
             <section id="hosting" role="contentinfo">
                 <h4 property="description">Hosting</h4>
-                <p>
+                <p property="text">
                     For hosting our site we use Firebase Hosting, is a fully-managed hosting service.                     
                 </p>
-                <p>
+                <p property="text">
                     We have chosen this domain for hosting our application because:
                     <ul>
                         <li>It’s free</li>
@@ -249,7 +243,7 @@
                         <li>The deployment process is quick and simple because of the Firebase CLI which provides command line tools to  make it easy to add deployment targets into the build process.</li>
                     </ul>
                 </p>
-                <p class="issue"> 
+                <p class="issue"  property="text"> 
                     Our site is live at the <a href="https://atter-8d2e1.firebaseapp.com/">url</a>
                 </p>
             </section>
