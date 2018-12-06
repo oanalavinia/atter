@@ -29,8 +29,8 @@
         </dd>
       </dl>
     </div>
-    <section property="backstory" id="abstract" role="doc-abstract">
-      <h2>Abstract</h2>
+    <section property="backstory" id="abstract" role="doc-abstract" >
+      <h2 property="description">Abstract</h2>
       <p>
             Atter is an application designed for students of Computer Science Faculty of Iasi that has as a purpose the implementation of a 
             system that manages the courses and seminars. Users are of two types, teachers that can register a seminar/course, add marks,
@@ -38,9 +38,9 @@
             informations provided by the teacher.
       </p>
     </section>
-    <section id="functional">
-      <h2>Functional part</h2>
-      <p>
+    <section id="functional" role="contentinfo">
+      <h2 property="description">Functional part</h2>
+      <p property="text">
         Atter is a Single Page Application, dynamically loading content into the current page without loading an entire page from the server. In this way Atter diminish the necessity of the browser to perform requests to the server which impact in the velocity of the application and the user experience. 
         The concepts used to achieve a Single Page Application are: </br>
         <ul>
@@ -53,75 +53,75 @@
             </li>
         </ul>
       </p>
-      <section id="login">
+      <section id="login" role="contentinfo">
         <!-- review? -->
-        <h3>Login</h3>
+        <h3 property="description">Login</h3>
         <p>
             The login is made based on the fenrir account provided by the faculty, so each user can be directed to the specific interface that matches his account.
         </p>
       </section>
-      <section id="attendRegister">
+      <section id="attendRegister" role="contentinfo" >
         <!-- review? -->
-        <h3>Attend/Register class</h3>
+        <h3 property="description">Attend/Register class</h3>
         <p>
             To avoid the cases where a student could sign another one as being present we added in this module the functionality where the teacher will provide some information about a class when it is registered and will receive in return a code that will be used by students to attend a class. Another information worth mentioning is the fact that the teacher also provides the number of students that are present.
         </p>
       </section>
-      <section id="check">
+      <section id="check" role="contentinfo">
         <!-- review? -->
-        <h3>Check courses</h3>
+        <h3 property="description">Check courses</h3>
         <p>
             Both type of users can see 4 general reports that are representations for: attendance of groups, points received.
         </p>
-        <section id="studentsCheck">
-            <h4>Students</h4>
+        <section id="studentsCheck" role="contentinfo">
+            <h4 property="description">Students</h4>
             <p>
                 As a student, the user can see for each subject informations structured on weeks about his attendance and details given by his teacher
             </p>
         </section>
-        <section id="professorsCheck">
-            <h4>Professors</h4>
+        <section id="professorsCheck" role="contentinfo">
+            <h4 property="description">Professors</h4>
             <p>
                 As a professor, the user has for each course/ seminar registered informations structured using visual reports (for attendance and points) and also he can see specific lists of students.
             </p>
         </section>
       </section>
-      <section id="logout">
+      <section id="logout" role="contentinfo">
         <!-- review? -->
-        <h3>Logout</h3>
+        <h3 property="description">Logout</h3>
         <p>
             Gets the user back to login page.
         </p>
       </section>
     </section>
-    <section id="technical">
-        <h2>Technical part</h2>
+    <section id="technical" role="contentinfo">
+        <h2 property="description">Technical part</h2>
         <p>
             The functionalities of the application are structured so each step of the interaction will be in fact a module:
         </p>
-        <section id="diagrams">
+        <section id="diagrams" role="contentinfo">
             <!-- review? -->
-            <h3>Diagrams</h3>
+            <h3 property="description">Diagrams</h3>
             <p>
             </p>
-            <section id="architectural">
-                <h4>Architectural</h4>
+            <section id="architectural" role="contentinfo">
+                <h4 property="description">Architectural</h4>
                 <figure vocab="http://schema.org/" typeof="ImageObject">
                     <img src="images/architectural_diagram.jpg" alt="Architectural diagram" property="contentUrl" width="507" height="350">
                 </figure>
             </section>
-            <section id="usecase">
-                <h4>Use-case</h4>
+            <section id="usecase" role="contentinfo">
+                <h4 property="description">Use-case</h4>
                 <figure vocab="http://schema.org/" typeof="ImageObject">
                     <img src="images/useCase_diagram.png" alt="Use Case" property="contentUrl">
                 </figure>
             </section>
-            <section id="designPatterns">
-                <h4>Design Patterns</h4>
+            <section id="designPatterns" role="contentinfo">
+                <h4 property="description">Design Patterns</h4>
                 <p>
                 </p>
-                <section id="prototype">
-                    <h5>Prototype</h5>
+                <section id="prototype" role="contentinfo">
+                    <h5 property="description">Prototype</h5>
                     <figure vocab="http://schema.org/" typeof="ImageObject">
                         <p property="description">
                             Prototype allows us to hide the complexity of making new instances from the client. The concept is to copy an existing object rather than creating a new instance from scratch, something that may include 
@@ -130,8 +130,8 @@
                         <img src="images/prototype.png" alt="Prototype" property="contentUrl">
                     </figure>
                 </section>
-                <section id="modules">
-                    <h5>Modules</h5>
+                <section id="modules" role="contentinfo">
+                    <h5 property="description">Modules</h5>
                     <figure vocab="http://schema.org/" typeof="ImageObject">
                         <p property="description">
                             JavaScript modules are the most prevalently used design patterns for keeping particular pieces of code independent of other components. This provides loose coupling to support well-structured code.
@@ -143,17 +143,17 @@
                 </section>
             </section>
         </section>
-        <section id="techDetails">
+        <section id="techDetails" role="contentinfo">
             <!-- review? -->
-            <h3>Technical Details</h3>
+            <h3 property="description">Technical Details</h3>
             <p>
             </p>
-            <section id="apis">
-                <h4>External API's</h4>
+            <section id="apis" role="contentinfo">
+                <h4 property="description">External API's</h4>
                 <p>
                 </p>
-                <section id="firebase">
-                    <h5>Firebase Database REST API</h5>
+                <section id="firebase" role="contentinfo">
+                    <h5 property="description">Firebase Database REST API</h5>
                     <figure vocab="http://schema.org/" typeof="ImageObject">
                         <p property="description">
                             <ul>
@@ -175,19 +175,8 @@
                         <img src="images/fetch.png" alt="Fetch code" width="507" height="350" property="contentUrl">
                     </figure>
                 </section>
-                <section id="geolocation">
-                    <h5>HTML5 Geolocation API</h5>
-                    <!-- <figure vocab="http://schema.org/" typeof="ImageObject">
-                        <p property="description">
-                            The HTML Geolocation API is used to get the geographical position of a user, this being available only if the user provides it.
-                            This type of functionality would provide even a better way to eliminate the falsified attendance.</br>
-                            The geographical position that would be verified is the position of Computer Science Faculty.
-                        </p>
-                        <img src="images/geolocation_code.PNG" alt="Geolocation code" width="557" height="350" property="contentUrl">
-                        <p property="description">
-                            Still, this feature is not a pinned one and would be implemented depending on the other ones.
-                        </p>
-                    </figure> -->
+                <section id="geolocation" role="contentinfo">
+                    <h5 property="description">HTML5 Geolocation API</h5>
                     <figure vocab="http://schema.org/" typeof="schema:SoftwareSourceCode"  role="doc-example">
                         <pre><code>
                                 var x = document.getElementById("demo");
@@ -211,8 +200,8 @@
                     </figure>
                 </section>
             </section>
-            <section id="database">
-                <h4>Database storage</h4>
+            <section id="database" role="contentinfo">
+                <h4 property="description">Database storage</h4>
                 <p>
                     For storing the data we use the Firebase Realtime Database which is a cloud-hosted NoSql database. Data is stored as a JSON tree and synchronized in realtime to every connected client.
                 </p>
@@ -226,8 +215,8 @@
                     <img src="images/database.PNG" alt="Database scheme"  width="557" height="370" property="contentUrl">
                 </figure>
             </section>
-            <section id="scheme">
-                <h4>HTML5 microdata scheme</h4>
+            <section id="scheme" role="contentinfo">
+                <h4 property="description">HTML5 microdata scheme</h4>
                 <p>
                     Scheme.org provides a collection of shared vocabularies that can mark the content of a page in a way that can be understood
                      by major search engines. In general, the more content is marked up, the better, but as a general rule there should be marked
@@ -247,8 +236,8 @@
                     <img src="images/rdf_report.PNG" alt="RDF Report" width="707" height="250" property="contentUrl">
                 </figure>
             </section>
-            <section id="hosting">
-                <h4>Hosting</h4>
+            <section id="hosting" role="contentinfo">
+                <h4 property="description">Hosting</h4>
                 <p>
                     For hosting our site we use Firebase Hosting, is a fully-managed hosting service.                     
                 </p>
