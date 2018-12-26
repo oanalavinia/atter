@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Atter</title>
+    <link rel="stylesheet" href="student-dashboard.css">
+</head>
+<body>
+
+    <nav>
+           
+            <div class="user-info">
+                <!-- the name will be displayed acorddingly -->
+                <p class="user">Tuxy Pinguinescu</p>
+                <p class="user">STUDENT</p>
+            </div>
+
+                <div class="item">
+                    <img class="icon" alt="Register icon" src="../shared/icons/check.svg" />
+                    <a href="#attend" id="attend"> Attend class </a>
+                </div>
+
+                <div class="item-with-childs">
+                    <div class="item">
+                        <img class="icon" alt="List icon" src="../shared/icons/list.svg" />
+                        <a href="#" id="reports"  >Check </a>
+
+                    </div>
+                    <div class="list-items">
+                        <ul>
+                            <!-- for this list we will search through the courses list of the current student and build the menu with his 
+                        courses ( we will have a course model with every data we need, that will be populated when we login as a profesor) -->
+                            
+                        <li> <a href="#course"> DAWNC/ Lab</a> </li>
+                            <li>DAWNC/ Course</li>
+                            <li>DSFUM/ Lab</li>
+                            <li>DSFUM/ Course</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img class="icon" alt="Logout icon" src="../shared/icons/logout.svg" />
+                    <p class="title-item"> Logout </p>
+                </div>
+            
+    </nav>
+    
+    <div id="option" class="view-render" >
+      
+    </div>
+
+   
+
+    <script src="../js/scripts.js"></script>
+    <script src="../js/router.js"></script>
+    <script src="../js/options-student.js"></script>
+
+</body>
+</html>

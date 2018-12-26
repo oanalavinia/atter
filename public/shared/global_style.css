@@ -1,0 +1,80 @@
+﻿
+@import "variables.css";
+
+body {
+    box-sizing: border-box;
+    font-family: Helvetica;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    height: 100vh;
+}
+
+.tile {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: white;
+    box-shadow: 0px 5px 12px rgba(0,0,0,0.10);
+}
+
+.text {
+    font-size: 18px;
+    color: var(--title-grey);
+}
+
+button {
+    background-color: var(--blue);
+    border: none;
+    color: white;
+    height: 40px;
+    width: 150px;
+    margin: 25px 0 0 0;
+    text-align: center;
+    border-radius: 20px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.user-info {
+    font-size: 24px;
+    color: var(--menu-text);
+    text-align: center;
+    justify-content: center;
+    padding-top: 2%;
+}
+
+
+input {
+    margin-bottom: 30px;
+    height: 30px;
+    border: none;
+    outline: none;
+    border-bottom: 1.5px solid var(--text);
+}
+
+.title-item {
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-left: 10px;
+    font-size: 22px;
+} 
+
+nav {
+    background-color: var(--blue);
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding: 2%;
+    overflow:hidden;
+    width:20%;
+    
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}
