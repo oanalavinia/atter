@@ -25,8 +25,25 @@ function login(){
     location.href = "../student-dashboard/student-dashboard.html";
 }
 
-
 function popup() {
-    var popup = document.getElementById("popup");
-    popup.classList.toggle("hide-view");
+    window.onload = function () {
+        var popup = document.getElementById("details-popup");
+        var details = document.getElementById("details");
+        var span = document.getElementsByClassName("close")[0];
+
+        details.onclick = function() {
+            popup.style.display = "block";
+        }
+
+        span.onclick = function() {
+            popup.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+          if (event.target == popup) {
+            popup.style.display = "none";
+          }
+        }
+    }
 }
+popup();

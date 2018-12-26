@@ -74,6 +74,10 @@
     cursor: pointer;
 }
 
+#notes {
+    font-size: 20px;
+}
+
 @-webkit-keyframes fadeIn {
     from {
         opacity: 0;
@@ -160,6 +164,10 @@
         height: 40px;
         margin: auto;
     }
+
+    #notes {
+        font-size: 30px;
+    }
 }
 
 @media only screen and (max-width: 500px)  {
@@ -193,6 +201,10 @@
 
     .week .title-item{
         font-size: 40px;
+    }
+
+    #notes {
+        font-size: 30px;
     }
 }
 
