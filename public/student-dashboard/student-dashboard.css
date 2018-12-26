@@ -1,23 +1,5 @@
 ﻿@import "../shared/global_style.css";
 
-.view-render{
-    display:flex;
-    width: 85%;
-    margin:30px;
-}
-
-view{
-    width:100%;
-    margin: 30px;
-}
-
-
-
-
-.item .icon {
-    width: 30px;
-    height: 30px;
-}
 
 .reports {
     display: flex;
@@ -64,17 +46,9 @@ view{
     font-size: 18px;
 }
 
-#course-view {
-    width:80%;
-    padding: 30px;
-}
 
-#attend .tile {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items:center;
-}
+
+
 
   
 .title{
@@ -122,48 +96,9 @@ view{
 
 
 
-.item {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    color: var(--menu-text);
-    padding-top: 10%;
-}
- 
-
-
-    
-.item a{
-    margin-top: auto;
-    margin-bottom: auto;
-    padding-left: 10px;
-    font-size: 22px;
-}
-
-.item-with-childs {
-    display: flex;
-    flex-direction: column;
-}
-
-.list-items {
-    display: flex;
-    flex-direction: column;
-}
-
-.list-items ul {
-    padding-left: 30%;
-    margin: 0;
-    color: white;
-}
-
-.list-items ul li {
-    padding-top: 3%;
-}
-
 
 /* only for phones and tablets */
-@media only screen and (max-device-width: 1000px)  {
+@media only screen and (max-width: 1000px)  {
     /* menu */
     nav {
         flex-basis: 40%;
@@ -227,7 +162,7 @@ view{
     }
 }
 
-@media only screen and (max-device-width: 500px)  {
+@media only screen and (max-width: 500px)  {
 
     nav {
         flex-basis: 50%;
