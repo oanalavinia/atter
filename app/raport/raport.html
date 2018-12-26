@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Atter - report</title>
+    <link rel="stylesheet" href="css/scholarly.min.css">
+    <script src="js/scholarly.min.js"></script>
+  </head>
+  <body vocab="http://schema.org/" typeof="schema:ScholarlyArticle" resource="#article">
+    <header>
+      <h1 property="headline">Atter - report</h1>
+      <img href="images/login_image" property="image">
+    </header>
+    <div role="contentinfo">
+      <dl>
+        <dt>Authors</dt>
+        <dd vocab="http://schema.org/" typeof="Person" property="author">
+            <span property="name">Olariu Madalina-Stefana</span>
+            (<a href="mailto:madalinaolariu67@gmail.com" property="email" typeof="URL">madalinaolariu67@gmail.com</a>)
+        </dd>,
+        <dd vocab="http://schema.org/" typeof="Person" property="author">
+            <span property="name">Florean Oana-Lavinia</span>
+            (<a href="mailto:florean.lavinia@gmail.com" property="email" typeof="URL">florean.lavinia@gmail.com</a>)
+        </dd> 
+        <dt>Stages of project development</dt>
+        <dd>
+          The stages and the tasks done by each member can be seen on <a href="https://trello.com/b/uFtSCrup/atter-tasks-management">trello</a>.
+        </dd>
+      </dl>
+    </div>
+    <section property="backstory" id="abstract" role="doc-abstract" >
+      <h2 property="description">Abstract</h2>
+      <p>
+            Atter is an application designed for students of Computer Science Faculty of Iasi that has as a purpose the implementation of a 
+            system that manages the courses and seminars. Users are of two types, teachers that can register a seminar/course, add marks,
+            notes for students and visualise different reports, and the students that can attend a seminar/course and also see some 
+            informations provided by the teacher.
+      </p>
+    </section>
+    <section id="functional" role="contentinfo">
+      <h2 property="description">Functional part</h2>
+      <p property="text">
+        Atter is a Single Page Application, dynamically loading content into the current page without loading an entire page from the server. In this way Atter diminish the necessity of the browser to perform requests to the server which impact in the velocity of the application and the user experience. 
+        The concepts used to achieve a Single Page Application are: </br>
+        <ul>
+            <li>
+                Models: </br> contains and manages the data through REST requests. </br>
+                A model emits change events when data is altered.Also it can be stored persistently, identified uniquely and loaded from storage.
+            </li>
+            <li>
+                View: </br> reflect the content of a model, when a model changes its data, the view is updated.It displays a representation of the model and receives the user's interaction with the view. The view renders a html template that will be placed in dom at the right moment.
+            </li>
+        </ul>
+      </p>
+      <section id="login" role="contentinfo">
+        <!-- review? -->
+        <h3 property="description">Login</h3>
+        <p  property="text">
+            The login is made based on the fenrir account provided by the faculty, so each user can be directed to the specific interface that matches his account.
+        </p>
+      </section>
+      <section id="attendRegister" role="contentinfo" >
+        <!-- review? -->
+        <h3 property="description">Attend/Register class</h3>
+        <p  property="text">
+            To avoid the cases where a student could sign another one as being present we added in this module the functionality where the teacher will provide some information about a class when it is registered and will receive in return a code that will be used by students to attend a class. Another information worth mentioning is the fact that the teacher also provides the number of students that are present.
+        </p>
+      </section>
+      <section id="check" role="contentinfo">
+        <!-- review? -->
+        <h3 property="description">Check courses</h3>
+        <p  property="text">
+            Both type of users can see 4 general reports that are representations for: attendance of groups, points received.
+        </p>
+        <section id="studentsCheck" role="contentinfo">
+            <h4 property="description">Students</h4>
+            <p  property="text">
+                As a student, the user can see for each subject informations structured on weeks about his attendance and details given by his teacher
+            </p>
+        </section>
+        <section id="professorsCheck" role="contentinfo">
+            <h4 property="description">Professors</h4>
+            <p  property="text">
+                As a professor, the user has for each course/ seminar registered informations structured using visual reports (for attendance and points) and also he can see specific lists of students.
+            </p>
+        </section>
+      </section>
+      <section id="logout" role="contentinfo">
+        <!-- review? -->
+        <h3 property="description">Logout</h3>
+        <p  property="text">
+            Gets the user back to login page.
+        </p>
+      </section>
+    </section>
+    <section id="technical" role="contentinfo">
+        <h2 property="description">Technical part</h2>
+        <p property="text">
+            The functionalities of the application are structured so each step of the interaction will be in fact a module:
+        </p>
+        <section id="diagrams" role="contentinfo">
+            <!-- review? -->
+            <h3 property="description">Diagrams</h3>
+            <section id="architectural" role="contentinfo">
+                <h4 property="description">Architectural</h4>
+                <figure vocab="http://schema.org/" typeof="ImageObject">
+                    <img src="images/architectural_diagram.jpg" alt="Architectural diagram" property="contentUrl" width="507" height="350">
+                </figure>
+            </section>
+            <section id="usecase" role="contentinfo">
+                <h4 property="description">Use-case</h4>
+                <figure vocab="http://schema.org/" typeof="ImageObject">
+                    <img src="images/useCase_diagram.png" alt="Use Case" property="contentUrl">
+                </figure>
+            </section>
+            <section id="designPatterns" role="contentinfo">
+                <h4 property="description">Design Patterns</h4>
+                <section id="prototype" role="contentinfo">
+                    <h5 property="description">Prototype</h5>
+                    <figure vocab="http://schema.org/" typeof="ImageObject">
+                        <p property="description">
+                            Prototype allows us to hide the complexity of making new instances from the client. The concept is to copy an existing object rather than creating a new instance from scratch, something that may include 
+                            costly operations. The existing object acts as a prototype and contains the state of the object. The newly copied object may change same properties only if required. This approach saves costly resources and time, especially when the object creation is a heavy process.                            
+                        </p>
+                        <img src="images/prototype.png" alt="Prototype" property="contentUrl">
+                    </figure>
+                </section>
+                <section id="modules" role="contentinfo">
+                    <h5 property="description">Modules</h5>
+                    <figure vocab="http://schema.org/" typeof="ImageObject">
+                        <p property="description">
+                            JavaScript modules are the most prevalently used design patterns for keeping particular pieces of code independent of other components. This provides loose coupling to support well-structured code.
+                            In this application context the modules pattern will be implemented by having a specific module for login, attendClass, registerClass, checkCourses, logout.
+                            Modules are following the next structure:                       
+                        </p>
+                        <img src="images/module.png" alt="Module exemple" width="507" height="350" property="contentUrl">
+                    </figure>
+                </section>
+            </section>
+        </section>
+        <section id="techDetails" role="contentinfo">
+            <!-- review? -->
+            <h3 property="description">Technical Details</h3>
+            <section id="apis" role="contentinfo">
+                <h4 property="description">External API's</h4>
+                <p>
+                </p>
+                <section id="firebase" role="contentinfo">
+                    <h5 property="description">Firebase Database REST API</h5>
+                    <figure vocab="http://schema.org/" typeof="ImageObject">
+                        <p property="description">
+                            <ul>
+                                <li>
+                                    Firebase Realtime Database is a NoSQL database and as such has different optimizations and functionalities, such as the possibility to use it as a REST endpoint. All we need to do is append .json to the end of the URL and send a request from our HTTPS client. 
+                                </li>
+                                <li>
+                                    We used this API to replace the Backend part in our application, our client-side manages the data stored in the database through the HTTP methods supported by Firebase Database REST API  : GET, PUT, PATCH, DELETE and POST.
+                                </li>
+                            </ul>
+                            Initializing the database in our project:
+                        </p>
+                    </figure>
+                    <figure vocab="http://schema.org/" typeof="ImageObject">
+                        <img src="images/initialize.png" alt="Initialize code" width="507" height="350" property="contentUrl">
+                        <p property="description">
+                            A fetch though the data 
+                        </p>
+                        <img src="images/fetch.png" alt="Fetch code" width="507" height="350" property="contentUrl">
+                    </figure>
+                </section>
+                <section id="geolocation" role="contentinfo">
+                    <h5 property="description">HTML5 Geolocation API</h5>
+                    <figure vocab="http://schema.org/" typeof="schema:SoftwareSourceCode"  role="doc-example">
+                        <pre><code>
+                                var x = document.getElementById("demo");
+                                
+                                function getLocation() {
+                                    if (navigator.geolocation) {
+                                        navigator.geolocation.getCurrentPosition(showPosition);
+                                    } else { 
+                                        x.innerHTML = "Geolocation is not supported by this browser.";
+                                    }
+                                }
+                                
+                                function showPosition(position) {
+                                    x.innerHTML = "Latitude: " + position.coords.latitude + 
+                                    "Longitude: " + position.coords.longitude;
+                                }
+                        </code></pre>
+                        <a href="https://www.w3schools.com/html/html5_geolocation.asp" property="codeRepository">Link for source</a> 
+                        of <span property="programmingLanguage">JavaScript</span> code
+                    <!-- <figcaption></figcaption> -->
+                    </figure>
+                </section>
+            </section>
+            <section id="database" role="contentinfo">
+                <h4 property="description">Database storage</h4>
+                <p>
+                    For storing the data we use the Firebase Realtime Database which is a cloud-hosted NoSql database. Data is stored as a JSON tree and synchronized in realtime to every connected client.
+                </p>
+                <p>
+                    The Firebase Realtime Database allows secure access to the database directly from client-side code. Data is persisted locally, and even while offline, realtime events continue to fire, giving the end user a responsive experience. When the device regains connection, the Realtime Database synchronizes the local data changes with the remote updates that occurred while the client was offline, merging any conflicts automatically. 
+                </p>
+                <p>
+                    Database structure:
+                </p>
+                <figure vocab="http://schema.org/" typeof="ImageObject">
+                    <img src="images/database.PNG" alt="Database scheme"  width="557" height="370" property="contentUrl">
+                </figure>
+            </section>
+            <section id="scheme" role="contentinfo">
+                <h4 property="description">HTML5 microdata scheme</h4>
+                <p  property="text">
+                    Scheme.org provides a collection of shared vocabularies that can mark the content of a page in a way that can be understood
+                     by major search engines. In general, the more content is marked up, the better, but as a general rule there should be marked
+                     up only the content that is visible to people that visit the webpage and not content that is hidden.                         
+                </p>
+                <p property="text">
+                    Following this idea, the login page of this application has been marked up:
+                </p>
+                <figure vocab="http://schema.org/" typeof="ImageObject">
+                    <img src="images/metadata_login.PNG" alt="microdata scheme" width="707" height="250" property="contentUrl">
+                </figure>
+                <p property="text">
+                    Using the vocabulary of RDFa provided by <a typeof="URL" href="www.schema.org">Schema</a> we marked down also the Scholarly HTML report
+                    available for our page.
+                </p>
+                <figure vocab="http://schema.org/" typeof="ImageObject">
+                    <img src="images/rdf_report.PNG" alt="RDF Report" width="707" height="250" property="contentUrl">
+                </figure>
+            </section>
+            <section id="hosting" role="contentinfo">
+                <h4 property="description">Hosting</h4>
+                <p property="text">
+                    For hosting our site we use Firebase Hosting, is a fully-managed hosting service.                     
+                </p>
+                <p property="text">
+                    We have chosen this domain for hosting our application because:
+                    <ul>
+                        <li>It’s free</li>
+                        <li>Zero-configuration SSL is built into Firebase Hosting, so content is always delivered securely.</li>
+                        <li>The deployment process is quick and simple because of the Firebase CLI which provides command line tools to  make it easy to add deployment targets into the build process.</li>
+                    </ul>
+                </p>
+                <p class="issue"  property="text"> 
+                    Our site is live at the <a href="https://atter-8d2e1.firebaseapp.com/">url</a>
+                </p>
+            </section>
+        </section>
+    </section>
+  </body>
+</html>
