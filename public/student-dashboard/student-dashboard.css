@@ -27,9 +27,9 @@
 
 .week {
     padding-top: 10px;
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    grid-column-gap: 60px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .week button {
@@ -37,16 +37,13 @@
     margin: 0;
 }
 
-.week p {
-    margin: 0;
+.week >p {
+    margin-right: 7%;
 }
 
-.week .title-item {
+#number {
     color: var(--blue);
-    font-size: 18px;
 }
-
-
 
 
 
@@ -156,10 +153,6 @@
         font-size: 30px;
     }
 
-    .week .title-item{
-        font-size: 30px;
-    }
-
     .week button {
         height: 40px;
         margin: auto;
@@ -191,15 +184,7 @@
         padding-left: 30%;
     }
 
-    .week {
-        grid-column-gap: 20px;
-    }
-
     .week >p {
-        font-size: 40px;
-    }
-
-    .week .title-item{
         font-size: 40px;
     }
 

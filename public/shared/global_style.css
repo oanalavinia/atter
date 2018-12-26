@@ -65,7 +65,7 @@ input {
 
 nav {
     background-color: var(--blue);
-    display: flex;
+    display: block;
     flex-direction: column;
     height: auto;
     padding: 2%;
