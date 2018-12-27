@@ -1,16 +1,20 @@
 <div class="tile view">
-    <div class="week">
-    <!-- for this list we will search through the week list of the current student course ( we will have a course model with every data we need, that will be populated when we login as a profesor) -->
-        <p class="text" id="number"> Week 1</p>
-        <p class="text" id="course-presence"> Course presence: </p>
-        <p class="text" id="lab-presence"> Lab presence: </p>
-        <p class="text" id="lab-points"> Lab points: </p>
-        <button id="details">Details</button>
-        <div id="details-popup" class="popup">
+        <table class="week">
+                <!-- for this list we will search through the current week  ( we will have a course model with every data we need, that will be populated when we login as a profesor) -->
+                <tr>
+                    <th class = 'text'>Week 1</th>
+                    <th class = 'text'>Lab:</th>
+                    <th class = 'text'>Course:</th>
+                    <th class = 'text' >Bonus:</th>
+                    <th><button id="details" >Details</button></th>
+                </tr>
+            </table>
+
+    
+    <div id="details-popup" class="popup">
             <div class="popup-content">
                 <span class="close">&times;</span>
                 <p id="notes">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </div>
         </div>
-    </div>
 </div>
