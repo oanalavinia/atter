@@ -11,21 +11,26 @@
 
 
 
+
+.week {
+    padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 .week button {
     height: 30px;
     margin: 0;
 }
 
-.week p {
-    margin: 0;
+.week >p {
+    margin-right: 7%;
 }
 
-.week .title-item {
+#number {
     color: var(--blue);
-    font-size: 18px;
 }
-
-
 
 
 
@@ -51,6 +56,10 @@
     position: relative;
     display: inline-block;
     cursor: pointer;
+}
+
+#notes {
+    font-size: 20px;
 }
 
 @-webkit-keyframes fadeIn {
@@ -113,12 +122,17 @@
     }
   
     /* presence */
-   
-   
+    .week >p {
+        font-size: 30px;
+    }
 
     .week button {
         height: 40px;
         margin: auto;
+    }
+
+    #notes {
+        font-size: 30px;
     }
 }
 
@@ -155,8 +169,14 @@
     .list-items ul {
        
         padding-left: 30%;
+
+    .week >p {
+        font-size: 40px;
     }
-   
+
+    #notes {
+        font-size: 30px;
+    }
 }
 
 
