@@ -54,7 +54,7 @@ var menu = document.getElementById('menu');
     document.getElementById("responsive-menu").style.display = 'none';
     menu.style.display = 'block';
     menu.style.width = '80%';
-    menu.style.height = '100%';
+    menu.style.height = '100vh';
     
 
 }

@@ -16,12 +16,11 @@ body {
 #menu {
     background-color: var(--blue);
     display: block;
-    padding: 2%;
+    padding: 3%;
     overflow: hidden;
 }
 
 .tile {
-    width: 100%;
     box-sizing: border-box;
     background-color: white;
     box-shadow: 0px 5px 12px rgba(0,0,0,0.10);
@@ -57,8 +56,8 @@ button {
 
 
 input {
-    margin-bottom: 30px;
-    height: 30px;
+    margin-bottom: 10%;
+    height: 40px;
     border: none;
     outline: none;
     border-bottom: 1.5px solid var(--text);
@@ -84,8 +83,9 @@ a{
 
 
 .view-render{
+    margin: 30px;
     display:flex;
-    flex: 0.8;
+    flex: 1;
 }
 
 view{
@@ -179,10 +179,21 @@ view{
     display: none;
 }
 
+::placeholder {
+    color: var(--text);
+    opacity: 1;
+    font-size: 30px;
+    font-family: Lato , sans-serif;
+    text-align: center;
+}
   
 @media only screen and (max-width:900px) {
 
-  
+  body{
+      overflow: scroll;
+      height: 100%;
+
+  }
     #menu {
         display: none;
     }
@@ -204,9 +215,9 @@ view{
     }
 
     .view-render{
-        width: auto;
         display: flex;
         margin: 30px;
+        flex: auto;
     }
 
 }
