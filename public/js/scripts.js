@@ -53,18 +53,23 @@ var menu = document.getElementById('menu');
 
     document.getElementById("responsive-menu").style.display = 'none';
     menu.style.display = 'block';
+    menu.style.width = '80%';
+    menu.style.height = '100%';
     
 
 }
 
 function closeMenu(){
-    
-    var menu = document.getElementById('menu');
-    
+
+    if (window.screen.width < 900) {
+
+        var menu = document.getElementById('menu');
         menu.style.display = 'none';
         document.getElementById("responsive-menu").style.display = 'block';
-        
-    
+
     }
+  
+    
+}
 
 popup();

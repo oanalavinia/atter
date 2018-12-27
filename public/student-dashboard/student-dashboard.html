@@ -9,8 +9,12 @@
 </head>
 <body>
 
-    <nav>
-           
+    <div id="responsive-menu" >
+        <img id= "hamburger" class="icon" alt="menu icon" src="../shared/icons/menu.svg" onclick="openMenu()" /> 
+</div>
+
+    <nav id="menu">
+        <img id= "close"  alt="menu icon" src="../shared/icons/x.svg" onclick="closeMenu()" /> 
             <div class="user-info">
                 <!-- the name will be displayed acorddingly -->
                 <p class="user">Tuxy Pinguinescu</p>
@@ -19,24 +23,25 @@
 
                 <div class="item">
                     <img class="icon" alt="Register icon" src="../shared/icons/check.svg" />
-                    <a href="#attend" id="attend"> Attend class </a>
+                    <a href="#attend" id="attend" onclick="closeMenu()"  > Attend class </a>
                 </div>
 
                 <div class="item-with-childs">
                     <div class="item">
                         <img class="icon" alt="List icon" src="../shared/icons/list.svg" />
-                        <a href="#" id="reports"  >Check </a>
+                        <a href="#" id="reports" onclick="closeMenu()"  >Check </a>
 
                     </div>
                     <div class="list-items">
                         <ul>
-                            <!-- for this list we will search through the courses list of the current student and build the menu with his 
-                        courses ( we will have a course model with every data we need, that will be populated when we login as a profesor) -->
+                            <!-- for this list we will search through the courses list of the current student and build the menu with his
+    courses ( we will have a course model with every data we need, that will be populated when we login as a profesor) -->
+
+                            <li> <a href="#course" onclick="closeMenu()"> DAWNC</a> </li>
+                            <li>DAWNC</li>
+                            <li>DSFUM</li>
+                            <li>DSFUM</li>
                             
-                        <li> <a href="#course"> DAWNC/ Lab</a> </li>
-                            <li>DAWNC/ Course</li>
-                            <li>DSFUM/ Lab</li>
-                            <li>DSFUM/ Course</li>
                         </ul>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html >
 <head>
     <meta charset="utf-8" content="width=device-width, initial-scale=1" name="viewport" />
     <title>Atter</title>
@@ -26,20 +26,20 @@
                 <div class="options">
                     <div class="item">
                         <img class="icon" alt="Register icon" src="../shared/icons/check.svg" />
-                        <a href="#register" id="register-class-link"> Register class </a>
+                        <a href="#register" id="register-class-link" onclick="closeMenu()" > Register class </a>
                     </div>
 
                     <div class="item-with-childs">
                         <div class="item">
                             <img class="icon" alt="List icon" src="../shared/icons/list.svg" />
-                            <a href="#" id="reports-link" > Check  </a>
+                            <a href="#" id="reports-link" onclick="closeMenu()" > Check  </a>
                         </div>
                         <!-- for this list we will search through the courses list of the current teacher and build the menu with his 
                         courses ( we will have a course model with every data we need, that will be populated when we login as a profesor) -->
                         <div class="list-items">
                             <ul>
                                 
-                                <li> <a href="#statistics"  >  DAWNC/ Lab </a></li>
+                                <li> <a href="#statistics"  onclick="closeMenu()" >  DAWNC/ Lab </a></li>
                             
                                 <li>DAWNC/ Course</li>
                                 <li>DSFUM/ Lab</li>

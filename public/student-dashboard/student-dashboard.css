@@ -86,17 +86,10 @@
 
 
 /* only for phones and tablets */
-@media only screen and (max-width: 1000px)  {
-    nav {
-        flex-basis: 40%;
-    }
+@media only screen and (max-width: 900px)  {
+   
 
-
-    .user-info {
-        padding-top : 20%;
-        padding-bottom: 20%;
-       
-    }
+   
 
     .list-items ul {
         padding-left: 30%;
@@ -104,10 +97,7 @@
       
     }
     
-    .list-items ul >li {
-        padding-top: 15%;
-    }
-
+  
     /* reports */
     .reports {
         display: flex;
@@ -122,61 +112,14 @@
     }
   
     /* presence */
-    .week >p {
-        font-size: 30px;
-    }
+   
 
     .week button {
         height: 40px;
         margin: auto;
     }
 
-    #notes {
-        font-size: 30px;
-    }
-}
-
-@media only screen and (max-width: 500px)  {
-
-        nav {
-        flex-basis: 40%;
-    }
-
    
-     
-
-    .user-info {
-        padding-top : 20%;
-        padding-bottom: 20%;
-        
-    }
-
-
-    .list-items ul {
-        padding-left: 30%;
-        margin: 0;
-      
-    }
-    
-    .list-items ul >li {
-        padding-top: 15%;
-    }   nav {
-        flex-basis: 50%;
-    }
-
-
-    
-    .list-items ul {
-       
-        padding-left: 30%;
-
-    .week >p {
-        font-size: 40px;
-    }
-
-    #notes {
-        font-size: 30px;
-    }
 }
 
 
