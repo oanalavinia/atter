@@ -1,19 +1,5 @@
 ﻿@import "../shared/global_style.css";
 
-.detailes {
-    padding: 30px;
-    grid-column: 1/3;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
-    background-color: white;
-    font-size: 20px;
-}
-
-a{
-    margin-top: auto;
-    margin-bottom: auto;
-    padding-left: 10px;
-    font-size: 22px;
-}
 
 .input {
     display: flex;
@@ -22,24 +8,24 @@ a{
     width: 100%;
 }
 
-.input > input[type="text"] {
-    font-size: 20px;
-    font-weight: lighter;
-    margin: 0.5% 20% 0%;
-    padding: 2.5%;
-}
+    .input > input[type="text"] {
+        font-size: 20px;
+        font-weight: lighter;
+        margin: 0.5% 20% 0%;
+        padding: 2.5%;
+    }
 
-.input > input[type=submit] {
-    background-color: var(--blue);
-    border: none;
-    color: white;
-    margin-left: 38%;
-    height: 40px;
-    width: 25%;
-    text-align: center;
-    border-radius: 20px;
-    font-size: 24px;
-}
+    .input > input[type=submit] {
+        background-color: var(--blue);
+        border: none;
+        color: white;
+        margin-left: 38%;
+        height: 40px;
+        width: 25%;
+        text-align: center;
+        border-radius: 20px;
+        font-size: 24px;
+    }
 
 .generated {
     display: flex;
@@ -50,31 +36,45 @@ a{
     font-weight: bold;
 }
 
-.generated > p {
-    color: var(--blue);
-    margin: 10px;
+    .generated > p {
+        color: var(--blue);
+        margin: 10px;
+    }
+
+/* course page  */
+
+.statistics {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
- /* course page  */
+.tile {
+    padding: 2%;
+    margin: 0 20px 20px 0;
+}
 
- .statistics {
-     display: flex;
-     flex-direction: row;
-     
- }
- 
- .tile{
-    padding: 5%;
+.row1 .tile {
+    flex: 0.5;
+    margin-right: 0;
 }
 
 
- .col1{
-     display: flex;
-     flex-direction: column;
- }
+.row1 {
+    display: flex;
+    flex-flow: row wrap;
+}
 
-td a{
-    color:var(--title-grey);
+.col1 {
+    flex: 0.5;
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+}
+
+td a {
+    color: var(--title-grey);
 }
 
 table {
@@ -87,7 +87,6 @@ table {
 
 .weeks tr > td {
     border: 1px ridge var(--title-grey);
-    border-radius: 15px;
     padding: 1px 10px 1px 10px;
 }
 
@@ -96,64 +95,111 @@ table {
     border: none;
 }
 
-.weeks tr:hover {
+.weeks tr td:hover {
     background-color: #f5f5f5;
 }
 
+#responsive-menu {
+    display: none;
+}
 
-
+#close {
+    display: none;
+}
 
 /* only for phones and tablets */
-@media only screen and (max-width: 1500px)  {
-    .detailes {
-        font-size: 100px;
-    } 
-    .detailes >div {
-        margin-top: 20%;
+@media only screen and (max-width:900px) {
+
+    #responsive-menu {
+        display: block;
     }
-    ::placeholder {
-        font-size: 50px;
+
+    #hamburger {
+        margin: 5%;
     }
+
+    #close {
+        display: block;
+        width: 20px;
+        height: 20px;
+        margin: 7%;
+    }
+
+   
+
+
+    .user-info {
+        padding-top: 20%;
+        padding-bottom: 20%;
+      
+    }
+
+   
+
+        .list-items ul {
+            padding-left: 30%;
+            margin: 0;
+        }
+
+            .list-items ul > li {
+                padding-top: 15%;
+            }
+
+    .row1 {
+        display: flex;
+        flex-flow: row wrap;
+    }
+
+   
+
     .input > input[type=submit] {
         height: 60px;
         width: 30%;
         font-size: 34px;
     }
+
     .generated {
         padding: 10px;
     }
-    .weeks  tr > td{
+
+    .weeks tr > td {
         padding: 0px 30px;
-        font-size: 25px;
-    }
-    #class-view .tile ol>li{
-        font-size: 22px;
-    }
-    #class-view .tile ol{
-        padding-left: 10%;
-        padding-right: 0%;
+      
     }
 }
 
-@media only screen and (max-width: 500px)  {
-    .detailes {
-        text-align: center;
-        font-size: 120px;
+@media only screen and (max-width:600px) {
+
+    #responsive-menu {
+        z-index: 0;
+        display: block;
+        margin: 3%;
     }
-    .detailes >div {
-        margin-top: 50%;
+
+    #menu {
+        display: none;
     }
-    .input >input {
+
+    #close {
+        display: block;
+        width: 20px;
+        height: 20px;
+        margin: 5%;
+    }
+
+   
+
+    .list-items ul {
+       
+        padding-left: 30%;
+    }
+
+    .row1 {
+        display: flex;
+        flex-flow: row wrap;
+    }
+
+    .input > input {
         height: 80px;
-    }
-    #class-view .tile ol>li{
-        font-size: 30px;
-        /* padding-left: 10%;
-        padding-right: 0%; */
-        margin-left: 0;
-    }
-    #class-view .tile ol{
-        padding-left: 10%;
-        padding-right: 0%;
     }
 }

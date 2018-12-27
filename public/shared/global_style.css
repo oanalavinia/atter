@@ -3,13 +3,13 @@
 
 body {
     box-sizing: border-box;
-    font-family: Helvetica;
-    display: flex;
-    flex-direction: row;
+    font-family: Lato , sans-serif;
+    background-color: var(--background-color);
     margin: 0;
     padding: 0;
-    background-color: var(--background-color);
-    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    height: 100vh;  
 }
 
 .tile {
@@ -65,15 +65,10 @@ input {
 
 nav {
     background-color: var(--blue);
-    display: flex;
-    flex-direction: column;
-    height: auto;
+    display: block;
     padding: 2%;
     overflow:hidden;
-    width:20%;
-    
 }
-
 a{
     color: white;
     text-decoration: none;
@@ -87,7 +82,7 @@ a{
 
 .view-render{
     display:flex;
-    width: 85%;
+    width: 100%;
     margin:30px;
 }
 
@@ -135,3 +130,6 @@ view{
 .list-items ul li {
     padding-top: 3%;
 }
+
+
+

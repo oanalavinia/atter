@@ -30,3 +30,24 @@ function popup() {
     var popup = document.getElementById("popup");
     popup.classList.toggle("hide-view");
 }
+
+function openMenu(){
+    
+var menu = document.getElementById('menu');
+
+    document.getElementById("responsive-menu").style.display = 'none';
+    menu.style.display = 'block';
+    
+
+}
+
+function closeMenu(){
+    
+    var menu = document.getElementById('menu');
+    
+        menu.style.display = 'none';
+        document.getElementById("responsive-menu").style.display = 'block';
+        
+    
+    }
+
