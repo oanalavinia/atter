@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-
+<script src="js/shared.js"></script>
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -9,6 +9,16 @@
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato" />
     <title>Atter</title>
 </head>
+
+<script>
+    //Needed for redirrection before the page is loaded
+    var previousUser = localStorage.getItem('user');
+
+    if (previousUser != null) {
+        var previousUserRole = JSON.parse(previousUser).IsStudent;
+        redirrectUser(previousUserRole);
+    }
+</script>
 
 <body itemscope="" itemtype="http://schema.org/WebPage">
     <img class="image" src="./login/image.jpg" border="0" itemprop="image" alt="login image" />
@@ -35,102 +45,7 @@
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
-    <script>
-        var url = 'https://atter-8d2e1.firebaseio.com/users.json';
-        var config = {
-            apiKey: "AIzaSyAJdgGIwRikx6qawka8wZ-C172-G3nbQJ4",
-            authDomain: "atter-8d2e1.firebaseapp.com",
-            databaseURL: "https://atter-8d2e1.firebaseio.com",
-            projectId: "atter-8d2e1",
-            storageBucket: "atter-8d2e1.appspot.com",
-            messagingSenderId: "574650654869"
-        };
-
-        firebase.initializeApp(config);
-        const database = firebase.database();
-
-        // function getData(filter) {
-        //     var x = fetch(url)
-        //         .then((res) => res.json())
-        //         .then(function (data) {
-        //             console.log(data);
-        //         })
-        // };
-
-        document.getElementById('login').onclick = function () {
-            // var email = document.getElementById("email").value;
-            // var urlForSearch = url + '?Email=' + email;
-            // var x = fetch(urlForSearch)
-            //     .then((res) => res.json())
-            //     .then(function (data) {
-            //         for (var i in data) {
-            //             if (data[i].Email === email && data[i].IsStudent === true) {
-
-            //                 location.href = "./student-dashboard/student-dashboard.html";
-            //                 break;
-            //             }
-            //             else
-            //                 if (data[i].Email === email && data[i].IsStudent === false) {
-            //                     location.href = "./professor-dashboard/professor-dashboard.html";
-            //                     break;
-
-            //                 }
-
-            //         }
-            //     });
-
-            var email = document.getElementById("email").value;
-            var password = document.getElementById("password").value;
-
-            const auth = firebase.auth();
-            const promise = auth.signInWithEmailAndPassword(email, password);
-            promise.catch(error => console.log(error));
-
-            firebase.auth().onAuthStateChanged(user => {
-                if (user) {
-                    console.log(user);
-                }
-
-                var db = firebase.database();
-                var ref = db.ref('users');
-                ref.on('value', parseData, parseErr);
-            });
-
-        };
-
-        var filterObjectByEmail = function (obj, condition) {
-            var returnValue = [];
-            for (var field in obj) {
-                if (condition(obj[field])) {
-                    returnValue.push(obj[field]);
-                }
-            }
-            return returnValue;
-        };
-
-        var parseData = function (data) {
-            var arrayOfValues = Object.values(data.val());
-            var filteredUser = arrayOfValues.find(function (user) {
-                return user.Email === email.value;
-            });
-            if (!filteredUser) {
-                alert("No such user exists");
-            }
-            else {
-                if(filteredUser.IsStudent){
-                    location.href = "./student-dashboard/student-dashboard.html";
-                }
-                else{
-                    location.href = "./professor-dashboard/professor-dashboard.html";
-                }
-            }
-        };
-
-        var parseErr = function (err) {
-            console.log(err);
-        }
-
-    </script>
+    <script src="js/login.js"></script>
 </body>
 
 </html>

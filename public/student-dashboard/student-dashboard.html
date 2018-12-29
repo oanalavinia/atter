@@ -1,67 +1,70 @@
 ﻿<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<script src="../js/shared.js"></script>
+
+
 <head>
     <meta charset="utf-8" content="width=device-width, initial-scale=1" name="viewport" />
     <title>Atter</title>
-    <link rel="stylesheet" href="student-dashboard.css" >
+    <link rel="stylesheet" href="student-dashboard.css">
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato" />
 </head>
+
+<script>
+    checkUserRole(true);
+</script>
+
 <body>
 
-    <div id="responsive-menu" >
-        <img id= "hamburger" class="icon" alt="menu icon" src="../shared/icons/menu.svg" onclick="openMenu()" /> 
+    <div id="responsive-menu">
+        <img id="hamburger" class="icon" alt="menu icon" src="../shared/icons/menu.svg" onclick="openMenu()" />
     </div>
 
     <nav id="menu">
-        <img id= "close"  alt="menu icon" src="../shared/icons/x.svg" onclick="closeMenu()" /> 
-            <div class="user-info">
-                <!-- the name will be displayed acorddingly -->
-                <p class="user">Tuxy Pinguinescu</p>
-                <p class="user">STUDENT</p>
+        <img id="close" alt="menu icon" src="../shared/icons/x.svg" onclick="closeMenu()" />
+        <div class="user-info">
+            <!-- the name will be displayed acorddingly -->
+            <p class="user">Tuxy Pinguinescu</p>
+            <p class="user">STUDENT</p>
+        </div>
+
+        <div class="item">
+            <img class="icon" alt="Register icon" src="../shared/icons/check.svg" />
+            <a href="#attend" id="attend" onclick="closeMenu()"> Attend class </a>
+        </div>
+
+        <div class="item-with-childs">
+            <div class="item">
+                <img class="icon" alt="List icon" src="../shared/icons/list.svg" />
+                <a href="#" id="reports" onclick="closeMenu()">Check </a>
+
             </div>
-
-                <div class="item">
-                    <img class="icon" alt="Register icon" src="../shared/icons/check.svg" />
-                    <a href="#attend" id="attend" onclick="closeMenu()"  > Attend class </a>
-                </div>
-
-                <div class="item-with-childs">
-                    <div class="item">
-                        <img class="icon" alt="List icon" src="../shared/icons/list.svg" />
-                        <a href="#" id="reports" onclick="closeMenu()"  >Check </a>
-
-                    </div>
-                    <div class="list-items">
-                        <ul>
-                            <!-- for this list we will search through the courses list of the current student and build the menu with his
+            <div class="list-items">
+                <ul>
+                    <!-- for this list we will search through the courses list of the current student and build the menu with his
     courses ( we will have a course model with every data we need, that will be populated when we login as a profesor) -->
 
-                            <li> <a href="#course" onclick="closeMenu()"> DAWNC</a> </li>
-                            <li>DAWNC</li>
-                            <li>DSFUM</li>
-                            <li>DSFUM</li>
-                            
-                        </ul>
-                    </div>
-                </div>
+                    <li> <a href="#course" onclick="closeMenu()"> DAWNC</a> </li>
+                    <li>DAWNC</li>
+                    <li>DSFUM</li>
+                    <li>DSFUM</li>
 
-                <div class="item">
-                    <img class="icon" alt="Logout icon" src="../shared/icons/logout.svg" />
-                    <p class="title-item"> Logout </p>
-                </div>
-            
+                </ul>
+            </div>
+        </div>
+
+        <div class="item" onclick="logout()" >
+            <img class="icon" alt="Logout icon" src="../shared/icons/logout.svg" />
+            <p class="title-item"> Logout </p>
+        </div>
+
     </nav>
+
+    <div id="option" class="view-render"> </div>
     
-    <div id="option" class="view-render" >
-      
-    </div>
-
-   
-
-    <script src="../js/scripts.js"></script>
     <script src="../js/router.js"></script>
-    <script src="../js/options-student.js"></script>
-
+    <script src="../js/student-routes.js"></script>
 </body>
 </html>
