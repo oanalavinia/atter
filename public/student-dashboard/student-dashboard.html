@@ -3,6 +3,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 
 <script src="../js/shared.js"></script>
+<script src="../js/student.js"></script>
 
 
 <head>
@@ -26,7 +27,7 @@
         <img id="close" alt="menu icon" src="../shared/icons/x.svg" onclick="closeMenu()" />
         <div class="user-info">
             <!-- the name will be displayed acorddingly -->
-            <p class="user">Tuxy Pinguinescu</p>
+            <p class="user" id="user"></p>
             <p class="user">STUDENT</p>
         </div>
 
@@ -42,14 +43,14 @@
 
             </div>
             <div class="list-items">
-                <ul>
+                <ul id="subjectsList">
                     <!-- for this list we will search through the courses list of the current student and build the menu with his
     courses ( we will have a course model with every data we need, that will be populated when we login as a profesor) -->
 
-                    <li> <a href="#course" onclick="closeMenu()"> DAWNC</a> </li>
-                    <li>DAWNC</li>
+                    <!-- <li> <a href="#course" onclick="closeMenu()"> DAWNC</a> </li> -->
+                    <!-- <li>DAWNC</li>
                     <li>DSFUM</li>
-                    <li>DSFUM</li>
+                    <li>DSFUM</li> -->
 
                 </ul>
             </div>
