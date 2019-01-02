@@ -3,6 +3,7 @@
 <html>
 
 <script src="../js/shared.js"></script>
+<script src="../js/professor.js"></script>
 
 
 <head>
@@ -26,7 +27,7 @@
         <img id="close" alt="menu icon" src="../shared/icons/x.svg" onclick="closeMenu()" />
         <div>
             <div class="user-info">
-                <p class="user">Tuxy Pinguinescu</p>
+                <p class="user" id="user"></p>
                 <p class="user">PROFESSOR</p>
             </div>
         </div>
@@ -46,13 +47,13 @@
                     <!-- for this list we will search through the courses list of the current teacher and build the menu with his 
                         courses ( we will have a course model with every data we need, that will be populated when we login as a profesor) -->
                     <div class="list-items">
-                        <ul>
+                        <ul id="subjectsList">
 
-                            <li> <a href="#statistics" onclick="closeMenu()"> DAWNC/ Lab </a></li>
+                            <!-- <li> <a href="#statistics" onclick="closeMenu()"> DAWNC/ Lab </a></li> -->
 
-                            <li>DAWNC/ Course</li>
+                            <!-- <li>DAWNC/ Course</li>
                             <li>DSFUM/ Lab</li>
-                            <li>DSFUM/ Course</li>
+                            <li>DSFUM/ Course</li> -->
                         </ul>
                     </div>
                 </div>
@@ -72,6 +73,8 @@
 
     <script src="../js/router.js"></script>
     <script src="../js/professor-routes.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
+    <script src="../js/database.js"></script>
 
 </body>
 

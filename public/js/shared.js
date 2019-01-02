@@ -1,5 +1,5 @@
 
-
+// TODO: don't delete this. Will be added with addEventListener on create
 // function popup() {
 //     window.onload = function () {
 //         var popup = document.getElementById("details-popup");
@@ -76,4 +76,40 @@ function logout() {
     location.href = '../index.html';
 }
 
-// popup();
+// Used to check if an element was loaded.
+async function checkElement(selector) {
+    while (document.getElementById(selector) === null) {
+        await rafAsync()
+    }
+    return true;
+}
+
+function rafAsync() {
+    return new Promise(resolve => {
+        requestAnimationFrame(resolve);
+    });
+}
+
+// Generic function for creating a node.
+function createNode(content, type, myClass, myHref) {
+    var node = document.createElement(type);
+    if(content != "note") {
+        var textnode = document.createTextNode(content);
+        node.appendChild(textnode);
+    }
+    if(myClass != false) {
+        node.classList.add(myClass);
+    }
+    if(myHref != false) {
+        node.setAttribute("href", myHref);
+    }
+    return node;
+}
+
+// Creates an element from given string.
+function htmlToElement(html) {
+    var template = document.createElement('template');
+    html = html.trim();
+    template.innerHTML = html;
+    return template.content.firstChild;
+}
