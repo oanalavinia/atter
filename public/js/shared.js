@@ -73,7 +73,7 @@ function checkUserRole(isStudentPage) {
         location.href = '../index.html';
     }
     else{
-        var isStudent = user.IsStudent;
+        var isStudent = JSON.parse(user).IsStudent;
         if(isStudentPage && !isStudent ){
             location.href = "../public/professor-dashboard/professor-dashboard.html";
         }
