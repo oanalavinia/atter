@@ -80,20 +80,6 @@ class Week {
     }
 }
 
-// Used to check if an element was loaded.
-async function checkElement(selector) {
-    while (document.getElementById(selector) === null) {
-        await rafAsync()
-    }
-    return true;
-}
-
-function rafAsync() {
-    return new Promise(resolve => {
-        requestAnimationFrame(resolve);
-    });
-}
-
 // Generic function for creating a node.
 function createNode(content, type, myClass, myHref) {
     var node = document.createElement(type);
@@ -143,7 +129,10 @@ function createWeek(week) {
     var labPresence = createNode(week.getLabAttendance(), "th", "text");
     var coursePresence = createNode(week.getCourseAttendance(), "th", "text");
     var bonus = createNode(week.getBonus(), "th", "text");
-    var button = htmlToElement('<th><button id="details" >Details</button></th>');
+    var button = htmlToElement('<th><button >Details</button></th>');
+    button.addEventListener("click", function(){
+        // popup
+    }, false);
     parent.appendChild(number);
     parent.appendChild(labPresence);
     parent.appendChild(coursePresence);

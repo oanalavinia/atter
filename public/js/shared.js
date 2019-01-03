@@ -1,3 +1,15 @@
+var url = 'https://atter-8d2e1.firebaseio.com/users.json';
+var config = {
+    apiKey: "AIzaSyAJdgGIwRikx6qawka8wZ-C172-G3nbQJ4",
+    authDomain: "atter-8d2e1.firebaseapp.com",
+    databaseURL: "https://atter-8d2e1.firebaseio.com",
+    projectId: "atter-8d2e1",
+    storageBucket: "atter-8d2e1.appspot.com",
+    messagingSenderId: "574650654869"
+};
+
+firebase.initializeApp(config);
+const database = firebase.database();
 
 // TODO: don't delete this. Will be added with addEventListener on create
 // function popup() {
@@ -61,7 +73,7 @@ function checkUserRole(isStudentPage) {
         location.href = '../index.html';
     }
     else{
-        var isStudent = JSON.parse(user).IsStudent;
+        var isStudent = user.IsStudent;
         if(isStudentPage && !isStudent ){
             location.href = "../public/professor-dashboard/professor-dashboard.html";
         }
@@ -112,4 +124,102 @@ function htmlToElement(html) {
     html = html.trim();
     template.innerHTML = html;
     return template.content.firstChild;
+}
+
+// Used for professor.
+// TODO: use classes that are defined in student.js.
+// The problem is with JSON.parse.
+class Student2 {
+    constructor(user) {
+        this.email = user.Email;
+        this.firstName = user.FirstName;
+        this.group = user.Group;
+        this.lastName = user.LastName;
+        this.password = user.Password;
+        this.year = user.Year;
+        this.studentCourses = user.StudentCourses;
+    }
+
+    get courses() {
+        allCourses = [];
+        for(var key in Object.keys(this.studentCourses)) {
+            var thisCourse = new Course2(this.studentCourses[key]);
+            allCourses.push(thisCourse);
+        }
+        return allCourses;
+    }
+
+    get name() {
+        return this.firstName + ' ' + this.lastName;
+    }
+}
+
+class Course2 {
+    constructor(course) {
+        this.courseProfessor = course.CourseProfessor;
+        this.seminarProfessor = course.SeminarProfessor;
+        this.title = course.Title;
+        this.weeks = course.Weeks;
+    }
+
+    getWeeks() {
+        var allWeeks = []
+        for(var key in Object.keys(this.weeks)) {
+            var thisWeek = new Week(this.weeks[key])
+            allWeeks.push(thisWeek);
+        }
+        return allWeeks;
+    }
+
+    getWeeksByNumber(content) {
+        var allWeeks = []
+        for(var key in Object.keys(this.weeks)) {
+            console.log(this.weeks)
+            var thisWeek = new Week2(this.weeks[key])
+            if(thisWeek.number == content) {
+                console.log(thisWeek);
+                allWeeks.push(thisWeek);
+            }
+        }
+        return allWeeks;
+    }
+
+    getNumberOfWeeks() {
+        return this.weeks.length;
+    }
+
+    
+} 
+
+class Week2 {
+    constructor(week) {
+        this.courseAttendance = week.CourseAttendance;
+        this.labAttendance = week.LabAttendance;
+        this.labPoints = week.LabPoints;
+        this.number = week.Number;
+    }
+
+    getWeekNumber() {
+        return "Week " + this.number;
+    }
+
+    getLabAttendance() {
+        if(this.labAttendance == true) {
+            return "Lab: present";
+        } else {
+            return "Lab: absent";
+        }
+    }
+
+    getCourseAttendance() {
+        if(this.labAttendance == true) {
+            return "Course: present";
+        } else {
+            return "Course: absent";
+        }
+    }
+
+    getBonus() {
+        return "Bonus: " + this.labPoints;
+    }
 }
