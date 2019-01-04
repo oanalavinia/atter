@@ -18,6 +18,9 @@ function addSubjectsToMenu(allCourses, allStudents,professor) {
         let obj = allCourses[key];
         if (obj.isCourseProf) {
             course = createSubjectNode(obj.courseName);
+            course.addEventListener("click", function() {
+                drawPointsCanvas(obj.name);
+            })
             subjectsList.appendChild(course);
             lab = createSubjectNode(obj.labName);
             subjectsList.appendChild(lab);
@@ -163,30 +166,41 @@ window.onload = function () {
 
 var rootRef = database.ref().child("users");
 
-var allStudents = [];
+var profStudents = [];
 var studNames = [];
 var thisStudent;
-// setTimeout(function(){
-//   rootRef.on("value", function(snapshot) {
-//     snapshot.forEach(function(student) {
-//         if(student.val().IsStudent) {
-//           student.child('StudentCourses').forEach(function(elem) {
-//             if(elem.val().SeminarProfessor == professor.name) {
-//               thisStudent = new Student(student.val());
-//               if(!studNames.includes(thisStudent.name)) {
-//                   allStudents.push(thisStudent);
-//               }
-//               studNames.push(thisStudent.name);
-//             }
-//           })
-//         }
-//     });
-//   });
-//   console.log(allStudents);
-// });
+setTimeout(function(){
+  rootRef.on("value", function(snapshot) {
+    snapshot.forEach(function(student) {
+        if(student.val().IsStudent) {
+          student.child('StudentCourses').forEach(function(elem) {
+            if(elem.val().SeminarProfessor == professor.name) {
+              thisStudent = new Student2(student.val());
+              if(!studNames.includes(thisStudent.name)) {
+                  profStudents.push(thisStudent);
+              }
+              studNames.push(thisStudent.name);
+            }
+          })
+        }
+    });
+  });
+//   console.log(profStudents);
+});
 
-
-// var students = [];
-// students = data.filter(function(student){
-// stud => stud.val().IsStudent === true });
-// console.log(students);
+async function getStudentsOfCourse(courseName) {
+    var courseStudents = [];
+    rootRef.on("value", function(snapshot) {
+        snapshot.forEach(function(student) {
+            if(student.val().IsStudent) {
+                student.child('StudentCourses').forEach(function(elem) {
+                if(elem.val().Title == courseName) {
+                    thisStudent = new Student2(student.val());
+                    courseStudents.push(thisStudent);
+                }
+                })
+            }
+        });
+    });
+    return courseStudents;
+}
