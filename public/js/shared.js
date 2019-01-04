@@ -58,7 +58,8 @@ function closeMenu() {
 
 
 }
-var redirrectUser = function(isStudent) {
+
+var redirrectUser = function (isStudent) {
     if (isStudent) {
         location.href = "../public/student-dashboard/student-dashboard.html";
     }
@@ -66,6 +67,7 @@ var redirrectUser = function(isStudent) {
         location.href = "../public/professor-dashboard/professor-dashboard.html";
     }
 }
+
 
 function checkUserRole(isStudentPage) {
     var user = localStorage.getItem('user');
@@ -75,10 +77,10 @@ function checkUserRole(isStudentPage) {
     else{
         var isStudent = JSON.parse(user).IsStudent;
         if(isStudentPage && !isStudent ){
-            location.href = "../public/professor-dashboard/professor-dashboard.html";
+            location.href = "../professor-dashboard/professor-dashboard.html";
         }
         if(!isStudentPage && isStudent){
-            location.href = "../public/student-dashboard/student-dashboard.html";
+            location.href = "../student-dashboard/student-dashboard.html";
         }
     }
 }

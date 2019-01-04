@@ -40,7 +40,8 @@ class ProfCourse {
 // Creates a node for menu.
 function createSubjectNode(name) {
     course = createNode("note", "li", false, false);
-    link = createNode(name, "a", false, "#statistics");
+    //to be refactored
+    link = createNode(name, "a", false, "#statistics/" + name.split('/')[0] + name.split('/')[1].split(' ')[1]);
     course.appendChild(link);
     course.addEventListener("click", closeMenu);
     return course;
@@ -141,7 +142,7 @@ function createWeek(number, seminarGroups, name) {
         let group = seminarGroups[key].Group;
         let hour = seminarGroups[key].Hour;
         groupNode = createNode("note", "td", false, false);
-        link = createNode(group, "a", false, "#statistics/group-name");
+        link = createNode(group, "a", false, "#group/"+group);
         link.addEventListener("click", function() {
             groupView(group, hour, name, number);
         }, false);
