@@ -54,6 +54,9 @@ function addSubjectsToMenu(allCourses) {
         let obj = allCourses[key];
         if(obj.isCourseProf) {  
             course = createSubjectNode(obj.courseName);
+            course.addEventListener("click", function() {
+                drawPointsCanvas(obj.name);
+            })
             subjectsList.appendChild(course);
             lab =  createSubjectNode(obj.labName);
             subjectsList.appendChild(lab);
@@ -111,7 +114,7 @@ function groupView(group, hour, seminarName, weekNumber) {
 
 function getAttendance(seminarName, weekNumber, hour) {
     var students = []
-    allStudents.forEach(function(student) {
+    profStudents.forEach(function(student) {
         hisCourses = student.courses;
         hisCourses.forEach(function(course) {
             if(course.seminarProfessor == professor.name && course.title == seminarName) {
@@ -165,7 +168,7 @@ window.onload = function () {
 
 var rootRef = database.ref().child("users");
 
-var allStudents = [];
+var profStudents = [];
 var studNames = [];
 var thisStudent;
 setTimeout(function(){
@@ -176,7 +179,7 @@ setTimeout(function(){
             if(elem.val().SeminarProfessor == professor.name) {
               thisStudent = new Student2(student.val());
               if(!studNames.includes(thisStudent.name)) {
-                  allStudents.push(thisStudent);
+                  profStudents.push(thisStudent);
               }
               studNames.push(thisStudent.name);
             }
@@ -184,5 +187,22 @@ setTimeout(function(){
         }
     });
   });
-  console.log(allStudents);
+//   console.log(profStudents);
 });
+
+async function getStudentsOfCourse(courseName) {
+    var courseStudents = [];
+    rootRef.on("value", function(snapshot) {
+        snapshot.forEach(function(student) {
+            if(student.val().IsStudent) {
+                student.child('StudentCourses').forEach(function(elem) {
+                if(elem.val().Title == courseName) {
+                    thisStudent = new Student2(student.val());
+                    courseStudents.push(thisStudent);
+                }
+                })
+            }
+        });
+    });
+    return courseStudents;
+}
