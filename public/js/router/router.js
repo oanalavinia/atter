@@ -25,9 +25,13 @@ Router.prototype = {
 
                 var a = e.oldURL.split('#')[1];
                 var b = e.newURL.split('#')[1];
-
-                if (!a.includes(b.split('/')[0]) || e.newURL.split('#')[1] === "")
+                if (a === undefined) {
                     scope.hasChanged(scope, r);
+                }
+                else {
+                    if (!a.includes(b.split('/')[0]) || e.newURL.split('#')[1] === "")
+                        scope.hasChanged(scope, r);
+                }
             });
         })(this, r);
         this.hasChanged(this, r);

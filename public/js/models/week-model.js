@@ -4,6 +4,7 @@ class Week {
         this.labAttendance = week.LabAttendance;
         this.labPoints = week.LabPoints;
         this.number = week.Number;
+        this.code = week.GeneratedCode;
     }
 
     getWeekNumber() {

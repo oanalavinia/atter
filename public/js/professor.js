@@ -11,14 +11,14 @@ function createSubjectNode(name) {
 }
 
 // Updates menu with profs subjects.
-function addSubjectsToMenu(allCourses, allStudents,professor) {
+function addSubjectsToMenu(allCourses, allStudents, professor) {
     var course;
     var subjectsList = document.getElementById("subjectsList");
     for (var key in Object.keys(allCourses)) {
         let obj = allCourses[key];
         if (obj.isCourseProf) {
             course = createSubjectNode(obj.courseName);
-            course.addEventListener("click", function() {
+            course.addEventListener("click", function () {
                 drawPointsCanvas(obj.name);
             })
             subjectsList.appendChild(course);
@@ -29,13 +29,14 @@ function addSubjectsToMenu(allCourses, allStudents,professor) {
             subjectsList.appendChild(lab);
         }
         lab.addEventListener("click", function () {
-            addWeeksForSubject(obj.seminarGroups, obj.name, allStudents,professor);
+            addWeeksForSubject(obj.seminarGroups, obj.name, allStudents, professor);
         }, false);
+
     }
 }
 
 // For each subject put 14 weeks with the assigned groups.
-function addWeeksForSubject(seminarGroups, name, allStudents,professor) {
+function addWeeksForSubject(seminarGroups, name, allStudents, professor) {
     var weeksNode;
     checkElement('weeks').then((element) => {
         weeksNode = document.getElementById("weeks");
@@ -43,14 +44,14 @@ function addWeeksForSubject(seminarGroups, name, allStudents,professor) {
             weeksNode.removeChild(weeksNode.firstChild);
         }
         for (i = 1; i < 15; i++) {
-            weekNode = createWeek(i, seminarGroups, name, allStudents,professor);
+            weekNode = createWeek(i, seminarGroups, name, allStudents, professor);
             weeksNode.appendChild(weekNode);
         }
     });
 }
 
 // Just updates the group for now, when it is clicked.
-function groupView(group, hour, seminarName, weekNumber, allStudents) {
+function groupView(group, hour, seminarName, weekNumber, allStudents, professor) {
     var thisGroup;
     checkElement('group').then((element) => {
         thisGroup = document.getElementById('group');
@@ -60,7 +61,7 @@ function groupView(group, hour, seminarName, weekNumber, allStudents) {
         thisWeek = document.getElementById('week');
         thisWeek.innerHTML = 'Week: ' + weekNumber;
     });
-    var students = getAttendance(seminarName, weekNumber, hour, allStudents,professor);
+    var students = getAttendance(seminarName, weekNumber, hour, allStudents, professor);
     checkElement('presence').then((element) => {
         presence = document.getElementById('presence');
         presence.innerHTML = 'Total presence: ' + students.length;
@@ -69,15 +70,15 @@ function groupView(group, hour, seminarName, weekNumber, allStudents) {
         var attendance = document.getElementById('attendance');
         var studentNode;
         students.forEach(function (student) {
-            // isPresentThisWeek(student, weekNumber);
             studentNode = createNode(student, 'li', false, false);
             attendance.appendChild(studentNode);
         });
     });
 }
 
-function getAttendance(seminarName, weekNumber, hour, allStudents) {
-    var students = []
+function getAttendance(seminarName, weekNumber, hour, allStudents,professor) {
+    var students = [];
+// refactore to get attendence from code
     allStudents.forEach(function (student) {
         hisCourses = student.courses;
         hisCourses.forEach(function (course) {
@@ -94,7 +95,7 @@ function getAttendance(seminarName, weekNumber, hour, allStudents) {
 }
 
 // Used in addWeeksForSubject. Creates a week with it's groups.
-function createWeek(number, seminarGroups, name, allStudents,professor) {
+function createWeek(number, seminarGroups, name, allStudents, professor) {
     var parent = document.createElement("tr");
     var title = "Week " + number;
     var weekNumberNode = createNode(title, "td", "text");
@@ -107,7 +108,7 @@ function createWeek(number, seminarGroups, name, allStudents,professor) {
         groupNode = createNode("note", "td", false, false);
         link = createNode(group, "a", false, "#group/" + group);
         link.addEventListener("click", function () {
-            groupView(group, hour, name, number, allStudents,professor);
+            groupView(group, hour, name, number, allStudents, professor);
         }, false);
         groupNode.appendChild(link);
         parent.appendChild(groupNode);
@@ -115,48 +116,36 @@ function createWeek(number, seminarGroups, name, allStudents,professor) {
     return parent;
 }
 
-// var user = localStorage.getItem('user');
-// allCourses = [];
-// var professor = new Professor(user);
-// allCourses = professor.courses;
-
 function populate() {
     var email = localStorage.getItem('email');
-    var db = firebase.database();
-    var ref = db.ref('users');
-
-
+    var ref = database.ref().child("users");
+    
     ref.on('value', function (data) {
+         
+        var allCourses = [];
+        var students = [];
+
         var users = Object.values(data.val());
         var loggedUser = users.find(function (user) { return user.Email === email; });
         var thisUser = document.getElementById("user");
-        allCourses = [];
         var professor = new Professor(loggedUser);
+       
         allCourses = professor.courses;
         thisUser.innerHTML = professor.name;
-
-        setTimeout(function () {
-            data.forEach(function (student) {
-                if (student.val().IsStudent) {
-                    student.child('StudentCourses').forEach(function (elem) {
-                        if (elem.val().SeminarProfessor == professor.name) {
-                            thisStudent = new Student(student.val());
-                            if (!studNames.includes(thisStudent.name)) {
-                                allStudents.push(thisStudent);
-                            }
-                            studNames.push(thisStudent.name);
-                        }
-                    })
-                }
-            });
+       
+       var studentsJson = users.filter(student => {
+            return student.IsStudent &&
+                typeof(student.StudentCourses.find(function(course)
+                { return course.CourseProfessor == professor.name || 
+                    course.SeminarProfessor == professor.name })) != 'undefined';
         });
-   
 
-
-
-    addSubjectsToMenu(allCourses,allStudents,professor);
-});
-
+        for( var key in Object.keys(studentsJson)){
+            var student = new Student(studentsJson[key]);
+            students.push(student); }
+       
+        addSubjectsToMenu(allCourses, students, professor);
+    });
 
 }
 
@@ -164,43 +153,3 @@ window.onload = function () {
     populate();
 }
 
-var rootRef = database.ref().child("users");
-
-var profStudents = [];
-var studNames = [];
-var thisStudent;
-setTimeout(function(){
-  rootRef.on("value", function(snapshot) {
-    snapshot.forEach(function(student) {
-        if(student.val().IsStudent) {
-          student.child('StudentCourses').forEach(function(elem) {
-            if(elem.val().SeminarProfessor == professor.name) {
-              thisStudent = new Student2(student.val());
-              if(!studNames.includes(thisStudent.name)) {
-                  profStudents.push(thisStudent);
-              }
-              studNames.push(thisStudent.name);
-            }
-          })
-        }
-    });
-  });
-//   console.log(profStudents);
-});
-
-async function getStudentsOfCourse(courseName) {
-    var courseStudents = [];
-    rootRef.on("value", function(snapshot) {
-        snapshot.forEach(function(student) {
-            if(student.val().IsStudent) {
-                student.child('StudentCourses').forEach(function(elem) {
-                if(elem.val().Title == courseName) {
-                    thisStudent = new Student2(student.val());
-                    courseStudents.push(thisStudent);
-                }
-                })
-            }
-        });
-    });
-    return courseStudents;
-}

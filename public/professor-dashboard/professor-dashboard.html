@@ -1,18 +1,15 @@
 ﻿<!DOCTYPE html>
 
 <html>
-
 <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
 <script src="../js/shared.js"></script>
 <script src="../js/professor.js"></script>
-<script src="../js/professor-model.js"></script>
-<script src="../js/prof-course-model.js"></script>
+<script src="../js/models/professor-model.js"></script>
+<script src="../js/models/prof-course-model.js"></script>
 
-<script src="../js/student-model.js"></script>
-<script src="../js/stud-course-model.js"></script>
-<script src="../js/week-model.js"></script>
-
-<script src="../js/charts.js"></script>
+<script src="../js/models/student-model.js"></script>
+<script src="../js/models/stud-course-model.js"></script>
+<script src="../js/models/week-model.js"></script>
 
 <head>
     <meta charset="utf-8" content="width=device-width, initial-scale=1" name="viewport" />
@@ -52,16 +49,8 @@
                         <img class="icon" alt="List icon" src="../shared/icons/list.svg" />
                         <a href="#" id="reports-link" onclick="closeMenu()"> Check </a>
                     </div>
-                    <!-- for this list we will search through the courses list of the current teacher and build the menu with his 
-                        courses ( we will have a course model with every data we need, that will be populated when we login as a profesor) -->
                     <div class="list-items">
                         <ul id="subjectsList">
-
-                            <!-- <li> <a href="#statistics" onclick="closeMenu()"> DAWNC/ Lab </a></li> -->
-
-                            <!-- <li>DAWNC/ Course</li>
-                            <li>DSFUM/ Lab</li>
-                            <li>DSFUM/ Course</li> -->
                         </ul>
                     </div>
                 </div>
@@ -76,11 +65,10 @@
 
 
     <div id="option" class="view-render">
-
     </div>
 
-    <script src="../js/router.js"></script>
-    <script src="../js/professor-routes.js"></script>
+    <script src="../js/router/router.js"></script>
+    <script src="../js/router/professor-routes.js"></script>
 
 </body>
 
