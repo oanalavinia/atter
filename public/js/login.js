@@ -44,11 +44,13 @@ var findUserInUsersDatabase = function (data) {
     else {
         redirrectUser(filteredUser.IsStudent);
     }
-    setLocalStorageItems(filteredUser);
+    setEmailToLocalStorage(filteredUser);
 };
 
 
 
-var setLocalStorageItems = function (user) {
-    localStorage.setItem('user', JSON.stringify(user));
+var setEmailToLocalStorage = function (user) {
+    localStorage.setItem('email', user.Email);
+    localStorage.setItem('isStudent', user.IsStudent);
+
 };

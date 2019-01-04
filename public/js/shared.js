@@ -68,18 +68,47 @@ var redirrectUser = function (isStudent) {
     }
 }
 
+function updateLocalStorageItem() {
+    var localUser = localStorage.getItem('user');
+    var email = JSON.parse(localUser).Email;
+
+
+    var db = firebase.database();
+    var ref = db.ref('users');
+
+    ref.on('value', function (data) {
+        var users = Object.values(data.val());
+        var filteredUser = users.find(function (user) {
+            return user.Email === email;
+        })
+        if(filteredUser){
+        localStorage.removeItem('user');
+        localStorage.setItem('user', JSON.stringify(filteredUser));
+        //location.reload();
+        }
+    });
+}
+
+
 
 function checkUserRole(isStudentPage) {
-    var user = localStorage.getItem('user');
-    if(user == null){
+    var isStudent = localStorage.getItem('isStudent');
+    var email = localStorage.getItem('isStudent');
+
+    if( isStudent === "false"){
+        isStudent = false;
+    }
+    else {
+        isStudent = true;
+    }
+    if (email == null) {
         location.href = '../index.html';
     }
-    else{
-        var isStudent = JSON.parse(user).IsStudent;
-        if(isStudentPage && !isStudent ){
+    else {
+        if (isStudentPage && !isStudent) {
             location.href = "../professor-dashboard/professor-dashboard.html";
         }
-        if(!isStudentPage && isStudent){
+        if (!isStudentPage && isStudent) {
             location.href = "../student-dashboard/student-dashboard.html";
         }
     }
@@ -107,14 +136,14 @@ function rafAsync() {
 // Generic function for creating a node.
 function createNode(content, type, myClass, myHref) {
     var node = document.createElement(type);
-    if(content != "note") {
+    if (content != "note") {
         var textnode = document.createTextNode(content);
         node.appendChild(textnode);
     }
-    if(myClass != false) {
+    if (myClass != false) {
         node.classList.add(myClass);
     }
-    if(myHref != false) {
+    if (myHref != false) {
         node.setAttribute("href", myHref);
     }
     return node;
@@ -128,43 +157,43 @@ function htmlToElement(html) {
     return template.content.firstChild;
 }
 
-// Used for professor.
-// TODO: use classes that are defined in student.js.
-// The problem is with JSON.parse.
-class Student2 {
-    constructor(user) {
-        this.email = user.Email;
-        this.firstName = user.FirstName;
-        this.group = user.Group;
-        this.lastName = user.LastName;
-        this.password = user.Password;
-        this.year = user.Year;
-        this.studentCourses = user.StudentCourses;
-    }
+// // Used for professor.
+// // TODO: use classes that are defined in student.js.
+// // The problem is with JSON.parse.
+// class Student2 {
+//     constructor(user) {
+//         this.email = user.Email;
+//         this.firstName = user.FirstName;
+//         this.group = user.Group;
+//         this.lastName = user.LastName;
+//         this.password = user.Password;
+//         this.year = user.Year;
+//         this.studentCourses = user.StudentCourses;
+//     }
 
-    get courses() {
-        allCourses = [];
-        for(var key in Object.keys(this.studentCourses)) {
-            var thisCourse = new Course2(this.studentCourses[key]);
-            allCourses.push(thisCourse);
-        }
-        return allCourses;
-    }
+//     get courses() {
+//         allCourses = [];
+//         for (var key in Object.keys(this.studentCourses)) {
+//             var thisCourse = new Course2(this.studentCourses[key]);
+//             allCourses.push(thisCourse);
+//         }
+//         return allCourses;
+//     }
 
-    get name() {
-        return this.firstName + ' ' + this.lastName;
-    }
-}
+//     get name() {
+//         return this.firstName + ' ' + this.lastName;
+//     }
+// }
 
-class Course2 {
-    constructor(course) {
-        this.courseProfessor = course.CourseProfessor;
-        this.seminarProfessor = course.SeminarProfessor;
-        this.title = course.Title;
-        this.weeks = course.Weeks;
-    }
+// class Course2 {
+//     constructor(course) {
+//         this.courseProfessor = course.CourseProfessor;
+//         this.seminarProfessor = course.SeminarProfessor;
+//         this.title = course.Title;
+//         this.weeks = course.Weeks;
+//     }
 
-    getNumberOfWeeks() {
-        return this.weeks.length;
-    }
-}
+//     getNumberOfWeeks() {
+//         return this.weeks.length;
+//     }
+// }

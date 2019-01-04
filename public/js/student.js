@@ -1,85 +1,3 @@
-class Student {
-    constructor(user) {
-        this.email = JSON.parse(user).Email;
-        this.firstName = JSON.parse(user).FirstName;
-        this.group = JSON.parse(user).Group;
-        this.lastName = JSON.parse(user).LastName;
-        this.password = JSON.parse(user).Password;
-        this.year = JSON.parse(user).Year;
-        this.studentCourses = JSON.parse(user).StudentCourses;
-    }
-
-    get courses() {
-        allCourses = [];
-        for (var key in Object.keys(this.studentCourses)) {
-            var thisCourse = new Course(this.studentCourses[key]);
-            allCourses.push(thisCourse);
-        }
-        return allCourses;
-    }
-
-    get name() {
-        return this.firstName + ' ' + this.lastName;
-    }
-}
-
-class Course {
-    constructor(course) {
-        this.courseProfessor = course.CourseProfessor;
-        this.seminarProfessor = course.SeminarProfessor;
-        this.title = course.Title;
-        this.weeks = course.Weeks;
-    }
-
-    getWeeks() {
-        var allWeeks = []
-        for (var key in Object.keys(this.weeks)) {
-            var thisWeek = new Week(this.weeks[key])
-            allWeeks.push(thisWeek);
-        }
-        return allWeeks;
-    }
-
-    getNumberOfWeeks() {
-        return this.weeks.length;
-    }
-
-
-}
-
-class Week {
-    constructor(week) {
-        this.courseAttendance = week.CourseAttendance;
-        this.labAttendance = week.LabAttendance;
-        this.labPoints = week.LabPoints;
-        this.number = week.Number;
-    }
-
-    getWeekNumber() {
-        return "Week " + this.number;
-    }
-
-    getLabAttendance() {
-        if (this.labAttendance == true) {
-            return "Lab: present";
-        } else {
-            return "Lab: absent";
-        }
-    }
-
-    getCourseAttendance() {
-        if (this.labAttendance == true) {
-            return "Course: present";
-        } else {
-            return "Course: absent";
-        }
-    }
-
-    getBonus() {
-        return "Bonus: " + this.labPoints;
-    }
-}
-
 
 // Appends the subjects on the menu.
 function createSubjectsList(allCourses) {
@@ -142,15 +60,26 @@ function populateWeeks(weeks) {
         });
 }
 
-var user = localStorage.getItem('user');
-allCourses = [];
-var student = new Student(user);
-allCourses = student.courses;
-
 function populate() {
-    var thisUser = document.getElementById("user");
-    thisUser.innerHTML = student.name;
-    createSubjectsList(allCourses);
+
+    var email = localStorage.getItem('email');
+    var db = firebase.database();
+    var ref = db.ref('users');
+
+    ref.on('value', function (data) {
+        var users = Object.values(data.val());
+        var loggedUser = users.find(function (user) { return user.Email === email; });
+        allCourses = [];
+        var student = new Student(loggedUser);
+       
+        var userName = document.getElementById("user");
+        userName.innerHTML = loggedUser.FirstName + ' ' + loggedUser.LastName;
+        
+        createSubjectsList( student.courses);
+       
+    });
+
+
 }
 
 window.onload = function () {
