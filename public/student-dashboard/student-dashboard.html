@@ -2,6 +2,7 @@
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 
+<script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
 <script src="../js/shared.js"></script>
 <script src="../js/student.js"></script>
 
@@ -12,7 +13,6 @@
     <link rel="stylesheet" href="student-dashboard.css">
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato" />
 </head>
-
 <script>
     checkUserRole(true);
 </script>
@@ -44,14 +44,6 @@
             </div>
             <div class="list-items">
                 <ul id="subjectsList">
-                    <!-- for this list we will search through the courses list of the current student and build the menu with his
-    courses ( we will have a course model with every data we need, that will be populated when we login as a profesor) -->
-
-                    <!-- <li> <a href="#course" onclick="closeMenu()"> DAWNC</a> </li> -->
-                    <!-- <li>DAWNC</li>
-                    <li>DSFUM</li>
-                    <li>DSFUM</li> -->
-
                 </ul>
             </div>
         </div>

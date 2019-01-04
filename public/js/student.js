@@ -11,7 +11,7 @@ class Student {
 
     get courses() {
         allCourses = [];
-        for(var key in Object.keys(this.studentCourses)) {
+        for (var key in Object.keys(this.studentCourses)) {
             var thisCourse = new Course(this.studentCourses[key]);
             allCourses.push(thisCourse);
         }
@@ -33,7 +33,7 @@ class Course {
 
     getWeeks() {
         var allWeeks = []
-        for(var key in Object.keys(this.weeks)) {
+        for (var key in Object.keys(this.weeks)) {
             var thisWeek = new Week(this.weeks[key])
             allWeeks.push(thisWeek);
         }
@@ -44,8 +44,8 @@ class Course {
         return this.weeks.length;
     }
 
-    
-} 
+
+}
 
 class Week {
     constructor(week) {
@@ -60,7 +60,7 @@ class Week {
     }
 
     getLabAttendance() {
-        if(this.labAttendance == true) {
+        if (this.labAttendance == true) {
             return "Lab: present";
         } else {
             return "Lab: absent";
@@ -68,7 +68,7 @@ class Week {
     }
 
     getCourseAttendance() {
-        if(this.labAttendance == true) {
+        if (this.labAttendance == true) {
             return "Course: present";
         } else {
             return "Course: absent";
@@ -80,45 +80,28 @@ class Week {
     }
 }
 
-// Generic function for creating a node.
-function createNode(content, type, myClass, myHref) {
-    var node = document.createElement(type);
-    if(content != "note") {
-        var textnode = document.createTextNode(content);
-        node.appendChild(textnode);
-    }
-    if(myClass != false) {
-        node.classList.add(myClass);
-    }
-    if(myHref != false) {
-        node.setAttribute("href", myHref);
-    }
-    return node;
-}
-
-// Creates an element from given string.
-function htmlToElement(html) {
-    var template = document.createElement('template');
-    html = html.trim();
-    template.innerHTML = html;
-    return template.content.firstChild;
-}
 
 // Appends the subjects on the menu.
 function createSubjectsList(allCourses) {
     var course;
     var link;
+
     var subjectList = document.getElementById("subjectsList");
-    for(var key in Object.keys(allCourses)) {
+    for (var key in Object.keys(allCourses)) {
         let obj = allCourses[key];
         course = createNode("note", "li", false, false);
-        link = createNode(obj.title, "a", false, "#course");
+        link = createNode(obj.title, "a", false, "#course/" + obj.title);
         course.appendChild(link);
         subjectList.appendChild(course);
         course.addEventListener("click", closeMenu);
-        course.addEventListener("click", function() {
+        course.addEventListener("click", function () {
             populateWeeks(obj.getWeeks());
-        }, false);
+        });
+
+        if (window.location.hash.substr(1) === "course/" + obj.title) {
+            populateWeeks(obj.getWeeks());
+        }
+
     }
 }
 
@@ -130,7 +113,7 @@ function createWeek(week) {
     var coursePresence = createNode(week.getCourseAttendance(), "th", "text");
     var bonus = createNode(week.getBonus(), "th", "text");
     var button = htmlToElement('<th><button >Details</button></th>');
-    button.addEventListener("click", function(){
+    button.addEventListener("click", function () {
         // popup
     }, false);
     parent.appendChild(number);
@@ -151,7 +134,7 @@ function populateWeeks(weeks) {
             while (weeksNode.firstChild) {
                 weeksNode.removeChild(weeksNode.firstChild);
             }
-            for(var key in Object.keys(weeks)) {
+            for (var key in Object.keys(weeks)) {
                 var obj = weeks[key];
                 var weekNode = createWeek(obj);
                 weeksNode.appendChild(weekNode);
@@ -171,5 +154,5 @@ function populate() {
 }
 
 window.onload = function () {
-    populate();    
+    populate();
 }
