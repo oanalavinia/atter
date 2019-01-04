@@ -95,6 +95,10 @@ function groupView(group, hour, seminarName, weekNumber) {
         thisWeek.innerHTML = 'Week: ' + weekNumber;
     });
     var students = getAttendance(seminarName, weekNumber, hour);
+    checkElement('presence').then((element) => {
+        presence = document.getElementById('presence');
+        presence.innerHTML = 'Total presence: ' + students.length;
+    });
     checkElement('attendance').then((element) => {
         var attendance = document.getElementById('attendance');
         var studentNode;
@@ -163,6 +167,7 @@ window.onload = function () {
 var rootRef = database.ref().child("users");
 
 var allStudents = [];
+var studNames = [];
 var thisStudent;
 setTimeout(function(){
   rootRef.on("value", function(snapshot) {
@@ -171,7 +176,10 @@ setTimeout(function(){
           student.child('StudentCourses').forEach(function(elem) {
             if(elem.val().SeminarProfessor == professor.name) {
               thisStudent = new Student2(student.val());
-              allStudents.push(thisStudent);
+              if(!studNames.includes(thisStudent.name)) {
+                  allStudents.push(thisStudent);
+              }
+              studNames.push(thisStudent.name);
             }
           })
         }
@@ -179,5 +187,3 @@ setTimeout(function(){
   });
   console.log(allStudents);
 });
-
-// console.log(allStudents);
