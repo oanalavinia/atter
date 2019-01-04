@@ -162,64 +162,7 @@ class Course2 {
         this.weeks = course.Weeks;
     }
 
-    getWeeks() {
-        var allWeeks = []
-        for(var key in Object.keys(this.weeks)) {
-            var thisWeek = new Week(this.weeks[key])
-            allWeeks.push(thisWeek);
-        }
-        return allWeeks;
-    }
-
-    getWeeksByNumber(content) {
-        var allWeeks = []
-        for(var key in Object.keys(this.weeks)) {
-            console.log(this.weeks)
-            var thisWeek = new Week2(this.weeks[key])
-            if(thisWeek.number == content) {
-                console.log(thisWeek);
-                allWeeks.push(thisWeek);
-            }
-        }
-        return allWeeks;
-    }
-
     getNumberOfWeeks() {
         return this.weeks.length;
-    }
-
-    
-} 
-
-class Week2 {
-    constructor(week) {
-        this.courseAttendance = week.CourseAttendance;
-        this.labAttendance = week.LabAttendance;
-        this.labPoints = week.LabPoints;
-        this.number = week.Number;
-    }
-
-    getWeekNumber() {
-        return "Week " + this.number;
-    }
-
-    getLabAttendance() {
-        if(this.labAttendance == true) {
-            return "Lab: present";
-        } else {
-            return "Lab: absent";
-        }
-    }
-
-    getCourseAttendance() {
-        if(this.labAttendance == true) {
-            return "Course: present";
-        } else {
-            return "Course: absent";
-        }
-    }
-
-    getBonus() {
-        return "Bonus: " + this.labPoints;
     }
 }

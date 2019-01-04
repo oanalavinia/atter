@@ -83,7 +83,7 @@ function addWeeksForSubject(seminarGroups, name) {
 }
 
 // Just updates the group for now, when it is clicked.
-function groupView(group, name, weekNumber) {
+function groupView(group, hour, seminarName, weekNumber) {
     var thisGroup;
     checkElement('group').then((element) => {
         thisGroup = document.getElementById('group');
@@ -93,51 +93,33 @@ function groupView(group, name, weekNumber) {
         thisWeek = document.getElementById('week');
         thisWeek.innerHTML = 'Week: ' + weekNumber;
     });
-    var studentsOfSeminar = getStudentsOfSeminar(name, group);
+    var students = getAttendance(seminarName, weekNumber, hour);
     checkElement('attendance').then((element) => {
         var attendance = document.getElementById('attendance');
         var studentNode;
-        studentsOfSeminar.forEach(function(student) {
-            console.log(isPresentThisWeek(student, weekNumber));
-            studentNode = createNode(student.name, 'li', false, false);
+        students.forEach(function(student) {
+            // isPresentThisWeek(student, weekNumber);
+            studentNode = createNode(student, 'li', false, false);
             attendance.appendChild(studentNode);
         });
     });
 }
 
-// primeste studenti ai seminarului asta, cu proful bun
-function isPresentThisWeek(student, weekNumber) {
-    var studentCourses = student.courses;
-    var courseWeeks = [];
-    studentCourses.forEach(function(course) {
-        // console.log(course.getWeeksBySelector("number", weekNumber));
-        courseWeeks.push(course.getWeeksByNumber("number", weekNumber));
-    });
-    return courseWeeks;
-}
-
-
-function getElemByIdentifier(array, selector, content) {
-    toReturn = [];
-    array.forEach(function(elem) {
-        if(elem.selector == content) {
-            toReturn.push(elem);
-        }
-    });
-    return toReturn;
-}
-
-function getStudentsOfSeminar(name, group) {
-    var weekCourses = []
+function getAttendance(seminarName, weekNumber, hour) {
+    var students = []
     allStudents.forEach(function(student) {
         hisCourses = student.courses;
         hisCourses.forEach(function(course) {
-            if(course.seminarProfessor == professor.name && course.title == name && student.group == group) {
-                weekCourses.push(student);
+            if(course.seminarProfessor == professor.name && course.title == seminarName) {
+                course.weeks.forEach(function(week) {
+                    if(week.Number == weekNumber && week.LabAttendance == true && week.Hour == hour) {
+                        students.push(student.name);
+                    }
+                })
             }
         });
     });
-    return weekCourses;
+    return students;
 }
 
 // Used in addWeeksForSubject. Creates a week with it's groups.
@@ -149,11 +131,12 @@ function createWeek(number, seminarGroups, name) {
     var groupNode;
     parent.appendChild(weekNumberNode);
     for(var key in Object.keys(seminarGroups)) {
-        let group = seminarGroups[key];
+        let group = seminarGroups[key].Group;
+        let hour = seminarGroups[key].Hour;
         groupNode = createNode("note", "td", false, false);
         link = createNode(group, "a", false, "#statistics/group-name");
         link.addEventListener("click", function() {
-            groupView(group, name, number);
+            groupView(group, hour, name, number);
         }, false);
         groupNode.appendChild(link);
         parent.appendChild(groupNode);
@@ -181,7 +164,7 @@ var rootRef = database.ref().child("users");
 var allStudents = [];
 var thisStudent;
 setTimeout(function(){
-  rootRef.once("value", function(snapshot) {
+  rootRef.on("value", function(snapshot) {
     snapshot.forEach(function(student) {
         if(student.val().IsStudent) {
           student.child('StudentCourses').forEach(function(elem) {
@@ -193,7 +176,7 @@ setTimeout(function(){
         }
     });
   });
-  // console.log(allStudents);
+  console.log(allStudents);
 });
 
 // console.log(allStudents);
