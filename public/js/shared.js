@@ -34,6 +34,12 @@ const database = firebase.database();
 //     }
 // }
 
+function removeChildrenNodes(parent) {
+    while (document.getElementById(parent).firstChild) {
+        document.getElementById(parent).removeChild(document.getElementById(parent).firstChild);
+    }
+}
+
 function openMenu() {
     var menu = document.getElementById('menu');
 

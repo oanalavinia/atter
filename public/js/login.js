@@ -34,6 +34,7 @@ document.getElementById('login').onclick = function () {
 
 
 var findUserInUsersDatabase = function (data) {
+
     var users = Object.values(data.val());
     var filteredUser = users.find(function (user) {
         return user.Email === email.value;
@@ -42,6 +43,14 @@ var findUserInUsersDatabase = function (data) {
         alert("No such user exists in users database");
     }
     else {
+        var i = 1;
+        for( var key in data.val()){
+           if( i++ === filteredUser.Id){
+           localStorage.setItem('key', key);
+           break;
+           }
+        }
+       
         redirrectUser(filteredUser.IsStudent);
     }
     setEmailToLocalStorage(filteredUser);

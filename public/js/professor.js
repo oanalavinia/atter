@@ -10,61 +10,33 @@ function createSubjectNode(name) {
     return course;
 }
 
-function createDropdownOption(type, content, parent) {
-    var node = document.createElement(type);
-    node.innerHTML = content;
-    document.getElementById(parent).appendChild(node);
-}
-
-function addInfosToRegisterForm(courses) {
-    checkElement('register').then((element) => {
-        var groups = courses.map(course => {
-            var seminarGroups = course.seminarGroups;
-            for (var key in Object.keys(seminarGroups)) {
-                return seminarGroups[key].Group;
-            }
-        });
-        var courseNames = courses.map(course => { return course.name });
-        if (document.getElementById('course').childElementCount != courseNames.length) {
-            for (var key in courseNames) {
-                createDropdownOption('option', courseNames[key], 'course');
-            }
-        }
-        if (document.getElementById('group').childElementCount != groups.length) {
-            for (var key in groups) {
-                createDropdownOption('option', groups[key], 'group');
-            }
-        }
-        if (document.getElementById('week').childElementCount == 0) {
-            for (var i = 1; i <= 14; i++) {
-                createDropdownOption('option', 'Week' + ' ' + i, 'week');
-            }
-        }
-
-    });
-}
 // Updates menu with profs subjects.
 function addSubjectsToMenu(allCourses, allStudents, professor) {
     var course;
     var subjectsList = document.getElementById("subjectsList");
-    for (var key in Object.keys(allCourses)) {
-        let obj = allCourses[key];
-        if (obj.isCourseProf) {
-            course = createSubjectNode(obj.courseName);
-            course.addEventListener("click", function () {
-                drawPointsCanvas(obj.name);
-            })
-            subjectsList.appendChild(course);
-            lab = createSubjectNode(obj.labName);
-            subjectsList.appendChild(lab);
-        } else {
-            lab = createSubjectNode(obj.labName);
-            subjectsList.appendChild(lab);
-        }
-        lab.addEventListener("click", function () {
-            addWeeksForSubject(obj.seminarGroups, obj.name, allStudents, professor);
-        }, false);
+       
+    while(subjectsList.firstChild){
+        subjectsList.removeChild(subjectsList.firstChild);
+    }
+        for (var key in Object.keys(allCourses)) {
+            let obj = allCourses[key];
+            if (obj.isCourseProf) {
+                course = createSubjectNode(obj.courseName);
+                // course.addEventListener("click", function () {
+                //     drawPointsCanvas(obj.name);
+                // })
+                subjectsList.appendChild(course);
+                lab = createSubjectNode(obj.labName);
+                subjectsList.appendChild(lab);
+            } else {
+                lab = createSubjectNode(obj.labName);
+                subjectsList.appendChild(lab);
+            }
+            lab.addEventListener("click", function () {
+                addWeeksForSubject(obj.seminarGroups, obj.name, allStudents, professor);
+            }, false);
 
+        
     }
 }
 
@@ -84,7 +56,7 @@ function addWeeksForSubject(seminarGroups, name, allStudents, professor) {
 }
 
 // Just updates the group for now, when it is clicked.
-function groupView(group, hour, seminarName, weekNumber, allStudents, professor) {
+function groupView(group, code, seminarName, weekNumber, allStudents, professor) {
     var thisGroup;
     checkElement('group').then((element) => {
         thisGroup = document.getElementById('group');
@@ -94,7 +66,7 @@ function groupView(group, hour, seminarName, weekNumber, allStudents, professor)
         thisWeek = document.getElementById('week');
         thisWeek.innerHTML = 'Week: ' + weekNumber;
     });
-    var students = getAttendance(seminarName, weekNumber, hour, allStudents, professor);
+    var students = getAttendance(seminarName, weekNumber, code, allStudents, professor);
     checkElement('presence').then((element) => {
         presence = document.getElementById('presence');
         presence.innerHTML = 'Total presence: ' + students.length;
@@ -109,7 +81,7 @@ function groupView(group, hour, seminarName, weekNumber, allStudents, professor)
     });
 }
 
-function getAttendance(seminarName, weekNumber, hour, allStudents, professor) {
+function getAttendance(seminarName, weekNumber, code, allStudents, professor) {
     var students = [];
     // refactore to get attendence from code
     allStudents.forEach(function (student) {
@@ -117,13 +89,14 @@ function getAttendance(seminarName, weekNumber, hour, allStudents, professor) {
         hisCourses.forEach(function (course) {
             if (course.seminarProfessor == professor.name && course.title == seminarName) {
                 course.weeks.forEach(function (week) {
-                    if (week.Number == weekNumber && week.LabAttendance == true && week.Hour == hour) {
+                    if (week.labAttendance == true && week.code == code) {
                         students.push(student.name);
                     }
                 })
             }
         });
     });
+    console.log(students);
     return students;
 }
 
@@ -135,13 +108,12 @@ function createWeek(number, seminarGroups, name, allStudents, professor) {
     var link;
     var groupNode;
     parent.appendChild(weekNumberNode);
-    for (var key in Object.keys(seminarGroups)) {
-        let group = seminarGroups[key].Group;
-        let hour = seminarGroups[key].Hour;
+    for (var key in seminarGroups) {
+        let group = seminarGroups[key].Name;
         groupNode = createNode("note", "td", false, false);
         link = createNode(group, "a", false, "#group/" + group);
         link.addEventListener("click", function () {
-            groupView(group, hour, name, number, allStudents, professor);
+            groupView(group, seminarGroups[key], name, number, allStudents, professor);
         }, false);
         groupNode.appendChild(link);
         parent.appendChild(groupNode);
@@ -149,11 +121,105 @@ function createWeek(number, seminarGroups, name, allStudents, professor) {
     return parent;
 }
 
-function onClickRegister(allCourses) {
-    document.getElementById("register-class-link").addEventListener('click', function () {
-        addInfosToRegisterForm(allCourses);
-    })
+
+
+// register view
+
+function createDropdownOption(type, content, parent) {
+    var node = document.createElement(type);
+    node.innerHTML = content;
+    document.getElementById(parent).appendChild(node);
+    node.setAttribute('value', content);
 }
+
+function removeChildrenNodes(parent) {
+    while (document.getElementById(parent).firstChild) {
+        document.getElementById(parent).removeChild(document.getElementById(parent).firstChild);
+    }
+}
+
+function addInfosToRegisterForm(courses) {
+    checkElement('register').then(() => {
+
+        var courseNames = courses.map(course => { return course.name });
+        if (document.getElementById('course').childElementCount != courseNames.length) {
+            for (var key in courseNames) {
+                createDropdownOption('option', courseNames[key], 'course');
+            }
+        }
+
+        var course = courses.find(c => c.name === document.getElementById('course').value)
+        var groups = course.seminarGroups.map(c => {
+            return c.Name;
+        });
+        removeChildrenNodes('group');
+        for (var key in groups) {
+            createDropdownOption('option', groups[key], 'group');
+
+        }
+        if (document.getElementById('week').childElementCount == 0) {
+            for (var i = 1; i <= 14; i++) {
+                createDropdownOption('option', 'Week' + ' ' + i, 'week');
+            }
+        }
+
+    });
+}
+
+function onClickRegister(allCourses) {
+    checkElement('register').then((element) => {
+        document.getElementById("register-class-link").addEventListener('click', function () {
+            addInfosToRegisterForm(allCourses);
+        })
+    });
+
+    checkElement('register').then((element) => {
+        document.getElementById('course').addEventListener('change', function () {
+            addInfosToRegisterForm(allCourses);
+        });
+    });
+}
+
+function submit(professor) {
+    var course = document.getElementById('course').value;
+    var group = document.getElementById('group').value;
+    var week = document.getElementById('week').value.split(' ')[1];
+    var nrStudents = document.getElementById('nr-students').value;
+    var code = Math.floor(Math.random() * 9000) + 1000;
+    document.getElementById('code').innerHTML = code;
+    var profKey = localStorage.getItem('key');
+    let indexOfCourse = 0;
+    let indexOfGroup = 0;
+    for (var i in professor.courses) {
+        if (professor.courses[i].name === course) {
+            indexOfCourse = i;
+        }
+    }
+
+    for (var i in professor.courses[indexOfCourse].seminarGroups) {
+        if (professor.courses[indexOfCourse].seminarGroups[i].Name === group) {
+            indexOfGroup = i;
+        }
+    }
+
+    firebase.database().ref('users/' + profKey + '/ProfessorCourses/' +
+        indexOfCourse.toString() + '/SeminarGroups/' + indexOfGroup.toString() + '/Weeks/' + week + '/').set({
+            'Code': code,
+            'Number': week,
+            'StudentsNumber': nrStudents
+        });
+
+}
+
+function onClickGenerate(professor) {
+    checkElement('register').then((element) => {
+        document.getElementById("submit").addEventListener('click', function () {
+            submit(professor);
+        })
+    });
+}
+
+
 
 function populate() {
     var email = localStorage.getItem('email');
@@ -166,6 +232,7 @@ function populate() {
 
         var users = Object.values(data.val());
         var loggedUser = users.find(function (user) { return user.Email === email; });
+       
         var thisUser = document.getElementById("user");
         var professor = new Professor(loggedUser);
 
@@ -188,6 +255,9 @@ function populate() {
         addSubjectsToMenu(allCourses, students, professor);
         addInfosToRegisterForm(allCourses);
         onClickRegister(allCourses);
+        onClickGenerate(professor);
+
+
 
     });
 
