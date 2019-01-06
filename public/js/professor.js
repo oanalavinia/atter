@@ -125,19 +125,6 @@ function createWeek(number, seminarGroups, name, allStudents, professor) {
 
 // register view
 
-function createDropdownOption(type, content, parent) {
-    var node = document.createElement(type);
-    node.innerHTML = content;
-    document.getElementById(parent).appendChild(node);
-    node.setAttribute('value', content);
-}
-
-function removeChildrenNodes(parent) {
-    while (document.getElementById(parent).firstChild) {
-        document.getElementById(parent).removeChild(document.getElementById(parent).firstChild);
-    }
-}
-
 function addInfosToRegisterForm(courses) {
     checkElement('register').then(() => {
 
@@ -184,7 +171,6 @@ function submit(professor) {
     var course = document.getElementById('course').value;
     var group = document.getElementById('group').value;
     var week = document.getElementById('week').value.split(' ')[1];
-    var nrStudents = document.getElementById('nr-students').value;
     var code = Math.floor(Math.random() * 9000) + 1000;
     document.getElementById('code').innerHTML = code;
     var profKey = localStorage.getItem('key');
@@ -201,12 +187,17 @@ function submit(professor) {
             indexOfGroup = i;
         }
     }
-
+    var hour = new Date();
+    hour = hour.toString();
+    hour = hour.split(' ')[4];
+    week = parseInt(week) - 1;
+   
+    
     firebase.database().ref('users/' + profKey + '/ProfessorCourses/' +
-        indexOfCourse.toString() + '/SeminarGroups/' + indexOfGroup.toString() + '/Weeks/' + week + '/').set({
+        indexOfCourse.toString() + '/SeminarGroups/' + indexOfGroup.toString() + '/Weeks/' + week.toString() + '/').set({
             'Code': code,
             'Number': week,
-            'StudentsNumber': nrStudents
+            'Hour': hour
         });
 
 }

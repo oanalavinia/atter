@@ -28,7 +28,6 @@ function createWeek(week) {
     var parent = document.createElement("tr");
     var number = createNode(week.getWeekNumber(), "th", "text");
     var labPresence = createNode(week.getLabAttendance(), "th", "text");
-    var coursePresence = createNode(week.getCourseAttendance(), "th", "text");
     var bonus = createNode(week.getBonus(), "th", "text");
     var button = htmlToElement('<th><button >Details</button></th>');
     button.addEventListener("click", function () {
@@ -36,7 +35,6 @@ function createWeek(week) {
     }, false);
     parent.appendChild(number);
     parent.appendChild(labPresence);
-    parent.appendChild(coursePresence);
     parent.appendChild(bonus);
     parent.appendChild(button);
     return parent;
@@ -60,6 +58,134 @@ function populateWeeks(weeks) {
         });
 }
 
+function populateStudentAttendView(student) {
+    var courses = student.courses.map(course => { return course.title });
+    checkElement('attend')
+        .then((element) => {
+            if (document.getElementById('courseOption').childElementCount != courses.length) {
+                for (var key in courses) {
+                    createDropdownOption('option', courses[key], 'courseOption');
+                }
+            }
+        });
+}
+
+function checkCode(student, professors) {
+    var code = document.getElementById('studentCode').value;
+    var course = document.getElementById('courseOption').value;
+    var profEmail = document.getElementById('profEmail').value;
+
+    var professor = professors.find(function (prof) {
+        return prof.email === profEmail;
+    })
+    var searchedCourse = professor.courses.find(c => {
+        return c.name === course;
+    })
+    var group = searchedCourse.groups.filter(sc => {
+        return sc.name === student.group &&
+            typeof (sc.weeks.find(week => {
+                return week.code.toString() === code
+            })) != 'undefined'
+    });
+    return group;
+}
+
+function addAttendanceToCourse(student, professors) {
+    var code = document.getElementById('studentCode').value;
+    var course = document.getElementById('courseOption').value;
+    var group = checkCode(student, professors);
+
+    if (group.length === 0) {
+        alert('The code doesnt match any course');
+    }
+    else {
+        var courseWeeks = group.map(gr => {
+            return gr.weeks;
+        });
+
+        var week = courseWeeks[0].find(function (week) {
+            return week.code.toString() === code
+        });
+
+        var number = week.number - 1;
+        var userId = localStorage.getItem('key');
+
+        let indexOfCourse = 0;
+        for (var i in student.courses) {
+            if (student.courses[i].title === course) {
+                indexOfCourse = i;
+            }
+        }
+
+
+        firebase.database().ref('users/' + userId + '/StudentCourses/' + indexOfCourse.toString() + '/Weeks/' + number.toString() + '/').set(
+            {
+                'Attendance': 'true',
+                'GeneratedCode': code,
+                'LabPoints': '',
+                'Number': number + 1
+
+            });
+    }
+}
+
+function checkIfProfEmailMatchesCourse(professors) {
+    var course = document.getElementById('courseOption').value;
+    var profEmail = document.getElementById('profEmail').value;
+    var prof = professors.find(prof => {
+        return prof.email === profEmail
+    });
+
+    var prof = prof.professorCourses.find(c => { return c.Name === course });
+    return prof;
+
+}
+
+function onClickRegister(student, professors) {
+    checkElement('registerAttendance')
+        .then((element) => {
+            document.getElementById('registerAttendance').addEventListener('click',
+                function () {
+                    var prof = checkIfProfEmailMatchesCourse(professors);
+
+                    if (prof === undefined) {
+                        alert('The proffesor email and the course do not match');
+                    }
+                    else {
+                        addAttendanceToCourse(student, professors);
+                    }
+                });
+        });
+}
+
+
+function onClickAttendView(student, professors) {
+    document.getElementById('attend').addEventListener('click',
+        function () {
+            populateStudentAttendView(student);
+        });
+}
+
+//to be discussed 
+var email = localStorage.getItem('email');
+var db = firebase.database();
+var ref = db.ref('users');
+
+var stud = ref.once('value', function (data) {
+    var users = Object.values(data.val());
+    var loggedUser = users.find(function (user) { return user.Email === email; });
+        
+        var student = new Student(loggedUser);
+
+        var userName = document.getElementById("user");
+        userName.innerHTML = loggedUser.FirstName + ' ' + loggedUser.LastName;
+        createSubjectsList(student.courses); 
+return student;
+
+});
+
+
+// call the functions that create weeks 
 function populate() {
 
     var email = localStorage.getItem('email');
@@ -68,19 +194,30 @@ function populate() {
 
     ref.on('value', function (data) {
         var users = Object.values(data.val());
+        var professors = [];
+        var professorJson = users.filter((professor) => {
+            return !professor.IsStudent
+        });
+
+        for (var key in Object.keys(professorJson)) {
+            var professor = new Professor(professorJson[key]);
+            professors.push(professor);
+        }
         var loggedUser = users.find(function (user) { return user.Email === email; });
         allCourses = [];
         var student = new Student(loggedUser);
-       
-        var userName = document.getElementById("user");
-        userName.innerHTML = loggedUser.FirstName + ' ' + loggedUser.LastName;
+
+        populateStudentAttendView(student);
+        onClickAttendView(student, professors);
+        onClickRegister(student, professors);
         
-        createSubjectsList( student.courses);
        
+
     });
 
 
 }
+
 
 window.onload = function () {
     populate();

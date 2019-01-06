@@ -4,7 +4,17 @@ class ProfCourse {
         this.name = course.Name;
         this.seminarGroups = course.SeminarGroups;
     }
+    
+    get groups(){
+        var groups = [];
+        for (var key in this.seminarGroups) {
+            var week = new Group(this.seminarGroups[key]);
+            groups.push(week);
+        }
+        return groups;
 
+    }
+    
     get courseName() {
         return this.name + "/ Course";
     }
@@ -34,6 +44,6 @@ class Group{
 class ProfWeek{
     constructor(week){
         this.code = week.Code;
-        this.number = week.umber;
+        this.number = week.Number;
     }
 }

@@ -129,3 +129,17 @@ function htmlToElement(html) {
     template.innerHTML = html;
     return template.content.firstChild;
 }
+
+function createDropdownOption(type, content, parent) {
+    var node = document.createElement(type);
+    node.innerHTML = content;
+    document.getElementById(parent).appendChild(node);
+    node.setAttribute('value', content);
+}
+
+
+function removeChildrenNodes(parent) {
+    while (document.getElementById(parent).firstChild) {
+        document.getElementById(parent).removeChild(document.getElementById(parent).firstChild);
+    }
+}
