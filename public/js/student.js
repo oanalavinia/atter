@@ -12,9 +12,9 @@ function createSubjectsList(allCourses) {
         course.appendChild(link);
         subjectList.appendChild(course);
         course.addEventListener("click", closeMenu);
-        course.addEventListener("click", function () {
-            populateWeeks(obj.getWeeks());
-        });
+        // course.addEventListener("click", function () {
+        //     populateWeeks(obj.getWeeks());
+        // });
 
         if (window.location.hash.substr(1) === "course/" + obj.title) {
             populateWeeks(obj.getWeeks());
@@ -60,7 +60,7 @@ function populateWeeks(weeks) {
 
 function populateStudentAttendView(student) {
     var courses = student.courses.map(course => { return course.title });
-    checkElement('attend')
+    checkElement('attendCourse')
         .then((element) => {
             if (document.getElementById('courseOption').childElementCount != courses.length) {
                 for (var key in courses) {
@@ -163,6 +163,7 @@ function onClickAttendView(student, professors) {
     document.getElementById('attend').addEventListener('click',
         function () {
             populateStudentAttendView(student);
+            onClickRegister(student, professor);
         });
 }
 
@@ -183,6 +184,36 @@ var stud = ref.once('value', function (data) {
 return student;
 
 });
+
+function getCourses(student) {
+    return new Promise(resolve => {
+        student.courses;
+    });
+}
+
+async function checkCourses(student) {
+    while (student.courses === null) {
+        await getCourses(student)
+    }
+    return true;
+}
+
+function updateInfoToCourses(allCourses){
+    var check = document.getElementById("subjectsList");
+    var course = check.firstChild.nextSibling;
+    course.addEventListener("click", function () {
+      populateWeeks(allCourses[0].getWeeks());
+    });
+    var key = 1;
+    while(course.nextSibling){
+      course = course.nextSibling;
+      var obj = allCourses[key];
+      course.addEventListener("click", function () {
+        populateWeeks(obj.getWeeks());
+      });
+      key++;
+    }
+}
 
 
 // call the functions that create weeks 
@@ -210,6 +241,12 @@ function populate() {
         populateStudentAttendView(student);
         onClickAttendView(student, professors);
         onClickRegister(student, professors);
+        checkCourses(student).then((element) => {
+            updateInfoToCourses(student.courses);
+            for (var key in Object.keys(student.courses)) {
+                populateWeeks(student.courses[key].getWeeks());
+            }
+        });
         
        
 
@@ -218,7 +255,4 @@ function populate() {
 
 }
 
-
-window.onload = function () {
-    populate();
-}
+populate();
