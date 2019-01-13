@@ -71,6 +71,7 @@ function populateStudentAttendView(student) {
 }
 
 function checkCode(student, professors) {
+    
     var code = document.getElementById('studentCode').value;
     var course = document.getElementById('courseOption').value;
     var profEmail = document.getElementById('profEmail').value;
@@ -91,12 +92,18 @@ function checkCode(student, professors) {
 }
 
 function addAttendanceToCourse(student, professors) {
+    localStorage.removeItem('alerted2');
     var code = document.getElementById('studentCode').value;
     var course = document.getElementById('courseOption').value;
     var group = checkCode(student, professors);
-
+    
     if (group.length === 0) {
-        alert('The code doesnt match any course');
+        var alerted = localStorage.getItem('alerted2') || '';
+        if (alerted != 'yes') {
+            alert('The code doesnt match any course');
+         localStorage.setItem('alerted2','yes');
+        }
+       
     }
     else {
         var courseWeeks = group.map(gr => {
@@ -135,10 +142,13 @@ function checkIfProfEmailMatchesCourse(professors) {
     var prof = professors.find(prof => {
         return prof.email === profEmail
     });
+    if(prof !== undefined){
+        var prof = prof.professorCourses.find(c => { return c.Name === course });
+        return prof;
 
-    var prof = prof.professorCourses.find(c => { return c.Name === course });
-    return prof;
-
+    }
+   
+   return undefined;
 }
 
 function onClickRegister(student, professors) {
@@ -146,10 +156,15 @@ function onClickRegister(student, professors) {
         .then((element) => {
             document.getElementById('registerAttendance').addEventListener('click',
                 function () {
+                    localStorage.removeItem('alerted');
                     var prof = checkIfProfEmailMatchesCourse(professors);
-
                     if (prof === undefined) {
-                        alert('The proffesor email and the course do not match');
+                        var alerted = localStorage.getItem('alerted') || '';
+                        if (alerted != 'yes') {
+                         alert('The proffesor email and the course do not match');
+                         localStorage.setItem('alerted','yes');
+                        }
+                       
                     }
                     else {
                         addAttendanceToCourse(student, professors);

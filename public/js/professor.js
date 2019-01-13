@@ -203,8 +203,9 @@ function submit(professor) {
 
 function onClickGenerate(professor) {
     checkElement('submit')
-        .then(() => {
-            document.getElementById("submit").addEventListener('click', function () {
+        .then((element) => {
+            document.getElementById("submit").addEventListener('click', function (event) {
+                event.preventDefault();
                 submit(professor);
 
             });
@@ -253,7 +254,11 @@ firebase.database().ref('users').once('value', function (data) {
     var userName = document.getElementById("user");
     userName.innerHTML = loggedUser.FirstName + ' ' + loggedUser.LastName;
     allCourses = professor.courses;
+    if( allCourses !== undefined){
+        
     addSubjectsToMenu(allCourses);
+
+    }
 
 });
 
