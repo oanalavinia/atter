@@ -163,7 +163,7 @@ function onClickAttendView(student, professors) {
     document.getElementById('attend').addEventListener('click',
         function () {
             populateStudentAttendView(student);
-            onClickRegister(student, professor);
+            onClickRegister(student, professors);
         });
 }
 
