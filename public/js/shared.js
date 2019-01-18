@@ -100,6 +100,13 @@ async function checkElement(selector) {
     return true;
 }
 
+async function checkElementByClass(selector) {
+    while (document.getElementsByClassName(selector) === null) {
+        await rafAsync()
+    }
+    return true;
+}
+
 function rafAsync() {
     return new Promise(resolve => {
         requestAnimationFrame(resolve);
@@ -142,4 +149,13 @@ function removeChildrenNodes(parent) {
     while (document.getElementById(parent).firstChild) {
         document.getElementById(parent).removeChild(document.getElementById(parent).firstChild);
     }
+}
+
+
+function getWeekNumber(item){
+    var weekNode = item.previousSibling;
+    while(weekNode.className != "text") {
+        weekNode = weekNode.previousSibling;
+    }
+    return weekNode.innerText.split(' ')[1];
 }
