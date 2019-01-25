@@ -47,8 +47,8 @@ function getValues(dictionary) {
 }
 
 
-function drawPointsCanvas(courseName) {
-    Promise.all([getStudentsOfCourse(courseName), checkElement('pointsChart')]).then(function(result) {
+function drawPointsCanvas(students) {
+    Promise.all([checkStudents(students), checkElement('pointsChart')]).then(function() {
         var groupPoints = {
             "A1" : 0,
             "A2" : 0,
@@ -66,8 +66,12 @@ function drawPointsCanvas(courseName) {
             "B7" : 0,
             "E" : 0
         }
+
+        let url = window.location.href.split('/');
+        let url_length = url.length-1;
+        let courseName = url[url_length].split('Course')[0];
         
-        result[0].forEach(function(student) {
+        students.forEach(function(student) {
             let courses = student.courses;
             courses.forEach(function(course) {
                 if(course.title == courseName) {

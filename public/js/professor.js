@@ -29,9 +29,9 @@ function addSubjectsToMenu(allCourses, students, professor) {
         let obj = allCourses[key];
         if (obj.isCourseProf) {
             course = createSubjectNode(obj.courseName);
-            // course.addEventListener("click", function () {
-            //     drawPointsCanvas(obj.name);
-            // })
+            course.addEventListener("click", function () {
+                drawPointsCanvas(students);
+            })
             subjectsList.appendChild(course);
             lab = createSubjectNode(obj.labName);
             subjectsList.appendChild(lab);
@@ -288,6 +288,7 @@ function populate() {
 
         weeksInfo(students, professor);
         groupView(students, professor);
+        drawPointsCanvas(students);
     });
 
 }
