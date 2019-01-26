@@ -14,8 +14,17 @@ async function checkStudents(students) {
 // Creates a node for menu.
 function createSubjectNode(name) {
     course = createNode("note", "li", false, false);
-    //to be refactored
-    link = createNode(name, "a", false, "#statistics/" + name.split('/')[0] + name.split('/')[1].split(' ')[1]);
+    var routeName= name.split('/')[0];
+    
+    var type = name.split('/')[1].split(' ')[1];
+    if(type === 'Course'){
+        link = createNode(name, "a", false, "#course/" + routeName);
+    }
+    else{
+        link = createNode(name, "a", false, "#labs/" + routeName);
+    }
+   
+    
     course.appendChild(link);
     course.addEventListener("click", closeMenu);
     return course;

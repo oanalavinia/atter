@@ -10,6 +10,10 @@ var config = {
 
 firebase.initializeApp(config);
 const database = firebase.database();
+const facultyLocation = {
+    latitude: 47.174100,
+    longitude: 27.574954
+};
 
 // TODO: don't delete this. Will be added with addEventListener on create
 // function popup() {
@@ -158,4 +162,20 @@ function getWeekNumber(item){
         weekNode = weekNode.previousSibling;
     }
     return weekNode.innerText.split(' ')[1];
+}
+
+function checkUserLocation() {
+    let urlLocation = window.location.hash;
+    if (urlLocation === '#attend') {
+        navigator.geolocation.getCurrentPosition(function (pos) {
+            console.log(pos);
+            if (Math.abs(1000 * (facultyLocation.latitude - pos.coords.latitude)) >= 1 ||
+                Math.abs(1000 * (facultyLocation.longitude - pos.coords.latitude)) >= 1) {
+                return false;
+            }
+        });
+    }
+    else {
+        return true;
+    }
 }
