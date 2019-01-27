@@ -75,14 +75,13 @@ select{
     height: 100%;;
     justify-content: center
 }
+
 #register{
     width: 60%;
     justify-content: center;
 }
 
 #pointsChart {
-    /* height: 350px;
-    width: 700px; */
     padding-left: 2%;
 }
 

@@ -106,6 +106,7 @@ function addSubjectsToMenu(allCourses, students, professor, allStudents) {
 // labs view
 function addWeeksForSubject(students, professor) {
     var weeksNode;
+    
     let labName = window.location.hash.split('/')[1];
 
     let groups = findGroupsForCourse(professor.courses, labName);
@@ -297,18 +298,12 @@ function populateProfessorRegisterView(courses) {
 }
 
 function onClickRegisterView(allCourses, professor) {
-
-    document.getElementById("register-class-link").addEventListener('click', function () {
-        populateProfessorRegisterView(allCourses);
-        onClickGenerate(professor);
-
-    });
-    checkElement('course')
+    onClickGenerate(professor);
+    populateProfessorRegisterView(allCourses);
+    checkElement('registerForm')
         .then(() => {
-            document.getElementById('course').addEventListener('change', function () {
+            document.getElementById('registerForm').addEventListener('change', function () {
                 populateProfessorRegisterView(allCourses);
-
-
             });
         });
 }
@@ -355,16 +350,17 @@ function onClickGenerate(professor) {
 
 
 function populate() {
-    var email = localStorage.getItem('email');
-
+    
     firebase.database().ref('users').on('value', function (data) {
-
         var users = Object.values(data.val());
         var loggedUser = users.find(function (user) { return user.Email === email; });
         var professor = new Professor(loggedUser);
         let students = getStudentsForProf(users, professor);
 
         populateProfessorRegisterView(professor.courses);
+        document.getElementById('register-class-link').addEventListener('click', function(){
+            onClickRegisterView(professor.courses, professor);        
+        })
         onClickRegisterView(professor.courses, professor);
         onClickGenerate(professor.courses);
 
@@ -372,7 +368,10 @@ function populate() {
         groupView(students, professor);
         drawPointsCanvas(getStudents(users));
         drawAttendanceChart(getStudents(users));
-        addWeeksForSubject(students, professor);
+        window.onhashchange = function(event){
+            addWeeksForSubject(students, professor);
+        }
+        
     });
 
 }

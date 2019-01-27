@@ -4,6 +4,12 @@
 
 #option{
     width:100%;
+
+}
+/* reports */
+.row{
+    display: flex;
+    width: 100%;
 }
 
 .reports{
@@ -12,29 +18,32 @@
     width: 100% ;
 }
 
-/* group page */
-.row{
-    display: flex;
-    width: 100%;
-}
-
-
 .row .tile{
     width: 100%;
     margin: 0 20px 20px 0;
 }
 
-
+/*course view*/
 .week{
     width: 100%;
 }
 
 .tile {
-    justify-content: center;
-    padding: 30px;
-    width: 100%;
+    padding: 30px; 
+    height: 100%;
 }
 
+.view-render{
+    justify-content: center;
+}
+.container{
+    width: 60%;
+}
+
+th:first-child{
+    color:var(--blue);
+}
+/*attend view*/
 .attend .tile{
     display: flex;
     flex-direction: column;
@@ -43,16 +52,8 @@
     width: 100%;
 }
 
-
 #attend {
     justify-content: center;
-}
-
-
-
-.week button {
-    height: 30px;
-    margin: 0;
 }
 
 th {
@@ -63,9 +64,6 @@ th {
     color: var(--blue);
 }
 
-
-
-  
 .title{
     font-size:40px;
     text-align: center;
@@ -74,46 +72,11 @@ th {
 }
 
 
-
-#popup .tile {
-    -webkit-animation: fadeIn 1s;
-    animation: fadeIn 1s;
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-}
-
-#notes {
-    font-size: 20px;
-}
-
 input, select{
     font-size: 120%;
     margin-bottom: 10%;
     height: 40px;
 }
-@-webkit-keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-
-
 
 /* only for phones and tablets */
 @media only screen and (max-width: 900px)  {
@@ -132,6 +95,10 @@ input, select{
         flex-wrap: wrap;
      }
 
+.container , .view-render{
+    height: 100%;
+    width: 100%
+}
      
 .buttons{
     display:none;
@@ -141,9 +108,8 @@ tr{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    padding-bottom: 15px;
 }
-
-
     }
 
 
