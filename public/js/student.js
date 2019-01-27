@@ -70,7 +70,7 @@ function populateWeeks(student) {
                 thisWeeks = course.weeks;
             }
         });
-        createWeeks();
+        checkElement('weeks').then(element => createWeeks());
     }
 }
 
