@@ -1,8 +1,9 @@
 
 // Appends the subjects on the menu.
-function createSubjectsList(allCourses) {
+function createSubjectsList(student) {
     var course;
     var link;
+    let allCourses = student.courses;
 
     var subjectList = document.getElementById("subjectsList");
     for (var key in Object.keys(allCourses)) {
@@ -17,7 +18,7 @@ function createSubjectsList(allCourses) {
         // });
 
         if (window.location.hash.substr(1) === "course/" + obj.name) {
-            populateWeeks(obj.weeks);
+            populateWeeks(student);
         }
 
     }
@@ -40,16 +41,32 @@ function createWeek(week) {
 
 // Deletes the old weeks and appends the coresponding ones.
 // Waits for 'weeks' element to be loaded.
-function populateWeeks(weeks) {
-    var weeksNode;
+function populateWeeks(student) {
+    let weeksNode;
+    let urlCourse = window.location.hash.split('/');
+    console.log(urlCourse)
+    let courseFromUrl = urlCourse[1];
+    let thisWeeks;
+
     checkElement('weeks')
         .then((element) => {
+            student.courses.forEach(function(course) {
+                if(course.name == courseFromUrl) {
+                    // for(var key in course.weeks) {
+
+                    // }
+                    // course.weeks.forEach(function(week) {
+                    thisWeeks = course.weeks;
+                    // });
+                }
+            })
+
             weeksNode = document.getElementById("weeks");
             while (weeksNode.firstChild) {
                 weeksNode.removeChild(weeksNode.firstChild);
             }
-            for (var key in Object.keys(weeks)) {
-                var obj = weeks[key];
+            for (var key in Object.keys(thisWeeks)) {
+                var obj = thisWeeks[key];
                 var weekNode = createWeek(obj);
                 weeksNode.appendChild(weekNode);
             }
@@ -192,7 +209,7 @@ var stud = ref.once('value', function (data) {
 
         var userName = document.getElementById("user");
         userName.innerHTML = loggedUser.FirstName + ' ' + loggedUser.LastName;
-        createSubjectsList(student.courses); 
+        createSubjectsList(student); 
 return student;
 
 });
@@ -210,20 +227,18 @@ async function checkCourses(student) {
     return true;
 }
 
-function updateInfoToCourses(allCourses){
+function updateInfoToCourses(student) {
     var check = document.getElementById("subjectsList");
     var course = check.firstChild.nextSibling;
     course.addEventListener("click", function () {
-      populateWeeks(allCourses[0].weeks);
+      populateWeeks(student);
     });
-    var key = 1;
+
     while(course.nextSibling){
-      course = course.nextSibling;
-      var obj = allCourses[key];
       course.addEventListener("click", function () {
-        populateWeeks(obj.weeks);
+        populateWeeks(student);
       });
-      key++;
+      course = course.nextSibling;
     }
 }
 
@@ -254,11 +269,13 @@ function populate() {
         onClickAttendView(student, professors);
         onClickRegister(student, professors);
         checkCourses(student).then((element) => {
-             updateInfoToCourses(student.courses);
+             updateInfoToCourses(student);
             // for (var key in Object.keys(student.courses)) {
             //     populateWeeks(student.courses[key].weeks);
             // }
         });
+
+        populateWeeks(student);
         
        
 
