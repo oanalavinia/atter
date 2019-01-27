@@ -40,6 +40,7 @@ function addSubjectsToMenu(allCourses, students, professor, allStudents) {
             course = createSubjectNode(obj.courseName);
             course.addEventListener("click", function () {
                 drawPointsCanvas(allStudents);
+                drawAttendanceChart(allStudents);
             })
             subjectsList.appendChild(course);
             lab = createSubjectNode(obj.labName);
@@ -317,6 +318,7 @@ function populate() {
         weeksInfo(students, professor);
         groupView(students, professor);
         drawPointsCanvas(getStudents(users));
+        drawAttendanceChart(getStudents(users));
         addWeeksForSubject(students, professor);
     });
 
