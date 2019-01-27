@@ -1,42 +1,32 @@
 function draw(canvas, values, groups, dictionary) {
-    var context = canvas.getContext('2d');
-    context.clearRect(0, 0, canvas.width, canvas.height);
 
-    var width = 10;
+    var context = canvas.getContext('2d');
+    context.canvas.width  = '700';
+    context.canvas.height = '350';
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    var width = 25;
     var x = 0;
      
     for (var i =0; i<values.length; i++) {
-        context.fillStyle = '#518BFF'; 
+        //values
+        context.beginPath();
+        context.fillStyle = '#518BFF';
+        context.fill();
         var h = values[i];
-        context.fillRect(x, canvas.height - h, width, h);
+        context.fillRect(x, canvas.height - 20, width+20, -h);
+        context.stroke();
          
-        x +=  width+10;
-        /* text to display Bar number */
+        x +=  width+20;
+        // points
         context.fillStyle = '#000000';
-        context.fillText(values[i], x-20, canvas.height - h -10);
-        context.fillStyle = '#000000';
-        context.fillText(groups[i], x-20, canvas.height - h -20);
+        context.font = '15pt Calibri';
+        context.fillText(values[i], x-20, canvas.height - h - 25);
+
+        // groups
+        context.textAlign = 'center';
+        context.fillText(groups[i], x - 20, canvas.height);
     }
 }
-
-// Just to have some test values.
-// var groupPoints = {
-//     "A1" : 4,
-//     "A2" : 7,
-//     "A3" : 8,
-//     "A4" : 10,
-//     "A5" : 16,
-//     "A6" : 20,
-//     "A7" : 50,
-//     "B1" : 20,
-//     "B2" : 15,
-//     "B3" : 33,
-//     "B4" : 14,
-//     "B5" : 19,
-//     "B6" : 13,
-//     "B7" : 44,
-//     "E" : 22
-// }
 
 function getValues(dictionary) {
     let values = []
@@ -69,16 +59,18 @@ function drawPointsCanvas(students) {
 
         let url = window.location.href.split('/');
         let url_length = url.length-1;
-        let courseName = url[url_length].split('Course')[0];
+        let courseName = url[url_length];
         
         students.forEach(function(student) {
             let courses = student.courses;
             courses.forEach(function(course) {
                 if(course.title == courseName) {
                     let weeks = course.weeks;
-                    weeks.forEach(function(week) {
-                        groupPoints[student.group] += week.LabPoints;
-                    })
+                    if(weeks != undefined) {
+                        weeks.forEach(function(week) {
+                            groupPoints[student.group] += week.LabPoints;
+                        })
+                    }
                 }
             });
         });

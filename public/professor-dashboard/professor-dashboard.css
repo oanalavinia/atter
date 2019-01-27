@@ -72,10 +72,20 @@ table {
 }
 
 #pointsChart {
-    width: 100%;
-    height: 200px;
+    /* height: 350px;
+    width: 700px; */
+    padding-left: 2%;
 }
 
+.chart {
+    margin: auto;
+}
+
+.chartTitle {
+    font-weight: 200px;
+    font-size: 18px;
+    color: var(--title-grey);
+}
  
 form{
     display: flex;
