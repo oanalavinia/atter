@@ -4,7 +4,7 @@ function draw(canvas, values, groups) {
     context.canvas.width  = '700';
     context.canvas.height = '250';
     context.clearRect(0, 0, canvas.width, canvas.height);
-    var width = 25;
+    var width = 20;
     var x = 0;
      
     for (var i =0; i<values.length; i++) {
@@ -20,7 +20,11 @@ function draw(canvas, values, groups) {
         // points
         context.fillStyle = '#000000';
         context.font = '15pt Calibri';
-        context.fillText(values[i], x-20, canvas.height - h - 25);
+        if(canvas.id == 'pointsChart') {
+            context.fillText(values[i], x-20, canvas.height - h - 25);
+        } else {
+            context.fillText(values[i] + '%', x-20, canvas.height - h - 25);
+        }
 
         // groups
         context.textAlign = 'center';
@@ -125,20 +129,45 @@ function drawAttendanceChart(students) {
             });
         });
 
-        let values = getAttendanceValues(groupAttendance, weeksNumber);
+        let values = getAttendanceValues(groupAttendance, weeksNumber, students);
         let groups = ["A1","A2","A3","A4","A5","A6","A7","B1","B2","B3","B4","B5","B6","B7","E"];
         attendChart = document.getElementById("attendanceChart");
         draw(attendChart, values, groups, groupAttendance);
     })
 }
 
-function getAttendanceValues(dictionary, weeksNumber) {
-    let studentsNumber = 30;
-    let maxNr = studentsNumber*weeksNumber;
+function getAttendanceValues(dictionary, weeksNumber, students) {
+    var numberOfStudents = {
+        "A1" : 0,
+        "A2" : 0,
+        "A3" : 0,
+        "A4" : 0,
+        "A5" : 0,
+        "A6" : 0,
+        "A7" : 0,
+        "B1" : 0,
+        "B2" : 0,
+        "B3" : 0,
+        "B4" : 0,
+        "B5" : 0,
+        "B6" : 0,
+        "B7" : 0,
+        "E" : 0
+    }
+
+    students.forEach(function(student) {
+        numberOfStudents[student.group] +=1;
+    });
+
     let values = []
     for(var key in dictionary) {
-        let value = Math.round(dictionary[key] * 100 / maxNr);
-        values.push(value);
+        let value = Math.round(dictionary[key] * 100 / (numberOfStudents[key] * weeksNumber));
+        if (value) {
+            values.push(value);
+        } else {
+            values.push(0);
+        }
     }
     return values;
 }
+

@@ -1,8 +1,10 @@
 
 // Appends the subjects on the menu.
-function createSubjectsList(allCourses) {
+function createSubjectsList(student) {
     var course;
     var link;
+    let allCourses = student.courses;
+
     var subjectList = document.getElementById("subjectsList");
     for (var key in Object.keys(allCourses)) {
         let obj = allCourses[key];
@@ -12,7 +14,7 @@ function createSubjectsList(allCourses) {
         subjectList.appendChild(course);
 
         if (window.location.hash.substr(1) === "course/" + obj.name) {
-            populateWeeks(obj.weeks);
+            populateWeeks(student);
         }
 
     }
@@ -33,23 +35,41 @@ function createWeek(week) {
     return parent;
 }
 
-// Deletes the old weeks and appends the coresponding ones.
-// Waits for 'weeks' element to be loaded.
-function populateWeeks(weeks) {
-    var weeksNode;
-    checkElement('weeks')
-        .then((element) => {
-            weeksNode = document.getElementById("weeks");
-            while (weeksNode.firstChild) {
-                weeksNode.removeChild(weeksNode.firstChild);
-            }
-            for (var key in Object.keys(weeks)) {
-                var obj = weeks[key];
-                var weekNode = createWeek(obj);
-                weeksNode.appendChild(weekNode);
+
+function populateWeeks(student) {
+    let weeksNode;
+    let thisWeeks;
+    let courseFromUrl = window.location.hash.split('/')[1];
+    let createWeeks = function() {
+        weeksNode = document.getElementById("weeks");
+        while (weeksNode.firstChild) {
+            weeksNode.removeChild(weeksNode.firstChild);
+        }
+        for (var key in Object.keys(thisWeeks)) {
+            var obj = thisWeeks[key];
+            var weekNode = createWeek(obj);
+            weeksNode.appendChild(weekNode);
+        }
+    }
+    student.courses.forEach(function(course) {
+        if(course.name == courseFromUrl) {
+            thisWeeks = course.weeks;
+        }
+    });
+
+    checkElement('weeks').then(element => createWeeks());
+
+    window.onhashchange = function(event) {
+        let courseFromUrl = window.location.hash.split('/')[1];
+        student.courses.forEach(function(course) {
+            if(course.name == courseFromUrl) {
+                thisWeeks = course.weeks;
             }
         });
+        checkElement('weeks').then(element => createWeeks());
+    }
 }
+
 
 function populateStudentAttendView(student) {
     var courses = student.courses.map(course => { return course.name });
@@ -187,7 +207,7 @@ var stud = ref.once('value', function (data) {
 
         var userName = document.getElementById("user");
         userName.innerHTML = loggedUser.FirstName + ' ' + loggedUser.LastName;
-        createSubjectsList(student.courses); 
+        createSubjectsList(student); 
 return student;
 
 });
@@ -205,20 +225,18 @@ async function checkCourses(student) {
     return true;
 }
 
-function updateInfoToCourses(allCourses){
+function updateInfoToCourses(student) {
     var check = document.getElementById("subjectsList");
     var course = check.firstChild.nextSibling;
     course.addEventListener("click", function () {
-      populateWeeks(allCourses[0].weeks);
+      populateWeeks(student);
     });
-    var key = 1;
+
     while(course.nextSibling){
-      course = course.nextSibling;
-      var obj = allCourses[key];
       course.addEventListener("click", function () {
-        populateWeeks(obj.weeks);
+        populateWeeks(student);
       });
-      key++;
+      course = course.nextSibling;
     }
 }
 
@@ -249,11 +267,13 @@ function populate() {
         onClickAttendView(student, professors);
         onClickRegister(student, professors);
         checkCourses(student).then((element) => {
-             updateInfoToCourses(student.courses);
+             updateInfoToCourses(student);
             // for (var key in Object.keys(student.courses)) {
             //     populateWeeks(student.courses[key].weeks);
             // }
         });
+
+        populateWeeks(student);
         
        
 
