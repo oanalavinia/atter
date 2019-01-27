@@ -87,7 +87,11 @@ th {
     font-size: 20px;
 }
 
-
+input, select{
+    font-size: 120%;
+    margin-bottom: 10%;
+    height: 40px;
+}
 @-webkit-keyframes fadeIn {
     from {
         opacity: 0;

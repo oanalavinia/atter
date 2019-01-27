@@ -58,12 +58,9 @@ button {
 
 input, select {
     font-family: 'Lato', sans-serif;
-    font-size: 120%;
-    margin-bottom: 10%;
-    height: 40px;
     border: none;
     outline: none;
-    border-bottom: 1.5px solid var(--text);
+    border-bottom: 1.0px solid var(--text);
 }
 
 .title-item {

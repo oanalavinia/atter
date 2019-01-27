@@ -118,7 +118,7 @@ function rafAsync() {
 }
 
 // Generic function for creating a node.
-function createNode(content, type, myClass, myHref) {
+function createNode(content, type, myClass, myHref, id) {
     var node = document.createElement(type);
     if (content != "note") {
         var textnode = document.createTextNode(content);
@@ -130,6 +130,10 @@ function createNode(content, type, myClass, myHref) {
     if (myHref != false) {
         node.setAttribute("href", myHref);
     }
+    if (id != false) {
+        node.setAttribute("id", id);
+    }
+
     return node;
 }
 

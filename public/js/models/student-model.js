@@ -6,6 +6,7 @@ class Student {
         this.lastName = user.LastName;
         this.password = user.Password;
         this.year = user.Year;
+        this.id = user.Id;
         this.studentCourses = user.StudentCourses;
     }
 

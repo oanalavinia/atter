@@ -8,7 +8,7 @@ function createSubjectsList(allCourses) {
     for (var key in Object.keys(allCourses)) {
         let obj = allCourses[key];
         course = createNode("note", "li", false, false);
-        link = createNode(obj.title, "a", false, "#course/" + obj.title);
+        link = createNode(obj.name, "a", false, "#course/" + obj.name);
         course.appendChild(link);
         subjectList.appendChild(course);
         course.addEventListener("click", closeMenu);
@@ -16,8 +16,8 @@ function createSubjectsList(allCourses) {
         //     populateWeeks(obj.getWeeks());
         // });
 
-        if (window.location.hash.substr(1) === "course/" + obj.title) {
-            populateWeeks(obj.getWeeks());
+        if (window.location.hash.substr(1) === "course/" + obj.name) {
+            populateWeeks(obj.weeks);
         }
 
     }
@@ -28,11 +28,9 @@ function createWeek(week) {
     var parent = document.createElement("tr");
     var number = createNode(week.getWeekNumber(), "th", "text");
     var labPresence = createNode(week.getLabAttendance(), "th", "text");
-    var bonus = createNode(week.getBonus(), "th", "text");
+    var bonus = createNode('Bonus: ' + week.labPoints, "th", "text");
     var button = htmlToElement('<th><button >Details</button></th>');
-    button.addEventListener("click", function () {
-        // popup
-    }, false);
+
     parent.appendChild(number);
     parent.appendChild(labPresence);
     parent.appendChild(bonus);
@@ -59,7 +57,7 @@ function populateWeeks(weeks) {
 }
 
 function populateStudentAttendView(student) {
-    var courses = student.courses.map(course => { return course.title });
+    var courses = student.courses.map(course => { return course.name });
     checkElement('attendCourse')
         .then((element) => {
             if (document.getElementById('courseOption').childElementCount != courses.length) {
@@ -72,7 +70,7 @@ function populateStudentAttendView(student) {
 
 function checkCode(student, professors) {
     
-    var code = document.getElementById('studentCode').value;
+    var code = parseInt(document.getElementById('studentCode').value);
     var course = document.getElementById('courseOption').value;
     var profEmail = document.getElementById('profEmail').value;
 
@@ -85,7 +83,7 @@ function checkCode(student, professors) {
     var group = searchedCourse.groups.filter(sc => {
         return sc.name === student.group &&
             typeof (sc.weeks.find(week => {
-                return week.code.toString() === code
+                return week.code === code
             })) != 'undefined'
     });
     return group;
@@ -93,7 +91,7 @@ function checkCode(student, professors) {
 
 function addAttendanceToCourse(student, professors) {
     localStorage.removeItem('alerted2');
-    var code = document.getElementById('studentCode').value;
+    var code = parseInt(document.getElementById('studentCode').value);
     var course = document.getElementById('courseOption').value;
     var group = checkCode(student, professors);
     
@@ -111,7 +109,7 @@ function addAttendanceToCourse(student, professors) {
         });
 
         var week = courseWeeks[0].find(function (week) {
-            return week.code.toString() === code
+            return week.code === code
         });
 
         var number = week.number - 1;
@@ -119,17 +117,16 @@ function addAttendanceToCourse(student, professors) {
 
         let indexOfCourse = 0;
         for (var i in student.courses) {
-            if (student.courses[i].title === course) {
+            if (student.courses[i].name === course) {
                 indexOfCourse = i;
             }
         }
 
-
-        firebase.database().ref('users/' + userId + '/StudentCourses/' + indexOfCourse.toString() + '/Weeks/' + number.toString() + '/').set(
+        firebase.database().ref('users/' + userId + '/StudentCourses/' + 
+        indexOfCourse.toString() + '/Weeks/' + number.toString() + '/').set(
             {
-                'Attendance': 'true',
                 'GeneratedCode': code,
-                'LabPoints': '',
+                'LabPoints': 0,
                 'Number': number + 1
 
             });
@@ -217,14 +214,14 @@ function updateInfoToCourses(allCourses){
     var check = document.getElementById("subjectsList");
     var course = check.firstChild.nextSibling;
     course.addEventListener("click", function () {
-      populateWeeks(allCourses[0].getWeeks());
+      populateWeeks(allCourses[0].weeks);
     });
     var key = 1;
     while(course.nextSibling){
       course = course.nextSibling;
       var obj = allCourses[key];
       course.addEventListener("click", function () {
-        populateWeeks(obj.getWeeks());
+        populateWeeks(obj.weeks);
       });
       key++;
     }
@@ -257,10 +254,10 @@ function populate() {
         onClickAttendView(student, professors);
         onClickRegister(student, professors);
         checkCourses(student).then((element) => {
-            updateInfoToCourses(student.courses);
-            for (var key in Object.keys(student.courses)) {
-                populateWeeks(student.courses[key].getWeeks());
-            }
+             updateInfoToCourses(student.courses);
+            // for (var key in Object.keys(student.courses)) {
+            //     populateWeeks(student.courses[key].weeks);
+            // }
         });
         
        

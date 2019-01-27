@@ -2,14 +2,14 @@ class Course {
     constructor(course) {
         this.courseProfessor = course.CourseProfessor;
         this.seminarProfessor = course.SeminarProfessor;
-        this.title = course.Title;
-        this.weeks = course.Weeks;
+        this.name = course.Title;
+        this.studentWeeks = course.Weeks;
     }
 
-    getWeeks() {
+    get weeks() {
         var allWeeks = []
-        for (var key in this.weeks) {
-            var thisWeek = new Week(this.weeks[key])
+        for (var key in this.studentWeeks) {
+            var thisWeek = new Week(this.studentWeeks[key])
             allWeeks.push(thisWeek);
         }
         return allWeeks;

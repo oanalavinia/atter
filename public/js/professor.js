@@ -14,17 +14,15 @@ async function checkStudents(students) {
 // Creates a node for menu.
 function createSubjectNode(name) {
     course = createNode("note", "li", false, false);
-    var routeName= name.split('/')[0];
-    
+    var routeName = name.split('/')[0];
+
     var type = name.split('/')[1].split(' ')[1];
-    if(type === 'Course'){
+    if (type === 'Course') {
         link = createNode(name, "a", false, "#course/" + routeName);
     }
-    else{
+    else {
         link = createNode(name, "a", false, "#labs/" + routeName);
     }
-   
-    
     course.appendChild(link);
     course.addEventListener("click", closeMenu);
     return course;
@@ -75,10 +73,10 @@ function addWeeksForSubject(seminarGroups, labName, students, professor) {
 function groupView(allStudents, professor) {
     var thisGroup;
     Promise.all([checkElement('group'), checkElement('week'),
-      checkElement('presence'), checkElement('attendance')])
-        .then(function() {
+    checkElement('presence'), checkElement('attendance')])
+        .then(function () {
             let url = window.location.href.split('/');
-            let url_length = url.length-1;
+            let url_length = url.length - 1;
 
             thisGroup = document.getElementById('group');
             var group = url[url_length - 2];
@@ -90,30 +88,94 @@ function groupView(allStudents, professor) {
 
             let labName = url[url_length];
             let students = getAttendance(labName, weekNumber, group, allStudents, professor);
+
             presence = document.getElementById('presence');
             presence.innerHTML = 'Total presence: ' + students.length;
 
             let attendance = document.getElementById('attendance');
-            let studentNode;
+            let studentNode, input, button;
+
             students.forEach(function (student) {
-                studentNode = createNode(student.name, 'li', false, false);
-                attendance.appendChild(studentNode);
+                if (document.getElementById(student.name) === null) {
+                    studentNode = createNode(student.name, 'li', false, false);
+                    attendance.appendChild(studentNode);
+                    input = createNode('points:', 'input', 'points-input', false);
+                    button = createNode('Add', 'button', 'add-points', false, student.name)
+                    studentNode.appendChild(input);
+                    studentNode.appendChild(button);
+                }
+
             });
         });
 }
 
+
+function addPointsToStudent(allStudents, professor) {
+
+    let url = window.location.hash.split('/');
+    let course = url[3];
+    let weekNumber = url[2];
+    let group = url[1];
+    let students = getAttendance(course, weekNumber, group, allStudents, professor);
+    let keys = getStudentsKeys(students);
+    students.forEach(function (student) {
+        let key = keys[student.id];
+        let indexOfCourse = getCourseKey(student.courses, course);
+        let week = weekNumber - 1;
+        checkElement(student.name)
+            .then(() => {
+                let button = document.getElementById(student.name);
+                button.addEventListener("click", function () {
+                    var points = parseInt(button.previousSibling.value);
+                    if (points) {
+                        firebase.database().ref('users/' + key + '/StudentCourses/' +
+                            indexOfCourse.toString() + '/Weeks/' + week.toString() + '/').update({
+                                'LabPoints': points
+                            });
+                    }
+                }, false);
+            })
+    });
+}
+
+
 function getAttendance(labName, weekNumber, group, allStudents, professor) {
     var studentsPrez = allStudents.filter(student => {
-        return typeof (student.courses.find(function(course){
-            return course.title == labName && course.weeks.find(function(week) {
-                return week.Attendance == "true" && week.Number == weekNumber &&
-                    checkCode(professor, labName, week.GeneratedCode, weekNumber, group);
+        return typeof (student.courses.find(function (course) {
+            return course.name == labName && course.weeks.find(function (week) {
+                return week.number == weekNumber &&
+                    checkCode(professor, labName, week.code, weekNumber, group);
             });
         })) != 'undefined';
     });
     return studentsPrez;
 }
 
+function getStudentsKeys(students) {
+    var db = firebase.database();
+    var ref = db.ref('users');
+    let keys = [];
+    ref.on('value', function (data) {
+        var i = 1;
+        for (var key in data.val()) {
+            stud = students.find(stud => stud.id === i);
+            if (stud) {
+                keys[i] = key;
+            }
+            i = i + 1;
+        }
+    });
+    return keys;
+}
+
+function getCourseKey(courses, course) {
+    var indexOfCourse;
+    for (var i in courses)
+        if (courses[i].name === course) {
+            indexOfCourse = i;
+        }
+    return indexOfCourse;
+}
 
 function createWeek(number, seminarGroups, students, professor) {
     var parent = document.createElement("tr");
@@ -123,13 +185,12 @@ function createWeek(number, seminarGroups, students, professor) {
     var groupNode;
     parent.appendChild(weekNumberNode);
     url = window.location.href.split('/');
-    var labName = url[url.length-1].split('Lab')[0];
+    var labName = url[url.length - 1].split('Lab')[0];
 
     for (var key in seminarGroups) {
         let group = seminarGroups[key].Name;
         groupNode = createNode("note", "td", 'weekGroup', false);
         link = createNode(group, "a", false, "#group/" + group + "/" + number + "/" + labName);
-        
         link.addEventListener("click", function () {
             weeksInfo(students, professor);
         }, false);
@@ -145,15 +206,16 @@ function checkCode(professor, labName, code, number, group) {
     })
 
     let goodWeek;
-    searchedCourse.seminarGroups.forEach(function(sc) {
-        sc.Weeks.forEach(function(week) {
-            if(week.Code.toString() === code && week.Number.toString() == number && sc.Name == group) {
+
+    searchedCourse.groups.forEach(function (sc) {
+        sc.weeks.forEach(function (week) {
+            if (week.code === code && week.number.toString() == number && sc.name == group) {
                 goodWeek = week;
             }
         })
     })
 
-    if(goodWeek) {
+    if (goodWeek) {
         return true;
     }
     return false;
@@ -161,9 +223,9 @@ function checkCode(professor, labName, code, number, group) {
 
 
 function weeksInfo(students, professor) {
-    Promise.all([checkElement('weeks'), checkStudents(students)]).then(function() {
+    Promise.all([checkElement('weeks'), checkStudents(students)]).then(function () {
         var seminarNodes = document.getElementsByClassName('weekGroup');
-        for(let item of seminarNodes) {
+        for (let item of seminarNodes) {
             item.addEventListener("click", function () {
                 groupView(students, professor);
             }, false);
@@ -182,7 +244,6 @@ function populateProfessorRegisterView(courses) {
                     createDropdownOption('option', courseNames[key], 'course');
                 }
             }
-
             var course = courses.find(c => c.name === document.getElementById('course').value)
             var groups = course.seminarGroups.map(c => {
                 return c.Name;
@@ -227,11 +288,7 @@ function submit(professor) {
     var profKey = localStorage.getItem('key');
     let indexOfCourse = 0;
     let indexOfGroup = 0;
-    for (var i in professor.courses) {
-        if (professor.courses[i].name === course) {
-            indexOfCourse = i;
-        }
-    }
+    indexOfCourse = getCourseKey(professor.courses, course);
 
     for (var i in professor.courses[indexOfCourse].seminarGroups) {
         if (professor.courses[indexOfCourse].seminarGroups[i].Name === group) {
@@ -247,7 +304,7 @@ function submit(professor) {
     firebase.database().ref('users/' + profKey + '/ProfessorCourses/' +
         indexOfCourse.toString() + '/SeminarGroups/' + indexOfGroup.toString() + '/Weeks/' + week.toString() + '/').set({
             'Code': code,
-            'Number': week+1,
+            'Number': week + 1,
             'Hour': hour
         });
 
@@ -283,7 +340,7 @@ function getAllStudents(users, professor) {
 
 function populate() {
     var email = localStorage.getItem('email');
-     
+
     firebase.database().ref('users').on('value', function (data) {
 
         var users = Object.values(data.val());
@@ -298,6 +355,10 @@ function populate() {
         weeksInfo(students, professor);
         groupView(students, professor);
         drawPointsCanvas(students);
+        checkElement('attendance').then(() => {
+            addPointsToStudent(students, professor);
+        })
+
     });
 
 }
@@ -313,14 +374,16 @@ firebase.database().ref('users').once('value', function (data) {
     allCourses = professor.courses;
     let students = getAllStudents(users, professor);
 
-    if( allCourses !== undefined){
+    if (allCourses !== undefined) {
         addSubjectsToMenu(allCourses, students, professor);
     }
-
+    checkElement('attendance').then(() => {
+        addPointsToStudent(students, professor);
+    })
 });
 
 populate();
-  
+
 
 
 

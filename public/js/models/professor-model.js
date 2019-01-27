@@ -4,6 +4,7 @@ class Professor {
         this.firstName = user.FirstName;
         this.lastName = user.LastName;
         this.password =user.Password;
+        this.id = user.Id
         this.professorCourses =user.ProfessorCourses;
     }
 
