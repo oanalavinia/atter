@@ -29,7 +29,7 @@ function createSubjectNode(name) {
 }
 
 // Updates menu with profs subjects.
-function addSubjectsToMenu(allCourses, students, professor) {
+function addSubjectsToMenu(allCourses, students, professor, allStudents) {
     var course;
     var subjectsList = document.getElementById("subjectsList");
     for (var key in Object.keys(allCourses)) {
@@ -37,7 +37,8 @@ function addSubjectsToMenu(allCourses, students, professor) {
         if (obj.isCourseProf) {
             course = createSubjectNode(obj.courseName);
             course.addEventListener("click", function () {
-                drawPointsCanvas(students);
+                drawPointsCanvas(allStudents);
+                drawAttendanceChart(allStudents);
             })
             subjectsList.appendChild(course);
             lab = createSubjectNode(obj.labName);
@@ -47,29 +48,36 @@ function addSubjectsToMenu(allCourses, students, professor) {
             subjectsList.appendChild(lab);
         }
         lab.addEventListener("click", function () {
-            addWeeksForSubject(obj.seminarGroups, obj.labName, students, professor);
+            addWeeksForSubject(students, professor);
         }, false);
-
-
     }
 }
 
 // For each subject put 14 weeks with the assigned groups.
-function addWeeksForSubject(seminarGroups, labName, students, professor) {
+function addWeeksForSubject(students, professor) {
     var weeksNode;
+    let url = window.location.href.split('/');
+    let labName = url[url.length-1];
+
+    // TODO: refactor this.
+    var course = professor.courses.find(c => c.name === labName)
+    var groups = course.seminarGroups.map(c => {
+        return c.Name;
+    });
+
     checkElement('weeks').then((element) => {
         weeksNode = document.getElementById("weeks");
         while (weeksNode.firstChild) {
             weeksNode.removeChild(weeksNode.firstChild);
         }
         for (i = 1; i < 15; i++) {
-            weekNode = createWeek(i, seminarGroups, students, professor);
+            weekNode = createWeek(i, groups, students, professor);
             weeksNode.appendChild(weekNode);
         }
     });
 }
 
-// Just updates the group for now, when it is clicked.
+
 function groupView(allStudents, professor) {
     var thisGroup;
     Promise.all([checkElement('group'), checkElement('week'),
@@ -188,7 +196,7 @@ function createWeek(number, seminarGroups, students, professor) {
     var labName = url[url.length - 1].split('Lab')[0];
 
     for (var key in seminarGroups) {
-        let group = seminarGroups[key].Name;
+        let group = seminarGroups[key];
         groupNode = createNode("note", "td", 'weekGroup', false);
         link = createNode(group, "a", false, "#group/" + group + "/" + number + "/" + labName);
         link.addEventListener("click", function () {
@@ -338,6 +346,18 @@ function getAllStudents(users, professor) {
     return students;
 }
 
+function getStudents(users) {
+    let students = [];
+    var studentsJson = users.filter(student => {
+        return student.IsStudent;
+    });
+    for (var key in Object.keys(studentsJson)) {
+        var student = new Student(studentsJson[key]);
+        students.push(student);
+    }
+    return students;
+}
+
 function populate() {
     var email = localStorage.getItem('email');
 
@@ -354,11 +374,9 @@ function populate() {
 
         weeksInfo(students, professor);
         groupView(students, professor);
-        drawPointsCanvas(students);
-        checkElement('attendance').then(() => {
-            addPointsToStudent(students, professor);
-        })
-
+        drawPointsCanvas(getStudents(users));
+        drawAttendanceChart(getStudents(users));
+        addWeeksForSubject(students, professor);
     });
 
 }
@@ -374,8 +392,8 @@ firebase.database().ref('users').once('value', function (data) {
     allCourses = professor.courses;
     let students = getAllStudents(users, professor);
 
-    if (allCourses !== undefined) {
-        addSubjectsToMenu(allCourses, students, professor);
+    if( allCourses !== undefined){
+        addSubjectsToMenu(allCourses, students, professor, getStudents(users));
     }
     checkElement('attendance').then(() => {
         addPointsToStudent(students, professor);
