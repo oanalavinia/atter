@@ -7,7 +7,6 @@ var config = {
     storageBucket: "atter-8d2e1.appspot.com",
     messagingSenderId: "574650654869"
 };
-
 firebase.initializeApp(config);
 const database = firebase.database();
 const facultyLocation = {
@@ -15,34 +14,6 @@ const facultyLocation = {
     longitude: 27.574954
 };
 
-// TODO: don't delete this. Will be added with addEventListener on create
-// function popup() {
-//     window.onload = function () {
-//         var popup = document.getElementById("details-popup");
-//         var details = document.getElementsByClassName("details");
-//         var span = document.getElementsByClassName("close")[0];
-
-//         details.onclick = function () {
-//             popup.style.display = "block";
-//         }
-
-//         span.onclick = function () {
-//             popup.style.display = "none";
-//         }
-
-//         window.onclick = function (event) {
-//             if (event.target == popup) {
-//                 popup.style.display = "none";
-//             }
-//         }
-//     }
-// }
-
-function removeChildrenNodes(parent) {
-    while (document.getElementById(parent).firstChild) {
-        document.getElementById(parent).removeChild(document.getElementById(parent).firstChild);
-    }
-}
 
 function openMenu() {
     var menu = document.getElementById('menu');
@@ -90,22 +61,19 @@ function checkUserRole(isStudentPage) {
     }
 }
 
-
 function logout() {
     localStorage.removeItem('user');
     location.href = '../index.html';
 }
 
+function removeChildrenNodes(parent) {
+    while (document.getElementById(parent).firstChild) {
+        document.getElementById(parent).removeChild(document.getElementById(parent).firstChild);
+    }
+}
 // Used to check if an element was loaded.
 async function checkElement(selector) {
     while (document.getElementById(selector) === null) {
-        await rafAsync()
-    }
-    return true;
-}
-
-async function checkElementByClass(selector) {
-    while (document.getElementsByClassName(selector) === null) {
         await rafAsync()
     }
     return true;
@@ -152,22 +120,7 @@ function createDropdownOption(type, content, parent) {
     node.setAttribute('value', content);
 }
 
-
-function removeChildrenNodes(parent) {
-    while (document.getElementById(parent).firstChild) {
-        document.getElementById(parent).removeChild(document.getElementById(parent).firstChild);
-    }
-}
-
-
-function getWeekNumber(item){
-    var weekNode = item.previousSibling;
-    while(weekNode.className != "text") {
-        weekNode = weekNode.previousSibling;
-    }
-    return weekNode.innerText.split(' ')[1];
-}
-
+// used for geolocation on attend view
 function checkUserLocation() {
     let urlLocation = window.location.hash;
     if (urlLocation === '#attend') {

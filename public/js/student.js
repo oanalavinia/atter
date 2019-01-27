@@ -3,7 +3,6 @@
 function createSubjectsList(allCourses) {
     var course;
     var link;
-
     var subjectList = document.getElementById("subjectsList");
     for (var key in Object.keys(allCourses)) {
         let obj = allCourses[key];
@@ -11,10 +10,6 @@ function createSubjectsList(allCourses) {
         link = createNode(obj.name, "a", false, "#course/" + obj.name);
         course.appendChild(link);
         subjectList.appendChild(course);
-        course.addEventListener("click", closeMenu);
-        // course.addEventListener("click", function () {
-        //     populateWeeks(obj.getWeeks());
-        // });
 
         if (window.location.hash.substr(1) === "course/" + obj.name) {
             populateWeeks(obj.weeks);
