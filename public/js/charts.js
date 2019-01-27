@@ -64,8 +64,8 @@ function drawPointsCanvas(students) {
         students.forEach(function(student) {
             let courses = student.courses;
             courses.forEach(function(course) {
-                if(course.title == courseName) {
-                    let weeks = course.weeks;
+                if(course.name == courseName) {
+                    let weeks = course.studentWeeks;
                     if(weeks != undefined) {
                         weeks.forEach(function(week) {
                             groupPoints[student.group] += week.LabPoints;
@@ -110,8 +110,8 @@ function drawAttendanceChart(students) {
         students.forEach(function(student) {
             let courses = student.courses;
             courses.forEach(function(course) {
-                if(course.title == courseName) {
-                    let weeks = course.weeks;
+                if(course.name == courseName) {
+                    let weeks = course.studentWeeks;
                     if(weeks != undefined) {
                         weeks.forEach(function(week) {
                             groupAttendance[student.group] += 1;
