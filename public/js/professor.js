@@ -1,4 +1,4 @@
-function getStudents(students) {
+function getPromiseStudents(students) {
     return new Promise(resolve => {
         students;
     });
@@ -6,7 +6,7 @@ function getStudents(students) {
 
 async function checkStudents(students) {
     while (students === undefined) {
-        await getStudents(students)
+        await getPromiseStudents(students)
     }
     return true;
 }

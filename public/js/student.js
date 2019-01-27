@@ -39,39 +39,41 @@ function createWeek(week) {
     return parent;
 }
 
-// Deletes the old weeks and appends the coresponding ones.
-// Waits for 'weeks' element to be loaded.
+
 function populateWeeks(student) {
     let weeksNode;
-    let urlCourse = window.location.hash.split('/');
-    console.log(urlCourse)
-    let courseFromUrl = urlCourse[1];
     let thisWeeks;
+    let courseFromUrl = window.location.hash.split('/')[1];
+    let createWeeks = function() {
+        weeksNode = document.getElementById("weeks");
+        while (weeksNode.firstChild) {
+            weeksNode.removeChild(weeksNode.firstChild);
+        }
+        for (var key in Object.keys(thisWeeks)) {
+            var obj = thisWeeks[key];
+            var weekNode = createWeek(obj);
+            weeksNode.appendChild(weekNode);
+        }
+    }
+    student.courses.forEach(function(course) {
+        if(course.name == courseFromUrl) {
+            thisWeeks = course.weeks;
+        }
+    });
 
-    checkElement('weeks')
-        .then((element) => {
-            student.courses.forEach(function(course) {
-                if(course.name == courseFromUrl) {
-                    // for(var key in course.weeks) {
+    checkElement('weeks').then(element => createWeeks());
 
-                    // }
-                    // course.weeks.forEach(function(week) {
-                    thisWeeks = course.weeks;
-                    // });
-                }
-            })
-
-            weeksNode = document.getElementById("weeks");
-            while (weeksNode.firstChild) {
-                weeksNode.removeChild(weeksNode.firstChild);
-            }
-            for (var key in Object.keys(thisWeeks)) {
-                var obj = thisWeeks[key];
-                var weekNode = createWeek(obj);
-                weeksNode.appendChild(weekNode);
+    window.onhashchange = function(event) {
+        let courseFromUrl = window.location.hash.split('/')[1];
+        student.courses.forEach(function(course) {
+            if(course.name == courseFromUrl) {
+                thisWeeks = course.weeks;
             }
         });
+        createWeeks();
+    }
 }
+
 
 function populateStudentAttendView(student) {
     var courses = student.courses.map(course => { return course.name });
