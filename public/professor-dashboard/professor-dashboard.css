@@ -81,9 +81,17 @@ select{
     justify-content: center;
 }
 
-#pointsChart {
+/* #pointsChart {
     padding-left: 2%;
+} */
+
+/* #pointsChart {
+    width: 100%;
 }
+
+#attendanceChart {
+    width: 100%;
+} */
 
 .chart {
     margin: auto;
@@ -93,6 +101,14 @@ select{
     font-weight: 200px;
     font-size: 18px;
     color: var(--title-grey);
+}
+
+#pointsChartS {
+    width: 100%;
+}
+
+#attendanceChartS {
+    width: 100%;
 }
  
 form{
@@ -150,6 +166,12 @@ form button{
     display: flex;
     width: 100%;
     flex-direction: column;
+}
+
+@media only screen and (max-width:1050px) {
+    .row1{
+        display: grid;
+    }
 }
 
 /* only for phones and tablets */

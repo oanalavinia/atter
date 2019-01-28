@@ -111,6 +111,9 @@ function addWeeksForSubject(students, professor) {
 
     let groups = findGroupsForCourse(professor.courses, labName);
 
+    drawPointsCanvasS(students, professor);
+    drawAttendanceChartS(students, professor);
+
     checkElement('weeks').then((element) => {
         weeksNode = document.getElementById("weeks");
         while (weeksNode.firstChild) {
@@ -368,6 +371,8 @@ function populate() {
         groupView(students, professor);
         drawPointsCanvas(getStudents(users));
         drawAttendanceChart(getStudents(users));
+        // drawPointsCanvasS(students, professor);
+        addWeeksForSubject(students, professor);
         window.onhashchange = function(event){
             addWeeksForSubject(students, professor);
         }
