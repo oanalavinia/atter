@@ -62,7 +62,11 @@ function checkUserRole(isStudentPage) {
 }
 
 function logout() {
-    localStorage.removeItem('user');
+    localStorage.removeItem('email');
+    localStorage.removeItem('key');
+    localStorage.removeItem('isStudent');
+
+
     location.href = '../index.html';
 }
 

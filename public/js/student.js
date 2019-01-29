@@ -112,7 +112,7 @@ function checkCode(student, professors) {
     var group = searchedCourse.groups.filter(sc => {
         return sc.name === student.group &&
             typeof (sc.weeks.find(week => {
-                return week.code === code && (currentTime - week.hour)/1000/60/60 <= 2
+                return week.code === code /*&& (currentTime - week.hour)/1000/60/60 <= 2*/
             })) != 'undefined'
     });
     return group;
@@ -157,17 +157,18 @@ function onClickRegister(student, professors) {
 
 function addAttendanceToCourse(student, professors) {
     localStorage.removeItem('alerted2');
+    localStorage.removeItem('alerted4');
     var code = parseInt(document.getElementById('studentCode').value);
     var course = document.getElementById('courseOption').value;
     var group = checkCode(student, professors);
-    
+
     if (group.length === 0) {
-        var alerted = localStorage.getItem('alerted2') || '';
+        let alerted = localStorage.getItem('alerted2') || '';
         if (alerted != 'yes') {
-            alert('The code doesnt match any course');
-         localStorage.setItem('alerted2','yes');
+            alert('The code doesnt match any available course');
+            localStorage.setItem('alerted2', 'yes');
         }
-       
+
     }
     else {
         var courseWeeks = group.map(gr => {
@@ -188,17 +189,23 @@ function addAttendanceToCourse(student, professors) {
             }
         }
 
-        firebase.database().ref('users/' + userId + '/StudentCourses/' + 
-        indexOfCourse.toString() + '/Weeks/' + number.toString() + '/').set(
-            {
-                'GeneratedCode': code,
-                'LabPoints': 0,
-                'Number': number + 1
+        firebase.database().ref('users/' + userId + '/StudentCourses/' +
+            indexOfCourse.toString() + '/Weeks/' + number.toString() + '/').set(
+                {
+                    'GeneratedCode': code,
+                    'LabPoints': 0,
+                    'Number': number + 1
 
-            });
-        
+                });
+        let alerted1 = localStorage.getItem('alerted4') || '';
+        if (alerted1 != 'yes') {
+            alert('Succesfully registered to course!');
+            localStorage.setItem('alerted4', 'yes');
+
+        }
     }
 }
+
 
 function onClickAttendView(student, professors) {
     document.getElementById('attend').addEventListener('click',

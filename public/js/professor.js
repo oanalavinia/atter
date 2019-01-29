@@ -337,6 +337,11 @@ function submitCode(professor) {
             'Hour': hour
         });
 
+    let alerted = localStorage.getItem('alerted3') || '';
+    if (alerted != 'yes') {
+        alert('Succesfully submited!');
+        localStorage.setItem('alerted3', 'yes');
+
 }
 
 function onClickGenerate(professor) {
@@ -373,8 +378,9 @@ function populate() {
         addWeeksForSubject(students, professor);
         window.onhashchange = function(event){
             addWeeksForSubject(students, professor);
+            addPointsToStudent(students, professor);
         }
-        
+       
     });
 
 }
@@ -393,9 +399,6 @@ firebase.database().ref('users').once('value', function (data) {
     if( allCourses !== undefined){
         addSubjectsToMenu(allCourses, students, professor, getStudents(users));
     }
-    checkElement('attendance').then(() => {
-        addPointsToStudent(students, professor);
-    })
 });
 
 populate();
