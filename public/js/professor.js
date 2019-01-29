@@ -342,6 +342,7 @@ function submitCode(professor) {
         alert('Succesfully submited!');
         localStorage.setItem('alerted3', 'yes');
 
+    }
 }
 
 function onClickGenerate(professor) {
