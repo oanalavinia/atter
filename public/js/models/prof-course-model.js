@@ -45,5 +45,6 @@ class ProfWeek{
     constructor(week){
         this.code = week.Code;
         this.number = week.Number;
+        this.hour = week.Hour;
     }
 }

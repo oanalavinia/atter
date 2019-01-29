@@ -105,10 +105,14 @@ function checkCode(student, professors) {
     var searchedCourse = professor.courses.find(c => {
         return c.name === course;
     })
+
+    var currentTime = new Date();
+    currentTime = currentTime.valueOf();
+
     var group = searchedCourse.groups.filter(sc => {
         return sc.name === student.group &&
             typeof (sc.weeks.find(week => {
-                return week.code === code
+                return week.code === code && (currentTime - week.hour)/1000/60/60 <= 2
             })) != 'undefined'
     });
     return group;
@@ -192,7 +196,7 @@ function addAttendanceToCourse(student, professors) {
                 'Number': number + 1
 
             });
-        alert('succesfuly registered!')
+        
     }
 }
 
@@ -260,3 +264,4 @@ ref.once('value', function (data) {
 });
 
 populate();
+

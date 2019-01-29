@@ -50,8 +50,7 @@ function getValues(dictionary) {
 
 function drawPointsCanvasS(students, professor) {
     Promise.all([checkStudents(students), checkElement('pointsChartS')]).then(function() {
-        let url = window.location.href.split('/');
-        let labName = url[url.length-1];
+        let labName = window.location.hash.split('/')[1];
         let groupPoints = {};
         var groups = findGroupsForCourse(professor.courses, labName);
 
@@ -63,10 +62,10 @@ function drawPointsCanvasS(students, professor) {
             let courses = student.courses;
             courses.forEach(function(course) {
                 if(course.name == labName && course.seminarProfessor == professor.name) {
-                    let weeks = course.studentWeeks;
+                    let weeks = course.weeks;
                     if(weeks != undefined) {
                         weeks.forEach(function(week) {
-                            groupPoints[student.group] += week.LabPoints;
+                            groupPoints[student.group] += week.labPoints;
                         })
                     }
                 }
@@ -81,8 +80,7 @@ function drawPointsCanvasS(students, professor) {
 
 function drawAttendanceChartS(students, professor) {
     Promise.all([checkStudents(students), checkElement('attendanceChartS')]).then(function() {
-        let url = window.location.href.split('/');
-        let labName = url[url.length-1];
+        let labName = window.location.hash.split('/')[1];
         let groupAttendance = {};
         var groups = findGroupsForCourse(professor.courses, labName);
         
@@ -97,7 +95,7 @@ function drawAttendanceChartS(students, professor) {
             let courses = student.courses;
             courses.forEach(function(course) {
                 if(course.name == labName && course.seminarProfessor == professor.name) {
-                    let weeks = course.studentWeeks;
+                    let weeks = course.weeks;
                     if(weeks != undefined) {
                         weeks.forEach(function(week) {
                             groupAttendance[student.group] += 1;

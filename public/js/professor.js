@@ -305,7 +305,7 @@ function onClickRegisterView(allCourses, professor) {
     populateProfessorRegisterView(allCourses);
     checkElement('registerForm')
         .then(() => {
-            document.getElementById('registerForm').addEventListener('change', function () {
+            document.getElementById('course').addEventListener('change', function () {
                 populateProfessorRegisterView(allCourses);
             });
         });
@@ -318,9 +318,8 @@ function submitCode(professor) {
     var code = Math.floor(Math.random() * 9000) + 1000;
     document.getElementById('code').innerHTML = code;
     var profKey = localStorage.getItem('key');
-    let indexOfCourse = 0;
     let indexOfGroup = 0;
-    indexOfCourse = getCourseKey(professor.courses, course);
+    let indexOfCourse = getCourseKey(professor.courses, course);
 
     for (var i in professor.courses[indexOfCourse].groups) {
         if (professor.courses[indexOfCourse].groups[i].name === group) {
@@ -328,8 +327,7 @@ function submitCode(professor) {
         }
     }
     var hour = new Date();
-    hour = hour.toString();
-    hour = hour.split(' ')[4];
+    hour = hour.valueOf();
     week = parseInt(week) - 1;
 
     firebase.database().ref('users/' + profKey + '/ProfessorCourses/' +
@@ -365,7 +363,7 @@ function populate() {
             onClickRegisterView(professor.courses, professor);        
         })
         onClickRegisterView(professor.courses, professor);
-        onClickGenerate(professor.courses);
+       
 
         weeksInfo(students, professor);
         groupView(students, professor);
