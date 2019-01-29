@@ -99,7 +99,7 @@ function drawAttendanceChartS(students, professor) {
                     if(weeks != undefined) {
                         weeks.forEach(function(week) {
                             groupAttendance[student.group] += 1;
-                            number = week.Number;
+                            number = week.number;
                         });
                     }
                     if(number>weeksNumber) {
