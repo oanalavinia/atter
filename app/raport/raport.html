@@ -171,26 +171,53 @@
                 </section>
                 <section id="geolocation" role="contentinfo">
                     <h5 property="description">HTML5 Geolocation API</h5>
+                    <p>
+                        By using this API the aplication checks the location of a student at the moment when he attends a class and validates this request only if the coordonates are from the area of Computer Science Faculty.
+                    </p>
                     <figure vocab="http://schema.org/" typeof="schema:SoftwareSourceCode"  role="doc-example">
                         <pre><code>
-                                var x = document.getElementById("demo");
-                                
-                                function getLocation() {
-                                    if (navigator.geolocation) {
-                                        navigator.geolocation.getCurrentPosition(showPosition);
-                                    } else { 
-                                        x.innerHTML = "Geolocation is not supported by this browser.";
-                                    }
+                            function checkUserLocation() {
+                                let urlLocation = window.location.hash;
+                                if (urlLocation === '#attend') {
+                                    navigator.geolocation.getCurrentPosition(function (pos) {
+                                        console.log(pos);
+                                        if (Math.abs(1000 * (facultyLocation.latitude - pos.coords.latitude)) >= 1 ||
+                                            Math.abs(1000 * (facultyLocation.longitude - pos.coords.latitude)) >= 1) {
+                                            return false;
+                                        }
+                                    });
                                 }
-                                
-                                function showPosition(position) {
-                                    x.innerHTML = "Latitude: " + position.coords.latitude + 
-                                    "Longitude: " + position.coords.longitude;
+                                else {
+                                    return true;
                                 }
+                            }
                         </code></pre>
                         <a href="https://www.w3schools.com/html/html5_geolocation.asp" property="codeRepository">Link for source</a> 
-                        of <span property="programmingLanguage">JavaScript</span> code
+                        of <span property="programmingLanguage">JavaScript</span> code that was adapted to our case.
                     <!-- <figcaption></figcaption> -->
+                    </figure>
+                </section>
+                <section id="canvas" role="contentinfo">
+                    <h5 property="description">Canvas API</h5>
+                    <figure vocab="http://schema.org/" typeof="ImageObject">
+                        <p property="description">
+                            <ul>
+                                <li>
+                                    The canvas element provides scripts with a resolution-dependent bitmap canvas, which can be used for rendering graphs, game graphics, art, or other visual images on the fly.
+                                </li>
+                                <li>
+                                    We used this API for representing different data about students on the professor side, giving in this way informations about groups points or presence to a subject.
+                                </li>
+                            </ul>
+                            Points chart of all groups on course page:
+                        </p>
+                    </figure>
+                    <figure vocab="http://schema.org/" typeof="ImageObject">
+                        <img src="images/pointsChart.png" alt="Points chart" width="507" height="350" property="contentUrl">
+                        <p property="description">
+                            Presence chart just for professor seminar groups: 
+                        </p>
+                        <img src="images/attendanceChart.png" alt="Attendace chart" width="507" height="350" property="contentUrl">
                     </figure>
                 </section>
             </section>

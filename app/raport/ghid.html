@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Atter - report</title>
+    <link rel="stylesheet" href="css/scholarly.min.css">
+    <script src="js/scholarly.min.js"></script>
+  </head>
+  <body vocab="http://schema.org/" typeof="schema:ScholarlyArticle" resource="#article">
+    <header>
+      <h1 property="headline">Atter - user guide</h1>
+      <img href="images/login_image" property="image">
+    </header>
+    <div role="contentinfo">
+      <dl>
+        <dt>Authors</dt>
+        <dd vocab="http://schema.org/" typeof="Person" property="author">
+            <span property="name">Olariu Madalina-Stefana</span>
+            (<a href="mailto:madalinaolariu67@gmail.com" property="email" typeof="URL">madalinaolariu67@gmail.com</a>)
+        </dd>,
+        <dd vocab="http://schema.org/" typeof="Person" property="author">
+            <span property="name">Florean Oana-Lavinia</span>
+            (<a href="mailto:florean.lavinia@gmail.com" property="email" typeof="URL">florean.lavinia@gmail.com</a>)
+        </dd>
+      </dl>
+    </div>
+    <section property="backstory" id="abstract" role="doc-abstract" >
+      <h2 property="description">Abstract</h2>
+      <p>
+            Atter is an application designed for students of Computer Science Faculty of Iasi that has as a purpose the implementation of a 
+            system that manages the courses and seminars. Users are of two types, teachers that can register a seminar/course, add marks,
+            notes for students and visualise different reports, and the students that can attend a seminar/course and also see some 
+            informations provided by the teacher.
+      </p>
+    </section>
+    <section id="login" role="contentinfo">
+      <h2 property="description">First page</h2>
+      <section id="loginInfo" role="contentinfo">
+        <!-- review? -->
+        <h3 property="description">Login</h3>
+        <p  property="text">
+            The login is made based on the fenrir account provided by the faculty and by typing the email and password you are redirected to the interface specific of you status, student or professor.
+        </p>
+        <figure vocab="http://schema.org/" typeof="ImageObject">
+            <img src="images/login1.png" alt="Login" property="contentUrl" width="607" height="350">
+        </figure>
+      </section>
+    </section>
+    <section id="register" role="contentinfo">
+        <h2 property="description">Attend/Register class</h2>
+        <p property="text">
+            The register component is available for students and professors, but with different functionalities.
+        </p>
+        <section id="architectural" role="contentinfo">
+            <h4 property="description">Attend class</h4>
+            <p property="text">
+                As a student you can attend a class by specifying the code provided by the teacher at the seminar. Also, the location is gonna be checked so you cannot attend a seminar without being in the area of the faculty.
+            </p>
+            <figure vocab="http://schema.org/" typeof="ImageObject">
+                <img src="images/attend_class.png" alt="Attend class" property="contentUrl" width="457" height="350">
+            </figure>
+        </section>
+        <section id="architectural" role="contentinfo">
+            <h4 property="description">Register class</h4>
+            <p property="text">
+                When registering a course, you'll receive an unique code that should be given to the students so they can register.
+            </p>
+            <figure vocab="http://schema.org/" typeof="ImageObject">
+                <img src="images/register_class.png" alt="Register class" property="contentUrl" width="457" height="350">
+            </figure>
+        </section>
+    </section>
+    <section id="check" role="contentinfo">
+        <h2 property="description">Check courses</h2>
+        <p property="text">
+            The management of the information that is seen about a course is also changed depending on the needs that each type of user may have.
+        </p>
+        <section id="student" role="contentinfo">
+            <h4 property="description">Student</h4>
+            <p property="text">
+                For each course that you are assign to, you may see all the weeks that are registered by the professor and the status you have on each one, points and attendance.
+            </p>
+            <figure vocab="http://schema.org/" typeof="ImageObject">
+                <img src="images/student_week.png" alt="Student week" property="contentUrl" width="700" height="130">
+            </figure>
+        </section>
+        <section id="professor" role="contentinfo">
+            <h4 property="description">Professor</h4>
+            <p property="text">
+                As a professor you have 2 categories of items in Check module of the menu: course and laboratory.
+            </p>
+            <section id="course" role="contentinfo">
+                <h4 property="description">Course</h4>
+                <p property="text">
+                    If you are the course professor of a subject there are 2 charts that are showing the general points an attendance of each group.
+                </p>
+                <figure vocab="http://schema.org/" typeof="ImageObject">
+                    <img src="images/course_reports.png" alt="Course reports" property="contentUrl" width="507" height="550">
+                </figure>
+            </section>
+            <section id="course" role="contentinfo">
+                <h4 property="description">Lab</h4>
+                <p property="text">
+                    For each lab you can see the groups you are assigned, divided by weeks, with a separate page that brings in real-time students. It also provides functionality for giving points.
+                </p>
+                <p property="text">
+                    Besides attending the seminar, there are also 2 charts specific to the groups of that subject.
+                </p>
+                <figure vocab="http://schema.org/" typeof="ImageObject">
+                    <img src="images/lab_reports.png" alt="Lab reports" property="contentUrl" width="607" height="500">
+                </figure>
+                <figure vocab="http://schema.org/" typeof="ImageObject">
+                    <img src="images/lab_view.png" alt="Lab view" property="contentUrl" width="807" height="250">
+                </figure>
+            </section>
+        </section>
+            
+    </section>
+  </body>
+</html>
