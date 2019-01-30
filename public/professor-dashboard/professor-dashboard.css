@@ -107,6 +107,10 @@ select{
     width: 100%;
 }
 
+.chartP {
+    margin-top:5%;
+}
+
 #attendanceChartS {
     width: 100%;
 }

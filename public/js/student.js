@@ -252,6 +252,8 @@ function populate() {
              updateInfoToCourses(student);
         });
         populateWeeks(student);
+        drawPointsCanvas(getStudents(users));
+        drawAttendanceChart(getStudents(users));
     });
 
 
@@ -267,7 +269,11 @@ ref.once('value', function (data) {
     var student = new Student(loggedUser);
     var userName = document.getElementById("user");
     userName.innerHTML = loggedUser.FirstName + ' ' + loggedUser.LastName;
-    createSubjectsList(student); 
+    createSubjectsList(student);
+    document.getElementById('reports').addEventListener("click", function () {
+        drawPointsCanvas(getStudents(users));
+        drawAttendanceChart(getStudents(users));
+    });
 });
 
 populate();

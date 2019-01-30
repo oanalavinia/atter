@@ -140,3 +140,41 @@ function checkUserLocation() {
         return true;
     }
 }
+
+//helpers
+
+function getPromiseStudents(students) {
+    return new Promise(resolve => {
+        students;
+    });
+}
+
+async function checkStudents(students) {
+    while (students === undefined) {
+        await getPromiseStudents(students)
+    }
+    return true;
+}
+
+function findGroupsForCourse(courses, labName){
+    if(labName){
+        var course = courses.find(c => c.name === labName)
+        var semGroups = course.groups.map(c => {
+            return c.name;
+        });
+        return semGroups;
+    }
+   
+}
+
+function getStudents(users) {
+    let students = [];
+    var studentsJson = users.filter(student => {
+        return student.IsStudent;
+    });
+    for (var key in Object.keys(studentsJson)) {
+        var student = new Student(studentsJson[key]);
+        students.push(student);
+    }
+    return students;
+}

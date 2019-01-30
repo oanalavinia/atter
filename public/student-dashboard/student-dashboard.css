@@ -40,6 +40,26 @@
     width: 60%;
 }
 
+.chart {
+    margin: auto;
+}
+
+.chartTitle {
+    font-weight: 200px;
+    font-size: 18px;
+    color: var(--title-grey);
+}
+
+.chartP {
+    margin-top:5%;
+}
+
+.course{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
 th:first-child{
     color:var(--blue);
 }
