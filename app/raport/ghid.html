@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Atter - report</title>
+    <title>Atter - user guide</title>
     <link rel="stylesheet" href="css/scholarly.min.css">
     <script src="js/scholarly.min.js"></script>
   </head>
@@ -29,8 +29,7 @@
       <h2 property="description">Abstract</h2>
       <p>
             Atter is an application designed for students of Computer Science Faculty of Iasi that has as a purpose the implementation of a 
-            system that manages the courses and seminars. Users are of two types, teachers that can register a seminar/course, add marks,
-            notes for students and visualise different reports, and the students that can attend a seminar/course and also see some 
+            system that manages the courses and seminars. Users are of two types, teachers that can register a seminar/course, add marks and visualise different reports, and the students that can attend a seminar/course and also see some 
             informations provided by the teacher.
       </p>
     </section>
@@ -47,24 +46,32 @@
         </figure>
       </section>
     </section>
-    <section id="register" role="contentinfo">
+    <section id="registerS" role="contentinfo">
         <h2 property="description">Attend/Register class</h2>
         <p property="text">
             The register component is available for students and professors, but with different functionalities.
+            The way it monitors the attendance at the seminars is embedded around the fact that the teacher receives 
+            the code associated with that week when he / she generates a course. By providing this code to the students 
+            it is assured that only the present can have access to it. 
+            But as additional measures the application checkes the location of each student wishing to attend a seminar so that 
+            he can not do it if he / she is outside the faculty. It is also not allowed to register after the seminar hours.
         </p>
-        <section id="architectural" role="contentinfo">
+        <section id="attend" role="contentinfo">
             <h4 property="description">Attend class</h4>
             <p property="text">
-                As a student you can attend a class by specifying the code provided by the teacher at the seminar. Also, the location is gonna be checked so you cannot attend a seminar without being in the area of the faculty.
+                As a student, you can participate in a class by specifying the code provided by the teacher at the seminar 
+                and his / her email address. The presence will be automatically recorded so that it can be after viewed on a 
+                different page.
             </p>
             <figure vocab="http://schema.org/" typeof="ImageObject">
                 <img src="images/attend_class.png" alt="Attend class" property="contentUrl" width="457" height="350">
             </figure>
         </section>
-        <section id="architectural" role="contentinfo">
+        <section id="register" role="contentinfo">
             <h4 property="description">Register class</h4>
             <p property="text">
-                When registering a course, you'll receive an unique code that should be given to the students so they can register.
+                Completing the form on this page it will automatically be registered a week and also generated a code on 
+                which students can be identified as present at that seminar when they type it in the application. 
             </p>
             <figure vocab="http://schema.org/" typeof="ImageObject">
                 <img src="images/register_class.png" alt="Register class" property="contentUrl" width="457" height="350">
@@ -79,7 +86,8 @@
         <section id="student" role="contentinfo">
             <h4 property="description">Student</h4>
             <p property="text">
-                For each course that you are assign to, you may see all the weeks that are registered by the professor and the status you have on each one, points and attendance.
+                For each course you have been assigned to, you can see all the weeks the teacher
+                has registered and the status you have for them, the points and the presence.
             </p>
             <figure vocab="http://schema.org/" typeof="ImageObject">
                 <img src="images/student_week.png" alt="Student week" property="contentUrl" width="700" height="130">
@@ -100,18 +108,19 @@
                 </figure>
             </section>
             <section id="course" role="contentinfo">
-                <h4 property="description">Lab</h4>
+                <h4 property="description">Seminar</h4>
                 <p property="text">
-                    For each lab you can see the groups you are assigned, divided by weeks, with a separate page that brings in real-time students. It also provides functionality for giving points.
+                    For each lab you can see the groups you are assigned to, divided by weeks, with a separate page that brings 
+                    present students in real time. Also on this page you have the possibility to mark the students.
                 </p>
+                <figure vocab="http://schema.org/" typeof="ImageObject">
+                    <img src="images/lab_view.png" alt="Lab view" property="contentUrl" width="807" height="450">
+                </figure>
                 <p property="text">
-                    Besides attending the seminar, there are also 2 charts specific to the groups of that subject.
+                    In addition to the information on attendance for the seminar, there are also 2 diagrams focused on these groups.
                 </p>
                 <figure vocab="http://schema.org/" typeof="ImageObject">
                     <img src="images/lab_reports.png" alt="Lab reports" property="contentUrl" width="607" height="500">
-                </figure>
-                <figure vocab="http://schema.org/" typeof="ImageObject">
-                    <img src="images/lab_view.png" alt="Lab view" property="contentUrl" width="807" height="250">
                 </figure>
             </section>
         </section>
