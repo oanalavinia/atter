@@ -112,7 +112,7 @@ function checkCode(student, professors) {
     var group = searchedCourse.groups.filter(sc => {
         return sc.name === student.group &&
             typeof (sc.weeks.find(week => {
-                return week.code === code /*&& (currentTime - week.hour)/1000/60/60 <= 2*/
+                return week.code === code && (currentTime - week.hour)/1000/60/60 <= 2
             })) != 'undefined'
     });
     return group;
