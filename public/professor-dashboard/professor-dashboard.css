@@ -81,17 +81,13 @@ select{
     justify-content: center;
 }
 
-/* #pointsChart {
-    padding-left: 2%;
-} */
-
-/* #pointsChart {
+#pointsChart {
     width: 100%;
 }
 
 #attendanceChart {
     width: 100%;
-} */
+}
 
 .chart {
     margin: auto;

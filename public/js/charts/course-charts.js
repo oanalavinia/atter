@@ -1,10 +1,7 @@
 function draw(canvas, values, groups, cWidth, cHeight) {
     let context = canvas.getContext('2d');
-
-    var dpr = window.devicePixelRatio || 1;
-    var rect = canvas.getBoundingClientRect();
-    context.canvas.height = window.innerHeight/4.5 ;
-    context.canvas.width = window.innerWidth/3.5 ;
+    context.canvas.height = cHeight;
+    context.canvas.width = cWidth;
 
     context.clearRect(0, 0, canvas.width, canvas.height);
     let width = 10;
@@ -85,7 +82,7 @@ function drawPointsCanvas(students) {
         let values = getValues(groupPoints);
         let groups = ["A1","A2","A3","A4","A5","A6","A7","B1","B2","B3","B4","B5","B6","B7","E"];
         attendChart = document.getElementById("pointsChart");
-        draw(attendChart, values, groups, '850', '350');
+        draw(attendChart, values, groups, '450', '200');
     })
 }
 
@@ -136,7 +133,7 @@ function drawAttendanceChart(students) {
         let values = getAttendanceValues(groupAttendance, weeksNumber, students);
         let groups = ["A1","A2","A3","A4","A5","A6","A7","B1","B2","B3","B4","B5","B6","B7","E"];
         attendChart = document.getElementById("attendanceChart");
-        draw(attendChart, values, groups, '850', '350');
+        draw(attendChart, values, groups, '450', '200');
     })
 }
 

@@ -67,6 +67,7 @@ function addSubjectsToMenu(allCourses, students, professor, allStudents) {
     }
 }
 
+
 // labs view
 function addWeeksForSubject(students, professor) {
     var weeksNode;
