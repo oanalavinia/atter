@@ -22,19 +22,18 @@ Router.prototype = {
         var r = this.routes;
         (function (scope, r) {
             window.addEventListener('hashchange', function (e) {
-                if (checkUserLocation()) {
-                    var a = e.oldURL.split('#')[1];
-                    var b = e.newURL.split('#')[1];
-                    if (a === undefined) {
-                        scope.hasChanged(scope, r);
-                    }
-                    else {
-                        if (!a.includes(b.split('/')[0]) || e.newURL.split('#')[1] === "")
-                            scope.hasChanged(scope, r);
-                    }
-                } else {
-                    alert("You must be at FII to attend a course!")
+                //if (checkUserLocation()) {
+                var a = e.oldURL.split('#')[1];
+                var b = e.newURL.split('#')[1];
+                if (a === undefined) {
+                    scope.hasChanged(scope, r);
                 }
+                else {
+                    if (!a.includes(b.split('/')[0]) || e.newURL.split('#')[1] === "")
+                        scope.hasChanged(scope, r);
+                }
+            //}else{
+             //   alert("You must be at FII to attend a course!")
             });
         })(this, r);
         this.hasChanged(this, r);
