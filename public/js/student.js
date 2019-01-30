@@ -252,8 +252,8 @@ function populate() {
              updateInfoToCourses(student);
         });
         populateWeeks(student);
-        drawPointsCanvas(getStudents(users));
-        drawAttendanceChart(getStudents(users));
+        drawPointsCanvas(student);
+        drawAttendanceChart(student);
     });
 
 
@@ -271,8 +271,8 @@ ref.once('value', function (data) {
     userName.innerHTML = loggedUser.FirstName + ' ' + loggedUser.LastName;
     createSubjectsList(student);
     document.getElementById('reports').addEventListener("click", function () {
-        drawPointsCanvas(getStudents(users));
-        drawAttendanceChart(getStudents(users));
+        drawPointsCanvas(student);
+        drawAttendanceChart(student);
     });
 });
 

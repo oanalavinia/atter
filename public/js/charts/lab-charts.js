@@ -1,4 +1,4 @@
-function drawS(canvas, values, groups, cWidth, cHeight) {
+function drawS(canvas, values, groups) {
     // setting canvas
     let context = canvas.getContext('2d');
     var dpr = window.devicePixelRatio || 1;
@@ -39,14 +39,6 @@ function drawS(canvas, values, groups, cWidth, cHeight) {
     }
 }
 
-function getValues(dictionary) {
-    let values = []
-    for(var key in dictionary) {
-        values.push(dictionary[key]);
-    }
-    return values;
-}
-
 
 function drawPointsCanvasS(students, professor) {
     Promise.all([checkStudents(students), checkElement('pointsChartS')]).then(function() {
@@ -71,9 +63,8 @@ function drawPointsCanvasS(students, professor) {
                 }
             });
         });
-        let values = getValues(groupPoints);
         chart = document.getElementById("pointsChartS");
-        drawS(chart, Object.values(groupPoints), groups, '400', '180');
+        drawS(chart, Object.values(groupPoints), groups);
     })
 }
 
@@ -111,7 +102,7 @@ function drawAttendanceChartS(students, professor) {
 
         let values = getAttendanceValuesS(groupAttendance, weeksNumber, students);
         attendChart = document.getElementById("attendanceChartS");
-        drawS(attendChart, values, Object.values(groups), '400', '180');
+        drawS(attendChart, values, Object.values(groups));
     })
 }
 
